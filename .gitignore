@@ -2,8 +2,7 @@
 /public/hot
 /public/storage
 /public/seo
-/storage/*.key
-/storage/logs
+/storage/*
 .env.backup
 .phpunit.result.cache
 Homestead.json
