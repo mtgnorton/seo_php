@@ -293,7 +293,7 @@ class MenuTableSeeder extends Seeder
                 'order'      => 36,
                 'title'      => '域名解析',
                 'icon'       => 'fa-paragraph',
-                'uri'        => 'admin/domain-parse',
+                'uri'        => 'domain-parse',
                 'created_at' => $now,
                 'updated_at' => $now,
             ],
