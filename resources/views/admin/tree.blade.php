@@ -21,7 +21,7 @@
         <div class="btn-group" style="font-size: 20px; display: none;" id="content_types">
             <a class="content-a" href="/admin/content-categories?type=title&category_id=">标题库</a>
             <a class="content-a" href="/admin/content-categories?type=article&category_id=">文章库</a>
-            <a class="content-a" href="/admin/content-categories?type=website_name&category_id=">网站标题库</a>
+            <!-- <a class="content-a" href="/admin/content-categories?type=website_name&category_id=">网站名称库</a> -->
             <a class="content-a" href="/admin/content-categories?type=column&category_id=">栏目库</a>
             <a class="content-a" href="/admin/content-categories?type=sentence&category_id=">句子库</a>
             <a class="content-a" href="/admin/content-categories?type=image&category_id=">图片库</a>

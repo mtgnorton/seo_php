@@ -82,6 +82,10 @@ return [
             'url'        => env('APP_URL') . '/storage',
             'visibility' => 'public',
         ],
+        'update' => [
+            'driver' => 'local',
+            'root'   => storage_path('update'),
+        ],
 
     ],
 

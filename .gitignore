@@ -2,6 +2,7 @@
 /public/hot
 /public/storage
 /public/seo
+/public/nginx.test.conf
 /storage/*
 .env.backup
 .phpunit.result.cache
@@ -12,5 +13,10 @@ yarn-error.log
 /public/uploads
 composer.lock
 .idea
-/.history
+/vendor
 .env
+/.history
+php-beast.log
+php_errors.log
+updated.zip
+.editorconfig

@@ -107,6 +107,9 @@ return [
     "Bind host"                                 => "绑定域名",
     "Website module"                            => "网站模态框",
     "Is category syn"                           => "是否同步到分类",
+    "Times"                                     => "次数",
+    "All site"                                  => "全站",
+    "Insert"                                    => "插入",
     // 返回语句
     "File does not exist"                       => "文件不存在",
     "File uploaded failed"                      => "文件上传失败, 请重新上传",

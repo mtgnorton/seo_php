@@ -10,7 +10,7 @@ SEO管理系统
 
 ## nginx和php配置
 - 修改php-fpm.conf中的request_terminate_timeout为600,重启php,用于放开采集时的时间限制
--  nginx配置文件如`/www/server/panel/vhost/nginx/seo_php.conf`及其父目录需要读写权限
+-  nginx配置文件如`/www/server/panel/vhost/nginx/seo.grayvip.com.conf`及其父目录需要读写权限
 - php会执行的命令有`sudo nginx -s reload 2>&1`,用于域名解析后重启nginx,`sudo git reset --hard;sudo git pull 2>&1`,用于代码更新
 
 ## 部署
@@ -49,6 +49,10 @@ SEO管理系统
 | APP_KEY  | 项目key  | base64:JQSRPglByKntG+7pUikfdFl1PhEhc1Pse2B9Ek543xU=  |
 | APP_DEBUG  | 是否开启debug  | true  |
 | APP_URL  | 项目地址  | http://localhost  |
+| AUTH_DOMAIN  | 授权域名  |  用于授权,必填,否则系统无法是使用 |
+| OFFICIAL_DOMAIN  | 官网域名  |  必填,否则系统无法更新 |
+| NGINX_VHOST_PATH  | nginx虚拟域名配置文件路径  |  必填,否则系统无法使用域名解析 |
+
 | LOG_CHANNEL  | 日志记录类型  | stack  |
 | DB_CONNECTION  | 数据库类型  | mysql  |
 | DB_HOST  | 数据库地址  | 127.0.0.1  |

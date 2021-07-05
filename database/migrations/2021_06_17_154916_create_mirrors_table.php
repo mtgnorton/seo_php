@@ -15,7 +15,7 @@ class CreateMirrorsTable extends Migration
     {
         Schema::create('mirrors', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('sub_domain')->default('')->comment('泛域名');
+            $table->integer('category_id')->default(0)->comment('所属分类');
             $table->text('targets')->nullable()->comment('目标站,多个,一行一个');
             $table->string('title')->default('')->comment('标题');
             $table->string('keywords')->default('')->comment('标题');
