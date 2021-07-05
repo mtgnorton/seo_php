@@ -131,7 +131,6 @@ function encrypt_directory($dir, $new_dir, $expire, $type)
 
 $src_path = './app';
 $dst_path = "../seo_php_encrypt/app";
-
 if (isset($argv[1])) {
     $src_path = trim($argv[1]);
 }

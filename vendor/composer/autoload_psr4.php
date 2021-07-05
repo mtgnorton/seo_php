@@ -7,7 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'sqhlib\\Hanzi\\' => array($vendorDir . '/sqhlib/hanzi-convert/src'),
-    'phpDocumentor\\Reflection\\' => array($vendorDir . '/phpdocumentor/reflection-common/src', $vendorDir . '/phpdocumentor/type-resolver/src', $vendorDir . '/phpdocumentor/reflection-docblock/src'),
+    'phpDocumentor\\Reflection\\' => array($vendorDir . '/phpdocumentor/reflection-common/src', $vendorDir . '/phpdocumentor/reflection-docblock/src', $vendorDir . '/phpdocumentor/type-resolver/src'),
     'hamburgscleanest\\LaravelGuzzleThrottle\\' => array($vendorDir . '/hamburgscleanest/laravel-guzzle-throttle/src'),
     'hamburgscleanest\\GuzzleAdvancedThrottle\\' => array($vendorDir . '/hamburgscleanest/guzzle-advanced-throttle/src'),
     'Whoops\\' => array($vendorDir . '/filp/whoops/src/Whoops'),
