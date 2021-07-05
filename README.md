@@ -52,7 +52,6 @@ SEO管理系统
 | AUTH_DOMAIN  | 授权域名  |  用于授权,必填,否则系统无法是使用 |
 | OFFICIAL_DOMAIN  | 官网域名  |  必填,否则系统无法更新 |
 | NGINX_VHOST_PATH  | nginx虚拟域名配置文件路径  |  必填,否则系统无法使用域名解析 |
-
 | LOG_CHANNEL  | 日志记录类型  | stack  |
 | DB_CONNECTION  | 数据库类型  | mysql  |
 | DB_HOST  | 数据库地址  | 127.0.0.1  |
