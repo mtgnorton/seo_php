@@ -13,7 +13,6 @@ yarn-error.log
 /public/uploads
 composer.lock
 .idea
-/vendor
 .env
 /.history
 php-beast.log
