@@ -38,7 +38,7 @@
 
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
-            <li class="header">{{ trans('admin.menu') }}</li>
+            <!-- <li class="header">{{ trans('admin.menu') }}</li> -->
 
             @each('admin::partials.menu', Admin::menu(), 'item')
 

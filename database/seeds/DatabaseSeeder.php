@@ -16,5 +16,18 @@ class DatabaseSeeder extends Seeder
         // $this->call(TagTableSeeder::class);
         $this->call(ConfigsTableSeeder::class);
         $this->call(TemplateTypesTableSeeder::class);
+        
+        $this->update();
+    }
+
+
+    public function update()
+    {
+        DB::table('admin_menu')->where('title', 'Dashboard')->update([
+            'title' => '系统首页'
+        ]);
+        DB::table('admin_menu')->where('title', 'in', [
+            'Admin', 'Users', 'Roles', 'Permission', 'Menu'
+        ])->delete();
     }
 }

@@ -28,12 +28,14 @@
                 <!-- User Account Menu -->
                 <li class="dropdown user user-menu">
                     <!-- Menu Toggle Button -->
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown"> -->
                         <!-- The user image in the navbar-->
-                        <img src="{{ Admin::user()->avatar }}" class="user-image" alt="User Image">
+                        <!-- <img src="{{ Admin::user()->avatar }}" class="user-image" alt="User Image"> -->
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                        <span class="hidden-xs">{{ Admin::user()->name }}</span>
-                    </a>
+                        <!-- <span class="hidden-xs">{{ Admin::user()->name }}</span> -->
+                    <!-- </a> -->
+                    
+                    <a href="{{ admin_url('auth/logout') }}" class="dropdown-toggle">{{ trans('admin.logout') }}</a>
                     <ul class="dropdown-menu">
                         <!-- The user image in the menu -->
                         <li class="user-header">

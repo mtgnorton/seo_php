@@ -22,7 +22,8 @@ return [
     | `img` tag, eg '<img src="http://logo-url" alt="Admin logo">'.
     |
     */
-    'logo'                      => '<b>小洋云seo</b>',
+    // 'logo'                      => '<b>小洋云seo</b>',
+    'logo'                      => '<img src="/asset/imgs/logo.png">',
 
     /*
     |--------------------------------------------------------------------------
@@ -34,7 +35,8 @@ return [
     | '<img src="http://logo-url" alt="Admin logo">'.
     |
     */
-    'logo-mini'                 => '<b>seo</b>',
+    // 'logo-mini'                 => '<b>seo</b>',
+    'logo-mini'                 => '<img src="/asset/imgs/logo-mini.png">',
 
     /*
     |--------------------------------------------------------------------------

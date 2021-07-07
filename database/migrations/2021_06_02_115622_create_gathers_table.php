@@ -24,6 +24,7 @@ class CreateGathersTable extends Migration
             $table->char('storage_type', 20)->default('')->comment('存储类型');
             $table->text('user_agent');
             $table->text('header')->comment('header头');
+            $table->string('keywords')->comment('关键词');
             $table->string('agent')->default('')->comment('代理');
             $table->tinyInteger('is_auto')->default(0)->comment('是否自动采集: 0否,1是');
             $table->text('begin_url')->comment('开始采集的url');
