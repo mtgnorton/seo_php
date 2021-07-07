@@ -209,7 +209,7 @@ class MenuTableSeeder extends Seeder
             [
                 'id'         => 30,
                 'parent_id'  => 0,
-                'order'      => 0,
+                'order'      => 30,
                 'title'      => '采集',
                 'icon'       => '/asset/imgs/icon/5.png',
                 'uri'        => '',
@@ -219,7 +219,7 @@ class MenuTableSeeder extends Seeder
             [
                 'id'         => 31,
                 'parent_id'  => 30,
-                'order'      => 1,
+                'order'      => 31,
                 'title'      => '规则采集',
                 'icon'       => '/asset/imgs/icon/5.png',
                 'uri'        => 'gathers',
@@ -269,7 +269,7 @@ class MenuTableSeeder extends Seeder
             [
                 'id'         => 36,
                 'parent_id'  => 0,
-                'order'      => 36,
+                'order'      => 19,
                 'title'      => '站点分类',
                 'icon'       => '/asset/imgs/icon/2.png',
                 'uri'        => '',
