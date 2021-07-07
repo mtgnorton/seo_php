@@ -403,13 +403,17 @@ EOT;
             ->default('')
             ->help($help);
         $form->select('type', ll('Gather Type'))
+            ->options(array_merge(GatherConstant::typeText(), [0 => '无']))
             ->required()
-            ->options(GatherConstant::typeText())
             /*确定分类*/
+
             ->when(GatherConstant::TYPE_SENTENCE, $confirmCategory(ContentConstant::TYPE_SENTENCE))
             ->when(GatherConstant::TYPE_TITLE, $confirmCategory(ContentConstant::TYPE_TITLE))
             ->when(GatherConstant::TYPE_ARTICLE, $confirmCategory(ContentConstant::TYPE_ARTICLE))
             ->when(GatherConstant::TYPE_IMAGE, $confirmCategory(ContentConstant::TYPE_IMAGE))
+            ->when(0, function () {
+                return;
+            })
             ->when(
                 'in',
                 [
@@ -433,21 +437,6 @@ EOT;
                     $form->text('regular_title', '匹配标题');
                 }
             )
-//            ->when(
-//                'in',
-//                [
-//                    GatherConstant::TYPE_IMAGE
-//
-//                ],
-//                function (Form $form) {
-//                    $help = <<<EOT
-//匹配内容表达式可以有多个,一行一条,满足条件的内容都将被抓取<br>
-//匹配使用php正则表达式
-//EOT;
-//
-//                    $form->textarea('regular_image', '匹配图片地址')->help($help);
-//                }
-//            )
             ->when(
                 'in',
                 [
@@ -501,9 +490,16 @@ EOT;
         $form->textarea('filter_content', ll('Filter content'))
             ->help($help)
             ->default('');
-        $form->select('storage_type', ll('Storage type'))->options(ContentConstant::typeText());
+        $form->select('storage_type', ll('Storage type'))->options(ContentConstant::typeText())->rules('required');
 
         $form->saving(function (Form $form) {
+            if (!$form->type) {
+                return back_error('请选择采集类型');
+            }
+            if (!$form->category_id) {
+                return back_error('请选择分类');
+            }
+
             $form->tag = ContentCategory::find($form->category_id)->name . ContentConstant::tagText()[$form->storage_type];
         });
         return $form;
