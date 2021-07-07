@@ -249,7 +249,7 @@ class MenuTableSeeder extends Seeder
             [
                 'id'         => 34,
                 'parent_id'  => 0,
-                'order'      => 0,
+                'order'      => 34,
                 'title'      => '镜像',
                 'icon'       => '/asset/imgs/icon/6.png',
                 'uri'        => 'mirrors',
