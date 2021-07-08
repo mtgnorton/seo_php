@@ -20,3 +20,4 @@ php-beast.log
 php_errors.log
 updated.zip
 .editorconfig
+/storage/logs
