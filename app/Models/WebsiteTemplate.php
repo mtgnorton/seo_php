@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\WebsiteTemplateDeletingEvent;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 /**
@@ -13,6 +14,13 @@ class WebsiteTemplate extends Pivot
      * 黑名单
      */
     protected $guarded = [];
+
+    /**
+     * 绑定删除事件
+     */
+    protected $dispatchesEvents = [
+        'deleting' => WebsiteTemplateDeletingEvent::class
+    ];
 
     /**
      * 和网站多对一的关系

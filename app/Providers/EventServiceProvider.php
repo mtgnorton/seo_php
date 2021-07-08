@@ -30,6 +30,12 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\FileDeletingEvent' => [
             'App\Listeners\FileDeletingeventListener'
         ],
+        'App\Events\WebsiteTemplateDeletingEvent' => [
+            'App\Listeners\WebsiteTemplateDeletingeventListener'
+        ],
+        'App\Events\TemplateDeletingEvent' => [
+            'App\Listeners\TemplateDeletingeventListener'
+        ],
     ];
 
     /**

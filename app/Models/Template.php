@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\TemplateDeletingEvent;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -21,6 +22,13 @@ class Template extends Model
      */
     protected $casts = [
         'module' => 'json',
+    ];
+    
+    /**
+     * 绑定删除事件
+     */
+    protected $dispatchesEvents = [
+        'deleting' => TemplateDeletingEvent::class
     ];
 
     /**
@@ -51,6 +59,16 @@ class Template extends Model
     public function modules()
     {
         return $this->hasMany('App\Models\TemplateModule');
+    }
+
+    /**
+     * 和模板模块一对多的关系
+     *
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function materials()
+    {
+        return $this->hasMany('App\Models\TemplateMaterial');
     }
 
     /**
@@ -89,5 +107,10 @@ class Template extends Model
             'website_id'
         )->using('App\Models\WebsiteTemplate')
         ->withTimestamps();
+    }
+
+    public function websiteTemplates()
+    {
+        return $this->hasMany('App\Models\WebsiteTemplate');
     }
 }
