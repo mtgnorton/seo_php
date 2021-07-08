@@ -1,203 +1,166 @@
 <?php
 
-namespace App\Admin\Components\Actions\Gathers;
+namespace App\Admin\Controllers;
 
+use App\Admin\Components\Actions\Gathers\Copy;
+use App\Admin\Components\Actions\Gathers\MirrorGather;
+use App\Admin\Components\Actions\Gathers\TestRegularContent;
+use App\Admin\Components\Actions\Gathers\TestRegularUrl;
+use App\Constants\GatherConstant;
 use App\Constants\MirrorConstant;
+use App\Models\Category;
 use App\Models\Mirror;
-use App\Services\Gather\CrawlService;
-use Encore\Admin\Actions\RowAction;
-use Illuminate\Http\Request;
+use Encore\Admin\Controllers\AdminController;
+use Encore\Admin\Form;
+use Encore\Admin\Grid;
+use Encore\Admin\Show;
+use Encore\Admin\Widgets\Table;
 use Illuminate\Support\Facades\Storage;
-use sqhlib\Hanzi\HanziConvert;
 
-
-class MirrorGather extends RowAction
+class MirrorController extends AdminController
 {
-    public $name;
-
     /**
-     * 测试内容匹配
+     * Title for current resource.
+     *
+     * @var string
      */
-    public $category;
+    protected $title = 'Mirror';
 
     public function __construct()
     {
-        $this->name = ll('采集目标站');
-
-        parent::__construct();
+        $this->title = ll('Mirror');
     }
-
-
-    public function handle(Mirror $model, Request $request)
-    {
-        $rs = $this->response()->error(ll('采集失败'))->refresh();
-
-        try {
-            $rs = $this->gather($model, $request->is_force);
-
-        } catch (\Exception $e) {
-
-            common_log(full_error_msg($e));
-
-        }
-        if ($rs !== true) {
-            return $rs;
-        }
-
-
-        return $this->response()->success(ll('采集完成'))->refresh();
-    }
-
-
-    public function gather(Mirror $model, bool $isForce = false)
-    {
-        $targets = explode("\r\n", $model->targets);
-        if (empty($targets)) {
-            return $this->response()->success(ll('没有目标站无法采集'))->refresh();
-        }
-
-        if ($isForce) {
-            Storage::disk('mirror')->deleteDirectory($model->id);
-
-        }
-        foreach ($targets as $target) {
-            $content = CrawlService::setOptions('', [
-                'CURLOPT_TIMEOUT'        => 10,
-            ])->get($target);
-
-            $content = $this->processContents($model, $content);
-
-            /* 获取url中域名的部分作为文件名 */
-            $target = parse_url($target)['host'];
-
-            $target = trim($target, '/');
-
-            $fullPath = $model->id . DIRECTORY_SEPARATOR . $target . '.html';
-            $exist    = Storage::disk('mirror')->exists($fullPath);
-            if (!$isForce && $exist) {
-                continue;
-            }
-
-
-            Storage::disk('mirror')->put($fullPath, $content);
-        }
-        return true;
-    }
-
-    public function processContents(Mirror $model, string $content)
-    {
-        /*禁用js*/
-        /*        $content = preg_replace('#<script.*?>[\s\S]*?<\/script>#', '', $content);*/
-
-
-        /*内容替换*/
-        if ($model->replace_contents) {
-            $replaceContents = explode("\r\n", $model->replace_contents);
-
-            $replaceContents = collect($replaceContents)->mapWithKeys(function ($value) {
-                $item = explode("---", $value);
-                return [
-                    trim($item[0]) => trim($item[1])
-                ];
-            });
-
-            if ($replaceContents->isNotEmpty()) {
-                $content = str_replace($replaceContents->keys(), $replaceContents->values(), $content);
-
-            }
-        }
-
-        /*替换所有的跳转链接*/
-        $content = preg_replace('#<a href\="[^"]*?"#i', '<a href="/"', $content);
-
-
-        /**
-         * todo 对采集的内容进行中英转换
-         */
-
-        if (!$content) {
-            return $content;
-        }
-        $content = (string)trim($content);
-
-        $canExplode = preg_split('/(?<!^)(?!$)/u', $content);
-        switch ($model->conversion) {
-            case MirrorConstant::CONVERSION_NO:
-                $content = $this->dtk($model, $content);
-                break;
-            case MirrorConstant::CONVERSION_TO_COMPLEX:
-                if ($model->is_ignore_dtk) {
-
-                    $content = $this->dtk($model, $content);
-                } else {
-                    $content = $this->dtk($model, $content);
-
-                    if ($canExplode !== false) {
-                        $content = HanziConvert::convert($content, true);
-                    }
-                }
-                break;
-        }
-
-
-        return $content;
-
-    }
-
 
     /**
-     * author: mtg
-     * time: 2021/6/19   12:28
-     * function description:标题,描述,关键词替换
-     * @param Mirror $model
-     * @param $content
-     * @return string|string[]|null
+     * Make a grid builder.
+     *
+     * @return Grid
      */
-    private function dtk(Mirror $model, $content)
+    protected function grid()
     {
+        $grid = new Grid(new Mirror());
+        $grid->actions(function ($actions) {
+            $actions->add(new MirrorGather());
+        });
+        $grid->column('id', ll('Id'));
+        $grid->column('category_id', ll('所属分类'))->display(function ($value) {
+            return Category::find($value)->name;
+        });
+        $grid->column('is_disabled', ll('是否禁用'))->switch();
+        $grid->column('targets', ll('Targets'))->expand(function ($model) {
 
-        if ($model->description) {
-            $pattern = '#<meta(.*?)name="Description"(.*?)content=".*?/>#i';
-            $replace = '<meta name="Description" content="' . $model->description . '"/>';
-            $content = $this->replace($pattern, $replace, $content);
-        }
+            $targets = explode("\r\n", $model->targets);
 
-        if ($model->keywords) {
+            $rs = [];
 
-            $pattern = '#<meta(.*?)name="Keywords"(.*?)content=".*?/>#i';
-            $replace = '<meta name="Keywords" content="' . $model->keywords . '"/>';
-            $content = $this->replace($pattern, $replace, $content);
-        }
+            foreach ($targets as $target) {
+                $encodeTarget = urlencode($target);
+                $rs[]         = [
+                    $target, "<a href='/admin/mirrors/preview/id/{$model->id}/{$encodeTarget}' target='_blank'>预览</a>"
+                ];
+            }
+            return new Table(['目标站', '预览'], $rs);
+        });
+        $grid->column('title', ll('Title'));
+        $grid->column('keywords', ll('Keywords'));
+        $grid->column('description', ll('Description'));
+        $grid->column('conversion', ll('Conversion'))->using(MirrorConstant::conversionText());
+        $grid->column('is_ignore_dtk', ll('Is open dtk'))->display(function ($value) {
+            return $value ? '是' : '否';
+        });
+//        $grid->column('user_agent', ll('User agent'));
+        $grid->column('replace_contents', ll('Replace contents'));
+        $grid->column('created_at', ll('Created at'));
+        $grid->column('updated_at', ll('Updated at'));
 
-        if ($model->title) {
-            $pattern = '#<title>.*?<\/title>#i';
-            $replace = "<title>$model->title</title>";
-            $content = $this->replace($pattern, $replace, $content);
-        }
-
-        return $content;
+        return $grid;
     }
 
-    private function replace($pattern, $replace, $content)
+    /*采集镜像预览*/
+    public function preview()
     {
-        if (preg_match($pattern, $content)) {
-            return preg_replace($pattern, $replace, $content, 1);
-        } else {
-            return preg_replace('#<head>#', '<head>' . $replace, $content, 1);
+
+        $target = request()->target;
+
+        $id = request()->id;
+
+        /* 获取url中域名的部分作为文件名 */
+        $target = parse_url($target)['host'];
+
+        $target = trim($target, '/');
+
+        $fullPath = $id . DIRECTORY_SEPARATOR . $target . '.html';
+
+        try {
+            $content = Storage::disk('mirror')->get($fullPath);
+        } catch (\Exception $e) {
+            $content = "内容不存在,请先采集或重新采集";
 
         }
+
+
+        /*字符编码 将gbk 转为*/
+        if (strpos($content, 'charset=gbk') !== false) {
+            header("content-type:text/html;charset=GBK");
+        }
+        echo $content;
     }
 
-    public function form()
+    /**
+     * Make a show builder.
+     *
+     * @param mixed $id
+     * @return Show
+     */
+    protected function detail($id)
     {
-        $this->radio('is_force', '是否强制采集')
-            ->options([
-                0 => '否',
-                1 => '是'
-            ])
-            ->help('如果选择强制采集,即使之前采集过,也会重新采集');
+        $show = new Show(Mirror::findOrFail($id));
 
+        $show->field('id', ll('Id'));
+        $show->field('sub_domain', ll('Sub domain'));
+        $show->field('targets', ll('Targets'));
+        $show->field('title', ll('Title'));
+        $show->field('keywords', ll('Keywords'));
+        $show->field('description', ll('Description'));
+        $show->field('conversion', ll('Conversion'));
+        $show->field('is_ignore_dtk', ll('Is open dtk'));
+        $show->field('user_agent', ll('User agent'));
+        $show->field('replace_contents', ll('Replace contents'));
+        $show->field('created_at', ll('Created at'));
+        $show->field('updated_at', ll('Updated at'));
+
+        return $show;
     }
 
+    /**
+     * Make a form builder.
+     *
+     * @return Form
+     */
+    protected function form()
+    {
+        $form = new Form(new Mirror());
 
+        $form->select('category_id', ll('所属分类'))->options(Category::pluck('name', 'id'))->required();
+        $form->switch('is_disabled', ll('是否禁用'));
+        $help = "一行一个,需要包含http";
+        $form->textarea('targets', ll('Targets'))->help($help)->required();
+        $form->text('title', ll('Title'));
+        $form->text('keywords', ll('Keywords'));
+        $form->text('description', ll('Description'));
+
+        $form->radio('conversion', ll('Conversion'))->options(MirrorConstant::conversionText())->default(MirrorConstant::CONVERSION_NO);
+        $form->switch('is_ignore_dtk', ll('Is open dtk'));
+
+
+        $help = sprintf("百度user-agent为:   %s<br>谷歌user-agent为:   %s<br>", GatherConstant::USER_AGENT_BAIDU_CONTENT, GatherConstant::USER_AGENT_GOOGLE_CONTENT);
+
+        $form->text('user_agent', ll('User agent'))->help($help);
+
+        $help = "一行一个,内容替换,格式为aaa---bbb,aaa将被替换为bbb";
+
+        $form->textarea('replace_contents', ll('Replace contents'))->help($help);
+
+        return $form;
+    }
 }
