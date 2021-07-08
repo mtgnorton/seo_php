@@ -6,6 +6,7 @@ use App\Admin\Components\Actions\Gathers\Copy;
 use App\Admin\Components\Actions\Gathers\MirrorGather;
 use App\Admin\Components\Actions\Gathers\TestRegularContent;
 use App\Admin\Components\Actions\Gathers\TestRegularUrl;
+use App\Admin\Forms\Ad;
 use App\Constants\GatherConstant;
 use App\Constants\MirrorConstant;
 use App\Models\Category;
@@ -38,6 +39,19 @@ class MirrorController extends AdminController
      */
     protected function grid()
     {
+        $js = <<<EOT
+$('.modal-footer .btn-primary').click( function (){
+    $(this).text('采集中')
+
+     setTimeout(function() {
+        $(this).attr('disabled',true);
+    }, 1);
+
+});
+EOT;
+
+        \Admin::script($js);
+
         $grid = new Grid(new Mirror());
         $grid->actions(function ($actions) {
             $actions->add(new MirrorGather());
