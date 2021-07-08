@@ -328,7 +328,7 @@ function get_remote_latest_version_info()
 
         $info = data_get($data, 'data');
 
-        Cache::set('system_latest_version_info', $info, 3600);
+//        Cache::set('system_latest_version_info', $info, 3600);
     }
 
     return $info;
@@ -351,7 +351,7 @@ function get_remote_all_version_info()
 
         $info = data_get($data, 'data');
 
-        Cache::set('system_history_version_info', $info, 3600);
+//        Cache::set('system_history_version_info', $info, 3600);
     }
 
     return $info;
