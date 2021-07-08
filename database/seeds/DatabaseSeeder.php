@@ -23,13 +23,13 @@ class DatabaseSeeder extends Seeder
 
     public function update()
     {
-        
+
         DB::table('admin_menu')->where('title', 'Dashboard')->update([
             'title' => '系统首页',
             'icon'  => '/asset/imgs/icon/1.png'
         ]);
         DB::table('admin_menu')->whereIn('title', [
-            'Admin', 'Users', 'Roles', 'Permission', 'Menu'
+            'Admin', 'Users', 'Roles', 'Permission', 'Menu', 'Operation log'
         ])->delete();
     }
 }
