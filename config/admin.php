@@ -64,7 +64,7 @@ return [
 
         'namespace' => 'App\\Admin\\Controllers',
 
-        'middleware' => ['web', 'admin', 'verify.auth_code'],
+        'middleware' => ['web', 'admin', 'verify.auth_code','verify.demo'],
     ],
 
     /*
