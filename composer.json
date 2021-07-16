@@ -12,6 +12,7 @@
         "ext-curl": "*",
         "ext-json": "*",
         "ext-mysqli": "*",
+        "ext-zip": "*",
         "encore/laravel-admin": "1.8.11",
         "fideloper/proxy": "^4.4",
         "laravel-admin-ext/chartjs": "^1.0",
@@ -20,7 +21,7 @@
         "laravel/tinker": "^2.5",
         "sqhlib/hanzi-convert": "^1.1",
         "symfony/dom-crawler": "5.3",
-        "ext-zip": "*"
+        "ext-pdo": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",

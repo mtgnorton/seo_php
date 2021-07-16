@@ -3,10 +3,12 @@
 namespace App\Console\Commands;
 
 use App\Services\Gather\CrawlService;
-use App\Services\OnlineUpdateService;
+use App\Services\ImportAndExportService;
+use App\Services\SystemUpdateService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
+use \Goose\Client as GooseClient;
 
 class Test extends Command
 {
@@ -41,8 +43,8 @@ class Test extends Command
      */
     public function handle()
     {
-
-        OnlineUpdateService::update('http://seoweb.grayvip.com//storage/zip/20210702/1d8c31f6bef11b13ae78fcf81935d61f.zip', './storage/update/patch.zip');
+        ImportAndExportService::zip(['storage/app/public/template', 'storage/app/public/mirror'], 'b.zip');
+        echo 'finish';
     }
 
 

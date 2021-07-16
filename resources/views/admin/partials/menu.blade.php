@@ -8,7 +8,7 @@
             @endif
                 <!-- <i class="fa {{$item['icon']}}"></i> -->
                 @if ($item['parent_id'] == 0)
-                    <img src="{{asset($item['icon'])}}" alt="">
+                    <img src="{{asset($item['icon'])}}" data-dafault="{{asset($item['icon'])}}" data-src="{{asset($item['icon_selected'])}}"  alt="">
                 @else
                 <img src="{{asset($item['icon'])}}" alt="" style="width: 14px; height: 14px;">
                 @endif
@@ -23,7 +23,7 @@
         <li class="treeview">
             <a href="#">
                 <!-- <i class="fa {{ $item['icon'] }}"></i> -->
-                <img src="{{asset($item['icon'])}}" alt="">
+                <img src="{{asset($item['icon'])}}" data-dafault="{{asset($item['icon'])}}" data-src="{{asset($item['icon_selected'])}}" alt="">
                 @if (Lang::has($titleTranslation = 'admin.menu_titles.' . trim(str_replace(' ', '_', strtolower($item['title'])))))
                     <span>{{ __($titleTranslation) }}</span>
                 @else

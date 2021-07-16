@@ -2458,6 +2458,67 @@
         ]
     },
     {
+        "name": "laravel-admin-ext/chartjs",
+        "version": "v1.0.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/laravel-admin-extensions/chartjs.git",
+            "reference": "3a12f9907c9d4ba59cdd1c9033e67325a337469f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/laravel-admin-extensions/chartjs/zipball/3a12f9907c9d4ba59cdd1c9033e67325a337469f",
+            "reference": "3a12f9907c9d4ba59cdd1c9033e67325a337469f",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "encore/laravel-admin": "*",
+            "php": ">=7.0.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~6.0"
+        },
+        "time": "2018-09-16T17:28:26+00:00",
+        "type": "library",
+        "extra": {
+            "laravel": {
+                "providers": [
+                    "Encore\\Chartjs\\ChartjsServiceProvider"
+                ]
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Encore\\Chartjs\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "song",
+                "email": "zosong@126.com"
+            }
+        ],
+        "description": "Use Chartjs in laravel-admin",
+        "homepage": "https://github.com/laravel-admin-ext/chartjs",
+        "keywords": [
+            "chartjs",
+            "extension",
+            "laravel-admin"
+        ]
+    },
+    {
         "name": "laravel-admin-ext/grid-lightbox",
         "version": "v1.0.3",
         "version_normalized": "1.0.3.0",
@@ -2854,17 +2915,17 @@
     },
     {
         "name": "league/flysystem",
-        "version": "1.1.3",
-        "version_normalized": "1.1.3.0",
+        "version": "1.1.4",
+        "version_normalized": "1.1.4.0",
         "source": {
             "type": "git",
             "url": "https://github.com/thephpleague/flysystem.git",
-            "reference": "9be3b16c877d477357c015cec057548cf9b2a14a"
+            "reference": "f3ad69181b8afed2c9edf7be5a2918144ff4ea32"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/9be3b16c877d477357c015cec057548cf9b2a14a",
-            "reference": "9be3b16c877d477357c015cec057548cf9b2a14a",
+            "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/f3ad69181b8afed2c9edf7be5a2918144ff4ea32",
+            "reference": "f3ad69181b8afed2c9edf7be5a2918144ff4ea32",
             "shasum": "",
             "mirrors": [
                 {
@@ -2886,7 +2947,6 @@
             "phpunit/phpunit": "^8.5.8"
         },
         "suggest": {
-            "ext-fileinfo": "Required for MimeType",
             "ext-ftp": "Allows you to use FTP server storage",
             "ext-openssl": "Allows you to use FTPS server storage",
             "league/flysystem-aws-s3-v2": "Allows you to use S3 storage with AWS SDK v2",
@@ -2901,7 +2961,7 @@
             "spatie/flysystem-dropbox": "Allows you to use Dropbox storage",
             "srmklive/flysystem-dropbox-v2": "Allows you to use Dropbox storage for PHP 5 applications"
         },
-        "time": "2020-08-23T07:39:11+00:00",
+        "time": "2021-06-23T21:56:05+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -8394,17 +8454,17 @@
     },
     {
         "name": "symfony/process",
-        "version": "v4.4.25",
-        "version_normalized": "4.4.25.0",
+        "version": "v4.4.26",
+        "version_normalized": "4.4.26.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/process.git",
-            "reference": "cd61e6dd273975c6625316de9d141ebd197f93c9"
+            "reference": "7e812c84c3f2dba173d311de6e510edf701685a8"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/process/zipball/cd61e6dd273975c6625316de9d141ebd197f93c9",
-            "reference": "cd61e6dd273975c6625316de9d141ebd197f93c9",
+            "url": "https://api.github.com/repos/symfony/process/zipball/7e812c84c3f2dba173d311de6e510edf701685a8",
+            "reference": "7e812c84c3f2dba173d311de6e510edf701685a8",
             "shasum": "",
             "mirrors": [
                 {
@@ -8416,7 +8476,7 @@
         "require": {
             "php": ">=7.1.3"
         },
-        "time": "2021-05-26T11:20:16+00:00",
+        "time": "2021-06-09T14:57:04+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {

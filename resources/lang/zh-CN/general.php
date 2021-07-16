@@ -27,7 +27,7 @@ return [
     "Image"                                     => "图片",
     "Image url"                                 => "图片链接",
     "Category id"                               => "分类ID",
-    "Category name"                             => "分类名",
+    "Category name"                             => "分类名称",
     "File id"                                   => "文件ID",
     "File name"                                 => "文件",
     "Is collected"                              => "是否采集",
@@ -140,7 +140,7 @@ return [
     "Delete"                                    => "刪除",
     // 标题
     "Article"                                   => "文章",
-    "Category"                                  => "分类",
+    "Category"                                  => "新增分类",
     "Category rule"                             => "分类规则",
     "Diy"                                       => "自定义",
     "File"                                      => "文件",
@@ -160,6 +160,7 @@ return [
     "Host"                                      => "域名",
     "Visit record"                              => "访问记录",
     "Push"                                      => "推送",
+    "Template website"                          => "模板绑定域名",
     // 帮助
     "Template type identify help"               => "抓取标识, 如果有多个, 一行一个",
     "English or pinyin"                         => "英文或拼音",
@@ -182,6 +183,9 @@ return [
     "Cache time help"                           => "单位: 小时",
     "Push js code help"                         => "此处代码将添加到所有模板文件尾部, 配合推送, 不用加<script></script>",
     "One line one"                              => "一行一个",
+    "Template tag help"                         => "同一分类下标签名不能重复",
+    "Delete category help"                      => "删除后无法恢复, 确定要删除吗 ?",
+    "Delete success"                            => "删除成功",
     // 库名
     "article"                                   => "文章库",
     "title"                                     => "标题库",
@@ -224,6 +228,7 @@ return [
     'Way'                           => '方式',
     'Type'                          => '类型',
     'Is open'                       => '是否开启',
+    'Is delete'                     => '是否删除',
     'Ignore dtk'                    => '忽略DTK',
     'Content relevance title'       => '标题关联内容',
     'Unicode dtk'                   => 'Unicode转码: DTK(标题,描述,关键词)',
@@ -249,6 +254,7 @@ return [
     'Platform push setting'         => '平台推送配置',
     'Platform baidu normal setting' => '百度·普通收录参数',
     'Platform baidu quick setting'  => '百度·快速收录参数',
+    "Is refresh change"             => '是否页面刷新改变',
 
     // 蜘蛛
     'Spider'                        => '蜘蛛',

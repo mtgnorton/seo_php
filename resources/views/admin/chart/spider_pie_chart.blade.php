@@ -1,23 +1,29 @@
 <style>
-.chart_tab span{background:#fff;color:#333;border-bottom:2px solid transparent;cursor:pointer;}
-.chart_tab span.cur{color:#0769ba;border-color:#0769ba;}
-.chart_tab span:hover{color:#0769ba;border-color:#0769ba;}
+.chart_main{ width:100%; background:#fff; padding: 20px 0px; box-sizing: border-box;}
+.chart_box{ width: calc(50% - 20px); display: inline-block; margin-right: 30px; background: #EFF4F8; border-radius: 18px; padding: 15px 40px; box-sizing: border-box; }
+.chart_content{ background: #EFF4F8; border-radius: 18px; padding: 15px 40px; box-sizing: border-box; }
+.chart_box:last-child{ margin-right: 0; }
+.chart-name{ height: 40px; line-height: 40px; margin-bottom: 10px; font-weight: 600; color: #6B7D90; font-size: 18px; position: relative; }
+.chart-name::after{ content: ""; position: absolute; width: 20px; height: 6px; background: #EA6756; border-radius: 4px; top: 17px; left: -40px; }
+.chart_tab{ text-align:left; margin-bottom: 20px; }
+.chart_tab span{color:#44627C;border-bottom:2px solid transparent;cursor:pointer; margin-right: 20px;display: inline-block;}
+.chart_tab span.cur{color:#3E4AF5;border-color:#3E4AF5;font-weight: 600;}
+.chart_tab span:hover{color:#3E4AF5;border-color:#3E4AF5;}
 #doughnut .loading{position:absolute;top:45%;left:50%;margin-left:-40px;background:#fff;}
-.type_tab{position:absolute;left:0;z-index:99;height:31px;line-height:31px;top:10px;font-family:Microsoft Yahei;border-top:2px solid #40AA52;}
+.type_tab{position:absolute;left:0;z-index:99;height:31px;line-height:31px;top:10px;font-family:Microsoft Yahei;border-top:2px solid #38D350;}
 .type_tab span{font-size:13px;cursor:pointer;padding:6px 15px;background:#eee;}
-.type_tab span.cur{background:#40AA52;color:#fff;}
+.type_tab span.cur{background:#38D350;color:#fff;}
 </style>
-<div>
-    <div style="width: 30%; float:left;">
-        <div>
-            <div style="position: relative;text-align:right">
-                <div id="pie_tab" class="chart_tab" style="text-align: center;">
-                    <span class="cur" data="0">今日</span>
-                    <span data="1">昨日</span>
-                    <span data="7">7日</span>
-                    <span data="30">30日</span>
-                    <span data="365">1年</span>
-                </div>
+<div class="chart_main">
+    <div class="chart_box">
+        <div class="chart-name pieChart_name">今日访问比率</div>
+        <div style="position: relative;text-align:right">
+            <div id="pie_tab" class="chart_tab">
+                <span class="cur" data="0">今日</span>
+                <span data="1">昨日</span>
+                <span data="7">7日</span>
+                <span data="30">30日</span>
+                <span data="365">1年</span>
             </div>
         </div>
         <div>
@@ -25,14 +31,13 @@
         </div>
     </div>
 
-    <div style="width: 60%; float:right;">
-        <div>
-            <div style="position: relative;text-align:right">
-                <div id="day_tab" class="chart_tab" style="text-align: center;">
-                    <span class="cur" data="0">今日</span>
-                    <span data="1">昨日</span>
-                    <span data="2">前日</span>
-                </div>
+    <div class="chart_box">
+        <div class="chart-name line1Chart_name">今日蜘蛛时段走势图</div>
+        <div style="position: relative;text-align:right">
+            <div id="day_tab" class="chart_tab">
+                <span class="cur" data="0">今日</span>
+                <span data="1">昨日</span>
+                <span data="2">前日</span>
             </div>
         </div>
         <div>
@@ -41,18 +46,17 @@
     </div>
 </div>
 <div style="clear:both;"></div>
-<div style="margin-top: 20px;">
-    <div>
-        <div style="position: relative; text-align:left;">
-            <div class="type_tab" id="week_type_tab">
-                <span class="cur" data="all">全部</span>
-                <span data="detail">明细</span>
-            </div>
-            <div id="week_tab" class="chart_tab" style="margin-left: 150px; padding-top: 10px">
-                <span data="10" class="cur">近10日</span>
-                <span data="30">近30日</span>
-                <span data="365">近1年</span>
-            </div>
+<div class="chart_content" style="margin-top: 20px;">
+    <div class="chart-name line2Chart_name">近10日蜘蛛时段走势图</div>
+    <div style="position: relative; text-align:left; margin-bottom: 20px;">
+        <div class="type_tab" id="week_type_tab">
+            <span class="cur" data="all">全部</span>
+            <span data="detail">明细</span>
+        </div>
+        <div id="week_tab" class="chart_tab" style="margin-left: 150px; padding-top: 14px">
+            <span data="10" class="cur">近10日</span>
+            <span data="30">近30日</span>
+            <span data="365">近1年</span>
         </div>
     </div>
     <div>
@@ -98,14 +102,14 @@ $(function () {
                     mode: 'point'
                 },
                 legend: {
-                    position: 'top',
+                    position: 'bottom',
                 },
-                title: {
-                    display: true,
-                    position: 'top',
-                    fontSize: 19,
-                    text: data.title,
-                },
+                // title: {
+                //     display: true,
+                //     position: 'top',
+                //     fontSize: 19,
+                //     text: data.title,
+                // },
             }
         };
         var pieChart = new Chart(ctx, config);
@@ -120,7 +124,8 @@ $(function () {
                 dataType: 'json'
             }).done(function (data) {
                 pieChart.data.datasets[0].data = data.values;
-                pieChart.options.title.text = data.title;
+                // pieChart.options.title.text = data.title;
+                $('.pieChart_name').text(data.title);
                 pieChart.update();
             }).fail(function (xhr) {
                 swal('获取数据失败');
@@ -159,14 +164,14 @@ $(function () {
                     mode: 'point'
                 },
                 legend: {
-                    position: 'top',
+                    position: 'bottom',
                 },
-                title: {
-                    display: true,
-                    position: 'top',
-                    fontSize: 19,
-                    text: data.title,
-                },
+                // title: {
+                //     display: true,
+                //     position: 'top',
+                //     fontSize: 19,
+                //     text: data.title,
+                // },
             }
         };
         var line1Chart = new Chart(ctx, config);
@@ -181,7 +186,8 @@ $(function () {
                 dataType: 'json'
             }).done(function (data) {
                 line1Chart.data.datasets = data.values;
-                line1Chart.options.title.text = data.title;
+                // line1Chart.options.title.text = data.title;
+                $('.line1Chart_name').text(data.title);
                 line1Chart.update();
             }).fail(function (xhr) {
                 swal('获取数据失败');
@@ -219,14 +225,14 @@ $(function () {
                     mode: 'point'
                 },
                 legend: {
-                    position: 'top',
+                    position: 'bottom',
                 },
-                title: {
-                    display: true,
-                    position: 'top',
-                    fontSize: 19,
-                    text: data.title,
-                },
+                // title: {
+                //     display: true,
+                //     position: 'top',
+                //     fontSize: 19,
+                //     text: data.title,
+                // },
             }
         };
         var line2Chart = new Chart(ctx, config);
@@ -244,6 +250,7 @@ $(function () {
             }).done(function (data) {
                 line2Chart.data.datasets = data.values;
                 line2Chart.data.labels = data.labels;
+                $('.line2Chart_name').text(data.title);
                 line2Chart.update();
             }).fail(function (xhr) {
                 swal('获取数据失败');
@@ -265,6 +272,7 @@ $(function () {
             }).done(function (data) {
                 line2Chart.data.datasets = data.values;
                 line2Chart.data.labels = data.labels;
+                $('.line2Chart_name').text(data.title);
                 line2Chart.update();
             }).fail(function (xhr) {
                 swal('获取数据失败');

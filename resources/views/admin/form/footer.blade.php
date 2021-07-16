@@ -9,7 +9,7 @@
 
         @if(in_array('reset', $buttons))
         <div class="btn-group pull-left">
-            <button type="reset" class="btn btn-warning">{{ trans('admin.reset') }}</button>
+            <button type="reset" class="btn btn-default">{{ trans('admin.reset') }}</button>
         </div>
         @endif
 

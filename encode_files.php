@@ -128,60 +128,66 @@ function encrypt_directory($dir, $new_dir, $expire, $type)
 
 //////////////////////////////// run here ////////////////////////////////////
 
+$dst_project = "../seo_fff/";
 
-$src_path = './app';
-$dst_path = "../seo_fff/app";
-if (isset($argv[1])) {
-    $src_path = trim($argv[1]);
+$src_paths = ['app/Admin', 'app/Constants', 'app/Http', 'app/Services', 'app/Helper'];
+
+foreach ($src_paths as $src_path) {
+    $dst_path = $dst_project . $src_path;
+
+    delete_dir(rtrim($dst_path, '/') . '/');
+
+
+    $expire       = "";
+    $encrypt_type = "DES";
+
+    if (empty($src_path) || !is_dir($src_path)) {
+        exit("Fatal: source path `{$src_path}' not exists\n\n");
+    }
+
+    if (empty($dst_path)
+        || (!is_dir($dst_path)
+            && !mkdir($dst_path, 0777))) {
+        exit("Fatal: can not create directory `{$dst_path}'\n\n");
+    }
+
+    switch ($encrypt_type) {
+        case 'AES':
+            $entype = BEAST_ENCRYPT_TYPE_AES;
+            break;
+        case 'BASE64':
+            $entype = BEAST_ENCRYPT_TYPE_BASE64;
+            break;
+        case 'DES':
+        default:
+            $entype = BEAST_ENCRYPT_TYPE_DES;
+            break;
+    }
+
+    printf("Source code path: %s\n", $src_path);
+    printf("Destination code path: %s\n", $dst_path);
+    printf("Expire time: %s\n", $expire);
+    printf("------------- start process -------------\n");
+
+    $expire_time = 0;
+    if ($expire) {
+        $expire_time = strtotime($expire);
+    }
+
+    $time = microtime(TRUE);
+
+    calculate_directory_schedule($src_path);
+    encrypt_directory($src_path, $dst_path, $expire_time, $entype);
+
+    $used = microtime(TRUE) - $time;
+
+    printf("\nFinish processed encrypt files, used %f seconds\n", $used);
+
 }
-if (isset($argc[2])) {
-    $dst_path = trim($argv[2]);
-}
 
-delete_dir(rtrim($dst_path, '/') . '/');
-
-
-$expire       = "";
-$encrypt_type = "DES";
-
-if (empty($src_path) || !is_dir($src_path)) {
-    exit("Fatal: source path `{$src_path}' not exists\n\n");
-}
-
-if (empty($dst_path)
-    || (!is_dir($dst_path)
-        && !mkdir($dst_path, 0777))) {
-    exit("Fatal: can not create directory `{$dst_path}'\n\n");
-}
-
-switch ($encrypt_type) {
-    case 'AES':
-        $entype = BEAST_ENCRYPT_TYPE_AES;
-        break;
-    case 'BASE64':
-        $entype = BEAST_ENCRYPT_TYPE_BASE64;
-        break;
-    case 'DES':
-    default:
-        $entype = BEAST_ENCRYPT_TYPE_DES;
-        break;
-}
-
-printf("Source code path: %s\n", $src_path);
-printf("Destination code path: %s\n", $dst_path);
-printf("Expire time: %s\n", $expire);
-printf("------------- start process -------------\n");
-
-$expire_time = 0;
-if ($expire) {
-    $expire_time = strtotime($expire);
-}
-
-$time = microtime(TRUE);
-
-calculate_directory_schedule($src_path);
-encrypt_directory($src_path, $dst_path, $expire_time, $entype);
-
-$used = microtime(TRUE) - $time;
-
-printf("\nFinish processed encrypt files, used %f seconds\n", $used);
+//if (isset($argv[1])) {
+//    $src_path = trim($argv[1]);
+//}
+//if (isset($argc[2])) {
+//    $dst_path = trim($argv[2]);
+//}

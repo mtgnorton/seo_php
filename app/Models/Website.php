@@ -24,19 +24,24 @@ class Website extends Model
         return $this->belongsTo('App\Models\Category');
     }
 
-    /**
-     * 和分类多对一的关系
-     *
-     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function templates()
+    // /**
+    //  * 和分类多对一的关系
+    //  *
+    //  * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+    //  */
+    // public function templates()
+    // {
+    //     return $this->belongsToMany(
+    //         'App\Models\Template',
+    //         'website_template',
+    //         'website_id',
+    //         'template_id'
+    //     )->using('App\Models\WebsiteTemplate')
+    //     ->withTimestamps();
+    // }
+
+    public function template()
     {
-        return $this->belongsToMany(
-            'App\Models\Template',
-            'website_template',
-            'website_id',
-            'template_id'
-        )->using('App\Models\WebsiteTemplate')
-        ->withTimestamps();
+        return $this->belongsTo('App\Models\Template');
     }
 }

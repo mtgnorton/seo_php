@@ -72,6 +72,16 @@ class Template extends Model
     }
 
     /**
+     * 和模块页面一对多的关系
+     *
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function pages()
+    {
+        return $this->hasMany('App\Models\TemplateModulePage');
+    }
+
+    /**
      * 模板获取器
      *
      * @param string $value 
@@ -93,20 +103,30 @@ class Template extends Model
         $this->attributes['module'] = json_encode($value, JSON_UNESCAPED_UNICODE);
     }
 
+    // /**
+    //  * 和分类多对一的关系
+    //  *
+    //  * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+    //  */
+    // public function websites()
+    // {
+    //     return $this->belongsToMany(
+    //         'App\Models\Website',
+    //         'website_template',
+    //         'template_id',
+    //         'website_id'
+    //     )->using('App\Models\WebsiteTemplate')
+    //     ->withTimestamps();
+    // }
+
     /**
-     * 和分类多对一的关系
+     * 和绑定域名一对多的关系
      *
-     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function websites()
     {
-        return $this->belongsToMany(
-            'App\Models\Website',
-            'website_template',
-            'template_id',
-            'website_id'
-        )->using('App\Models\WebsiteTemplate')
-        ->withTimestamps();
+        return $this->hasMany('App\Models\Website');
     }
 
     public function websiteTemplates()

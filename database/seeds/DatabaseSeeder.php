@@ -26,7 +26,8 @@ class DatabaseSeeder extends Seeder
 
         DB::table('admin_menu')->where('title', 'Dashboard')->update([
             'title' => '系统首页',
-            'icon'  => '/asset/imgs/icon/1.png'
+            'icon'  => '/asset/imgs/icon/1.png',
+            'icon_selected'  => '/asset/imgs/icon_default/a9.png',
         ]);
         DB::table('admin_menu')->whereIn('title', [
             'Admin', 'Users', 'Roles', 'Permission', 'Menu', 'Operation log'

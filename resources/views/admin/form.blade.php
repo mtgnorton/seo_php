@@ -1,11 +1,10 @@
 <div class="box box-info">
-    <div class="box-header with-border">
+    <!-- <div class="box-header with-border box-header-hide">
         <h3 class="box-title">{{ $form->title() }}</h3>
-
         <div class="box-tools">
             {!! $form->renderTools() !!}
         </div>
-    </div>
+    </div> -->
     <!-- /.box-header -->
     <!-- form start -->
     {!! $form->open() !!}

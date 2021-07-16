@@ -98,6 +98,16 @@ class Category extends Model
      */
     public function websites()
     {
+        return $this->hasMany('App\Models\Website');
+    }
+
+    /**
+     * 和网站名称一对多的关系
+     *
+     * @return Illuminate\Databases\Eloquent\Relations\HasMany
+     */
+    public function websiteNames()
+    {
         return $this->hasMany('App\Models\WebsiteName');
     }
 

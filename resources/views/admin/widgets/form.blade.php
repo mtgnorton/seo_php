@@ -1,10 +1,8 @@
 <form {!! $attributes !!}>
     <div class="box-body fields-group">
-
         @foreach($fields as $field)
             {!! $field->render() !!}
         @endforeach
-
     </div>
 
     @if ($method != 'GET')
@@ -19,7 +17,7 @@
         <div class="col-md-{{$width['field']}}">
             @if(in_array('reset', $buttons))
             <div class="btn-group pull-left">
-                <button type="reset" class="btn btn-warning pull-right">{{ trans('admin.reset') }}</button>
+                <button type="reset" class="btn btn-default pull-right">{{ trans('admin.reset') }}</button>
             </div>
             @endif
 
