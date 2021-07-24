@@ -6,7 +6,7 @@ sudo git pull
 echo "<br>";
 rsync -avz /home/seo_master/* /home/seo_github/ --exclude='.git'
 echo "<br>";
-
+echo "开始进行加密";
 php encode_files_linux.php
 echo "<br>";
 
