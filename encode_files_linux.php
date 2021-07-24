@@ -128,7 +128,7 @@ function encrypt_directory($dir, $new_dir, $expire, $type)
 
 //////////////////////////////// run here ////////////////////////////////////
 
-$dst_project = "../seo_fff/";
+$dst_project = "/home/seo_github/";
 
 $src_paths = ['app/Admin', 'app/Constants', 'app/Http', 'app/Services', 'app/Helper'];
 
