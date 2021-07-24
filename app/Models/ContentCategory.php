@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\ContentCategoryDeletingEvent;
 use Encore\Admin\Traits\AdminBuilder;
 use Encore\Admin\Traits\ModelTree;
 use Illuminate\Database\Eloquent\Model;
@@ -21,6 +22,13 @@ class ContentCategory extends Model
         $this->setOrderColumn('sort'); // 设置排序字段名称
         $this->setTitleColumn('name'); // 设置标题名称
     }
+    
+    /**
+     * 绑定删除事件
+     */
+    protected $dispatchesEvents = [
+        'deleting' => ContentCategoryDeletingEvent::class
+    ];
 
     /**
      * 黑名单
@@ -65,5 +73,15 @@ class ContentCategory extends Model
     public function category()
     {
         return $this->belongsTo('App\Models\Category');
+    }
+
+    /**
+     * 与分组多对一的关系
+     *
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function group()
+    {
+        return $this->belongsTo('App\Models\TemplateGroup');
     }
 }

@@ -17,6 +17,7 @@ class CreateConfigsTable extends Migration
             $table->bigIncrements('id');
             $table->string('module', 100)->default('site')->comment('模块');
             $table->integer('category_id')->default(0)->comment('分类ID');
+            $table->integer('group_id')->default(0)->comment('分组ID');
             $table->integer('template_id')->default(0)->comment('模板ID');
             $table->string('key')->default('')->comment('键值');
             $table->text('value')->nullable()->comment('键对应的值');

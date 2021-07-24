@@ -9,7 +9,7 @@ SEO管理系统
 
 
 ## nginx和php配置
-- 修改php-fpm.conf中的request_terminate_timeout为600,重启php,用于放开采集时的时间限制
+- 修改php-fpm.conf中的request_terminate_timeout为1200,重启php,用于放开采集时的时间限制
 -  nginx配置文件如`/www/server/panel/vhost/nginx/seo.grayvip.com.conf`及其父目录需要读写权限
 - php会执行的命令有`sudo nginx -s reload 2>&1`,用于域名解析后重启nginx,`sudo git reset --hard;sudo git pull 2>&1`,用于代码更新
 

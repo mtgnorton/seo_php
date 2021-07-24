@@ -10,7 +10,7 @@ return [
     'password'              => '密码',
     'password_confirmation' => '确认密码',
     'remember_me'           => '记住我',
-    'user_setting'          => '用户设置',
+    'user_setting'          => '密码修改',
     'avatar'                => '头像',
     'list'                  => '列表',
     'new'                   => '新增',
@@ -73,6 +73,7 @@ return [
     'parent_select_error'   => '父级选择错误',
     'pagination'            => [
         'range' => '从 :first 到 :last ，总共 :total 条',
+        // 'range' => '当前为第 页，共 :total 条',
     ],
     'role'                  => '角色',
     'permission'            => '权限',

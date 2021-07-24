@@ -32,6 +32,7 @@ class CreateGathersTable extends Migration
             $table->text('test_url')->nullable()->comment('测试地址');
             $table->text('regular_content')->nullable()->comment('匹配内容,一行一条');
             $table->text('regular_title')->nullable()->comment('当为匹配文章时，匹配标题');
+            $table->tinyInteger('is_open_fake_origin')->default(0)->comment('是否开启伪原创');
             $table->text('regular_image')->nullable()->comment('当为匹配图片时,匹配地址');
             $table->integer('filter_length_limit')->nullable()->default(0)->comment('内容最小长度,小于该值过滤');
             $table->text('filter_regular')->nullable()->comment('正则过滤,一行一条');

@@ -16,6 +16,7 @@ return [
     "Is disabled"                               => "是否禁用",
     "No"                                        => "否",
     "Yes"                                       => "是",
+    "All"                                       => "全部",
     "Created at"                                => "创建时间",
     "Updated at"                                => "更新时间",
     "Binded at"                                 => "绑定时间",
@@ -104,10 +105,12 @@ return [
     "Push js code"                              => "推送的JS代码",
     "Bind host"                                 => "绑定域名",
     "Website module"                            => "网站模态框",
-    "Is category syn"                           => "是否同步到分类",
+    "Is category syn"                           => "是否同步到分类", 
     "Times"                                     => "次数",
     "All site"                                  => "全站",
     "Insert"                                    => "插入",
+    "Tempate group name"                        => "模板分组名称",
+    "Template group"                            => "模板分组",
     // 返回语句
     "File does not exist"                       => "文件不存在",
     "File uploaded failed"                      => "文件上传失败, 请重新上传",
@@ -140,7 +143,7 @@ return [
     "Delete"                                    => "刪除",
     // 标题
     "Article"                                   => "文章",
-    "Category"                                  => "新增分类",
+    "Category"                                  => "分类",
     "Category rule"                             => "分类规则",
     "Diy"                                       => "自定义",
     "File"                                      => "文件",
@@ -186,6 +189,7 @@ return [
     "Template tag help"                         => "同一分类下标签名不能重复",
     "Delete category help"                      => "删除后无法恢复, 确定要删除吗 ?",
     "Delete success"                            => "删除成功",
+    "File size and number limit"                => "总文件大小不大于200M, 总文件个数不大于200个。",
     // 库名
     "article"                                   => "文章库",
     "title"                                     => "标题库",
@@ -254,7 +258,7 @@ return [
     'Platform push setting'         => '平台推送配置',
     'Platform baidu normal setting' => '百度·普通收录参数',
     'Platform baidu quick setting'  => '百度·快速收录参数',
-    "Is refresh change"             => '是否页面刷新改变',
+    "Is refresh change"             => '页面刷新改变',
 
     // 蜘蛛
     'Spider'                        => '蜘蛛',

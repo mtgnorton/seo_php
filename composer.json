@@ -12,6 +12,7 @@
         "ext-curl": "*",
         "ext-json": "*",
         "ext-mysqli": "*",
+        "ext-pdo": "*",
         "ext-zip": "*",
         "encore/laravel-admin": "1.8.11",
         "fideloper/proxy": "^4.4",
@@ -21,7 +22,7 @@
         "laravel/tinker": "^2.5",
         "sqhlib/hanzi-convert": "^1.1",
         "symfony/dom-crawler": "5.3",
-        "ext-pdo": "*"
+        "tim168/search-engine-rank": "^1.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
@@ -47,7 +48,8 @@
         },
         "classmap": [
             "database/seeds",
-            "database/factories"
+            "database/factories",
+            "database/migrations"
         ],
         "files": [
             "app/Helper/common.php"

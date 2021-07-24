@@ -35,7 +35,10 @@
                         <!-- <span class="hidden-xs">{{ Admin::user()->name }}</span> -->
                     <!-- </a> -->
                     
-                    <a href="{{ admin_url('auth/logout') }}" class="dropdown-toggle">{{ trans('admin.logout') }}</a>
+                    <a href="{{ admin_url('auth/logout') }}" class="dropdown-toggle">
+                        <img src="/asset/imgs/default_icon/1.png" style="margin: 0 6px" alt="">
+                        <span style="vertical-align:middle">{{ trans('admin.logout') }}</span>
+                    </a>
                     <ul class="dropdown-menu">
                         <!-- The user image in the menu -->
                         <li class="user-header">

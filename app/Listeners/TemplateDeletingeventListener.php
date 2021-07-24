@@ -46,11 +46,11 @@ class TemplateDeletingeventListener
             $material->delete();
         }
 
-        // 域名刪除
-        $websiteTemplates = $template->websiteTemplates;
+        // // 域名刪除
+        // $websiteTemplates = $template->websiteTemplates;
         
-        foreach ($websiteTemplates as $websiteTemplate) {
-            $websiteTemplate->delete();
-        }
+        // foreach ($websiteTemplates as $websiteTemplate) {
+        //     $websiteTemplate->delete();
+        // }
     }
 }

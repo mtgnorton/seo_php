@@ -1,8 +1,8 @@
 <style>
 .chart_main{ width:100%; background:#fff; padding: 20px 30px; box-sizing: border-box;}
-.chart_box{ width: calc(50% - 20px); display: inline-block; margin-right: 30px; background: #EFF4F8; border-radius: 18px; padding: 15px 40px; box-sizing: border-box; }
+.chart_box{ width: calc(50% - 20px); display: inline-block; margin-right: 30px; background: #EFF4F8; border-radius: 18px; padding: 15px 40px; box-sizing: border-box; vertical-align: top; }
 .chart_box:last-child{ margin-right: 0; }
-.chart-name{ height: 40px; line-height: 40px; margin-bottom: 10px; font-weight: 600; color: #6B7D90; font-size: 18px; position: relative; }
+.chart-name{ height: 40px; line-height: 40px; margin-bottom: 10px; font-weight: 600; color: #6B7D90; font-size: 16px; position: relative; }
 .chart-name::after{ content: ""; position: absolute; width: 20px; height: 6px; background: #EA6756; border-radius: 4px; top: 17px; left: -40px; }
 .chart_tab{ text-align:left; margin-bottom: 20px; }
 .chart_tab span{color:#44627C;border-bottom:2px solid transparent;cursor:pointer; margin-right: 20px;display: inline-block;}
@@ -82,7 +82,7 @@ $(function () {
                     mode: 'point'
                 },
                 legend: {
-                    position: 'bottom',
+                    position: 'bottom'
                 },
                 // title: {
                 //     display: true,

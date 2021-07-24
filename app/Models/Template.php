@@ -129,8 +129,23 @@ class Template extends Model
         return $this->hasMany('App\Models\Website');
     }
 
+    /**
+     * 和绑定域名模板一对多的关系
+     *
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function websiteTemplates()
     {
         return $this->hasMany('App\Models\WebsiteTemplate');
+    }
+
+    /**
+     * 和模板分组多对一的关系
+     *
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function group()
+    {
+        return $this->belongsTo('App\Models\TemplateGroup');
     }
 }

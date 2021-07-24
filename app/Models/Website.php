@@ -40,8 +40,23 @@ class Website extends Model
     //     ->withTimestamps();
     // }
 
+    /**
+     * 和模板多对一的关系
+     *
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function template()
     {
         return $this->belongsTo('App\Models\Template');
+    }
+
+    /**
+     * 和分组多对一的关系
+     *
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function group()
+    {
+        return $this->belongsTo('App\Models\TemplateGroup', 'group_id');
     }
 }

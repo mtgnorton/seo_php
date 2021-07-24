@@ -32,9 +32,15 @@ class FileDeletingeventListener
     {
         $model = $event->model;
         $type = $model->getOriginal('type');
+        $path = $model->path;
 
-        // 页面删除后, 对应文件也要删除
         try {
+            // 1. 如果文件存在, 删除文件
+            if (Storage::exists($path)) {
+                Storage::delete($path);
+            }
+
+            // 2. 删除文件对应内容数据库记录
             if ($type == 'diy') {
                 Diy::where('file_id', $model->id)->delete();
             } else {

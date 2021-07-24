@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
         //          ->hourly();
 
         // 每分钟运行一次推送地址操作
-        $schedule->command('url:push')
+        $schedule->command('baiduUrl:push')
                 ->everyMinute()
                 ->withoutOverlapping();
         // 每分钟运行一次删除模板文件操作

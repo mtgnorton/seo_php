@@ -16,6 +16,7 @@ class CreateContentCategoriesTable extends Migration
         Schema::create('content_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('category_id')->nullable()->default(0)->comment('网站分类ID');
+            $table->integer('group_id')->nullable()->default(0)->comment('分组ID');
             $table->string('name', 255)->nullable()->default('')->comment('内容分类名称');
             $table->string('tag', 100)->nullable()->default('')->comment('内容分类标签: 拼音或英文');
             $table->integer('parent_id')->default(0)->comment('父类ID');
