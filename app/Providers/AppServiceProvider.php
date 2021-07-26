@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         if (config('app.debug') == true) {
-            
+
 //            DB::listen(function ($query) {
 //                $sql       = str_replace("?", "'%s'", $query->sql);
 //                $processID = getmypid();

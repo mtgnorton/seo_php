@@ -6,6 +6,7 @@ SEO管理系统
 > PHP >= 7.2.5
 > Mysql 5.6
 > 函数: pcntl_alarm,exec
+> 扩展: imagick
 
 
 ## nginx和php配置
