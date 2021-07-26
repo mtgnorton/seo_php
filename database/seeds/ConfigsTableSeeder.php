@@ -72,6 +72,22 @@ class ConfigsTableSeeder extends Seeder
                 'created_at' => $now,
                 'updated_at' => $now,
             ],
+            [
+                'module'     => 'qihoopush',
+                'key'        => 'is_open',
+                'value'      => 'off',
+                'is_json'    => 0,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'module'     => 'qihoopush',
+                'key'        => 'url_format',
+                'value'      => '',
+                'is_json'    => 0,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
         ]);
     }
 }

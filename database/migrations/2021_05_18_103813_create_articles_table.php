@@ -16,7 +16,7 @@ class CreateArticlesTable extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title', 255)->default('')->comment('标题');
-            $table->string('tag', 255)->nullable()->default('')->comment('标签内容');
+            $table->string('tag', 20)->index()->default('')->comment('标签内容');
             $table->string('image', 255)->nullable()->default('')->comment('缩略图');
             $table->longText('content')->comment('内容');
             $table->integer('category_id')->index()->default(0)->comment('分类ID');

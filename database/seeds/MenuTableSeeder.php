@@ -201,7 +201,7 @@ class MenuTableSeeder extends Seeder
                 'id'         => 26,
                 'parent_id'  => 20,
                 'order'      => 26,
-                'title'      => '配置管理',
+                'title'      => '推送管理',
                 'icon'       => '/asset/imgs/icon/8.png',
                 'icon_selected' => '/asset/imgs/default_icon/a16.png',
                 'uri'        => 'settings',

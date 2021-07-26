@@ -31,6 +31,10 @@ class Kernel extends ConsoleKernel
         $schedule->command('baiduUrl:push')
                 ->everyMinute()
                 ->withoutOverlapping();
+        // 每小时运行一次360访问地址方法
+        $schedule->command('qihooUrl:push')
+                ->hourly()
+                ->withoutOverlapping();
         // 每分钟运行一次删除模板文件操作
         $schedule->command('file:delete')
                 ->everyMinute()
