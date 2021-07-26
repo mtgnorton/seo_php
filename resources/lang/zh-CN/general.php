@@ -280,6 +280,8 @@ return [
     'Spider firwall'                => '蜘蛛防火墙',
     'Bing'                          => '必应bing',
     'Iask'                          => '新浪爱问',
+    'Black list'                    => '黑名单',
+    'White list'                    => '白名单',
 
     //镜像
     'Mirror'                => '镜像',

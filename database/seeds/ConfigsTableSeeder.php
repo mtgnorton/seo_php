@@ -35,7 +35,7 @@ class ConfigsTableSeeder extends Seeder
             [
                 'module'     => 'spider',
                 'key'        => 'no_spider',
-                'value'      => '{"is_open":"off","type":[""]}',
+                'value'      => '{"is_open":"off","type":"black_list","black_list":[""],"white_list":[""]}',
                 'is_json'    => 1,
                 'created_at' => $now,
                 'updated_at' => $now,
