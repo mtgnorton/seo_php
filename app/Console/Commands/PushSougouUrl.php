@@ -98,7 +98,7 @@ class PushSougouUrl extends Command
 
             if (!data_get($rs, 'state')) {
 
-                if (strpos(data_get($rs, 'msg'), '验证码' === false)) { //非验证码错误进行记录
+                if (mb_strpos(data_get($rs, 'msg'), '验证码' === false)) { //非验证码错误进行记录
                     Cache::set(RedisCacheKeyConstant::SOUGOU_PUSH_ERROR, $rs['msg']);
                 }
 
