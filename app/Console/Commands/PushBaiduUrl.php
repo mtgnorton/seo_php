@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Constants\RedisCacheKeyConstant;
 use App\Services\CommonService;
 use App\Services\IndexPregService;
 use App\Services\SpiderService;
@@ -61,6 +62,13 @@ class PushBaiduUrl extends Command
 
         Cache::put('lastPushTime', $time - 10);
 
+        $pushSumKey = RedisCacheKeyConstant::BAIDU_PUSH_AMOUNT;
+        $pushSum = 0;
+        // 判断缓存中是否存在该值
+        if (Cache::has($pushSumKey)) {
+            $pushSum = Cache::get($pushSumKey);
+        }
+
         // 获取百度普通收录参数
         $baiduNormalData = CommonService::linefeedStringToArray($config['baidu_normal']);
 
@@ -74,6 +82,10 @@ class PushBaiduUrl extends Command
             $pushCount = $normalData[2] ?? 10;
             $urlRule = $normalData[3] ?? '{随机字母5}/{随机数字3}.html';
             $baseUrl = rtrim($host, '/') . '/' . ltrim($urlRule, '/');
+
+            // 去除域名中的http://和https://
+            $host = str_replace('http://', '', $host);
+            $host = str_replace('https://', '', $host);
 
             // 判断缓存中是否有已推送完标识
             $key = $host . $urlRule . '_finish_push';
@@ -97,12 +109,19 @@ class PushBaiduUrl extends Command
 
             $resArr = json_decode($result, true);
             $error = isset($resArr['error']) ? $resArr['error'] : 0;
+            $endTime = Carbon::now()->endofday()->timestamp;
+            $now = Carbon::now()->timestamp;
+            $expiredTime = $endTime - $now;
+
             if ($error == 400) {
-                $endTime = Carbon::now()->endofday()->timestamp;
-                $now = Carbon::now()->timestamp;
-                $expiredTime = $endTime - $now;
                 Cache::put($key, true, $expiredTime);
             }
+
+            // 加入新增数量
+            $successCount = $resArr['success'] ?: 0;
+            $pushSum += $successCount;
+
+            Cache::put($pushSumKey, $pushSum, $expiredTime);
 
             common_log('百度普通收录, 参数: '.$normal.', 收录结果: '.$result);
         }

@@ -261,6 +261,7 @@ return [
     'Platform baidu quick setting'  => '百度·快速收录参数',
     'Is refresh change'             => '页面刷新改变',
     'Visit url format'              => '地址访问格式',
+    'Push success count'            => '推送成功数量',
 
     // 蜘蛛
     'Spider'                        => '蜘蛛',
