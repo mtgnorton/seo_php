@@ -20,7 +20,8 @@ class CreateSpiderRecordsTable extends Migration
                 'sougou', 'shenma', 'toutiao',
                 'other'
             ])->default('other')->comment('蜘蛛类型: baidu: 百度, google: 谷歌, qihoo: 360, sougou: 搜狗, shenma: 神马, toutiao: 今日头条, other: 其他');
-            $table->string('user_agent', 255)->nullable()->default('')->comment('头部标识');
+            // $table->string('user_agent', 255)->nullable()->default('')->comment('头部标识');
+            $table->integer('user_agent_id')->default(0)->comment('头部标识ID');
             $table->string('ip', 20)->nullable()->default('')->comment('ip地址');
             $table->string('host')->default('')->comment('访问域名');
             $table->string('url')->default('')->comment('访问链接');
