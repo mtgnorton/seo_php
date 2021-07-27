@@ -42,6 +42,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\ContentCategoryDeletingEvent' => [
             'App\Listeners\ContentCategoryDeletingeventListener'
         ],
+        'App\Events\WebsiteDeletingEvent' => [
+            'App\Listeners\WebsiteDeletingeventListener'
+        ],
     ];
 
     /**

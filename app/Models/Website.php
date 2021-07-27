@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\WebsiteDeletingEvent;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -23,6 +24,13 @@ class Website extends Model
     {
         return $this->belongsTo('App\Models\Category');
     }
+
+    /**
+     * 绑定删除事件
+     */
+    protected $dispatchesEvents = [
+        'deleting' => WebsiteDeletingEvent::class
+    ];
 
     // /**
     //  * 和分类多对一的关系
