@@ -190,6 +190,7 @@ return [
     "Delete category help"                      => "删除后无法恢复, 确定要删除吗 ?",
     "Delete success"                            => "删除成功",
     "File size and number limit"                => "总文件大小不大于200M, 总文件个数不大于200个。",
+    "Image sum limit"                           => "总条数不超过500",
     'Qihoo url format help'                     => '一行一个, 格式为: 域名----访问地址格式, 域名需前面加http://或者https://, 如若不填, 不进行访问; 格式若不填, 则访问域名首页',
     // 库名
     "article"                                   => "文章库",
