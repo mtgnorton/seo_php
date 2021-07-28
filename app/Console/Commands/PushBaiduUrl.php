@@ -118,7 +118,7 @@ class PushBaiduUrl extends Command
             }
 
             // 加入新增数量
-            $successCount = $resArr['success'] ?: 0;
+            $successCount = isset($resArr['success']) ? $resArr['success'] : 0;
             $pushSum += $successCount;
 
             Cache::put($pushSumKey, $pushSum, $expiredTime);

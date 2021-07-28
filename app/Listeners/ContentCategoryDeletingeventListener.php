@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Constants\RedisCacheKeyConstant;
 use App\Events\ContentCategoryDeletingEvent;
 use App\Events\TemplateDeletingEvent;
 use App\Events\TemplateGroupDeletingEvent;
@@ -13,6 +14,7 @@ use App\Models\Template;
 use Exception;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class ContentCategoryDeletingeventListener
@@ -41,5 +43,9 @@ class ContentCategoryDeletingeventListener
         foreach ($files as $file) {
             $file->delete();
         }
+
+        // 清除缓存
+        $key = RedisCacheKeyConstant::CACHE_CONTENT_CATEGORIES;
+        Cache::forget($key);
     }
 }
