@@ -220,6 +220,17 @@ class MenuTableSeeder extends Seeder
                 'updated_at' => $now,
             ],
             [
+                'id'         => 50,
+                'parent_id'  => 30,
+                'order'      => 30,
+                'title'      => '伪原创配置',
+                'icon'       => '/asset/imgs/icon/5.png',
+                'icon_selected' => '/asset/imgs/default_icon/a11.png',
+                'uri'        => 'gather-fake-origin',
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
                 'id'         => 31,
                 'parent_id'  => 30,
                 'order'      => 31,
