@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Constants\RedisCacheKeyConstant;
+use App\Models\Config;
 use App\Services\CommonService;
 use App\Services\IndexPregService;
 use App\Services\SouGouService;
@@ -98,14 +99,16 @@ class PushSougouUrl extends Command
 
             if (!data_get($rs, 'state')) {
 
-                if (mb_strpos(data_get($rs, 'msg'), '验证码' ) === false) { //非验证码错误进行记录
+                if (mb_strpos(data_get($rs, 'msg'), '验证码') === false) { //非验证码错误进行记录
 
                     Cache::set(RedisCacheKeyConstant::SOUGOU_PUSH_ERROR, $rs['msg']);
                 }
 
                 return;
             } else {
-                Cache::increment(RedisCacheKeyConstant::SOUGOU_PUSH_AMOUNT, 20);
+                $amount = Config::where('key', 'push_amount')->value('value') ?? 0;
+                $amount += 20;
+                conf_insert_or_update('push_amount', $amount, 'sougoupush');
             }
 
 
