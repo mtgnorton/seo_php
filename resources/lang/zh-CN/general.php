@@ -111,6 +111,10 @@ return [
     "Insert"                                    => "插入",
     "Tempate group name"                        => "模板分组名称",
     "Template group"                            => "模板分组",
+    "Rows"                                      => "行数",
+    "Success"                                   => "成功",
+    "Message"                                   => "信息",
+    "Upload"                                    => "上传",
     // 返回语句
     "File does not exist"                       => "文件不存在",
     "File uploaded failed"                      => "文件上传失败, 请重新上传",
