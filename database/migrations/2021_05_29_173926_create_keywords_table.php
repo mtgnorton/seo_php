@@ -16,7 +16,7 @@ class CreateKeywordsTable extends Migration
         Schema::create('keywords', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('content', 255)->nullable()->default('')->comment('内容');
-            $table->string('tag', 255)->nullable()->default('')->comment('标签');
+            $table->string('tag', 20)->index()->default('')->comment('标签');
             $table->integer('category_id')->index()->default(0)->comment('分类ID');
             $table->integer('file_id')->nullable()->default(0)->comment('文件ID');
             $table->timestamps();
