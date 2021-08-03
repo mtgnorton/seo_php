@@ -30,16 +30,16 @@ class AppServiceProvider extends ServiceProvider
     {
         if (config('app.debug') == true) {
 
-//            DB::listen(function ($query) {
-//                $sql       = str_replace("?", "'%s'", $query->sql);
-//                $processID = getmypid();
-//                $log       = "[进程:$processID][{$query->time}ms] " . vsprintf($sql, $query->bindings);
-//                if (Str::contains($log, 'admin_permissions') || Str::contains($log, 'admin_roles') || Str::contains($log, 'admin_operation_log') || Str::contains($log, 'admin_users')) {
-//                    return;
-//                }
-//
-//                Log::channel('sql')->info($log);
-//            });
+            DB::listen(function ($query) {
+                $sql       = str_replace("?", "'%s'", $query->sql);
+                $processID = getmypid();
+                $log       = "[进程:$processID][{$query->time}ms] " . vsprintf($sql, $query->bindings);
+                if (Str::contains($log, 'admin_permissions') || Str::contains($log, 'admin_roles') || Str::contains($log, 'admin_operation_log') || Str::contains($log, 'admin_users')) {
+                    return;
+                }
+
+                Log::channel('sql')->info($log);
+            });
         }
 
         if (!app()->runningInConsole()) {
