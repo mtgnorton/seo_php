@@ -21,7 +21,7 @@ class CreateFilesTable extends Migration
             $table->bigInteger('size')->nullable()->default(0)->comment('文件大小(字节)');
             $table->integer('rows')->nullable()->default(0)->comment('行数');
             $table->integer('success_rows')->nullable()->default(0)->comment('成功行数');
-            $table->text('message')->comment('上传结果信息');
+            $table->string('message')->nullable()->default('')->comment('上传结果信息');
             $table->enum('type', [
                 'article', 'column', 'diy',
                 'image', 'video', 'sentence',

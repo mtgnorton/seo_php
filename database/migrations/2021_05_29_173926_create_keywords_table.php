@@ -19,6 +19,7 @@ class CreateKeywordsTable extends Migration
             $table->string('tag', 20)->index()->default('')->comment('标签');
             $table->integer('category_id')->index()->default(0)->comment('分类ID');
             $table->integer('file_id')->nullable()->default(0)->comment('文件ID');
+            $table->tinyInteger('is_collected')->nullable()->default(0)->comment('是否是采集: 1.是,0.不是');
             $table->timestamps();
         });
         DB::statement("ALTER TABLE `keywords` comment '关键词表'"); // 表注释
