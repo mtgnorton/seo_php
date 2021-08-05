@@ -86,10 +86,7 @@ return [
             'driver' => 'local',
             'root'   => storage_path('update'),
         ],
-        'optimize' => [
-            'driver' => 'local',
-            'root'   => storage_path('optimize'),
-        ],
+
 
     ],
 

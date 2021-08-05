@@ -105,6 +105,12 @@ return [
             'level'  => 'debug',
             'days'   => 14,
         ],
+        'optimize'    => [
+            'driver' => 'daily',
+            'path'   => storage_path('logs/optimize.log'),
+            'level'  => 'debug',
+            'days'   => 14,
+        ],
         'sql'           => [
             'driver' => 'daily',
             'path'   => storage_path('logs/sql.log'),
