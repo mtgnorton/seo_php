@@ -14,8 +14,9 @@ class MenuTableSeeder extends Seeder
     public function run()
     {
         $now = Carbon::now()->toDateTimeString();
+        
 
-        DB::table('admin_menu')->insert([
+        DB::table('admin_menu')->insertOrIgnore([
             // [
             //     'id' => 8,
             //     'parent_id' => 0,
