@@ -117,7 +117,7 @@ abstract class Connection
 
         $time = round((microtime(true) - $start) * 1000, 2);
 
-        if ($time > 500){
+        if ($time > 40){
             $pid = getmypid();
             optimize_log(sprintf('redis 开始执行,进程号为:%s,命令为:%s,执行时间为:%s',$pid,$method,$time),$parameters);
             optimize_log(sprintf('进程号为:%s,执行结果为:%s',$pid,$result));
