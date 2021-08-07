@@ -6,6 +6,7 @@ use App\Events\PageDeletingEvent;
 use Exception;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class PageDeletingeventListener
@@ -34,6 +35,10 @@ class PageDeletingeventListener
         $path = $page->full_path;
 
         try {
+            // 清除对应缓存
+            $key = 'public' . $path;
+            Cache::forget($key);
+            
             if (Storage::disk('public')->exists($path)) {
                 $result = Storage::disk('public')->delete($path);
 
