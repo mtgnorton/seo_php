@@ -19,11 +19,12 @@ class ConfigsTableSeeder extends Seeder
             [
                 'module'     => 'update',
                 'key'        => 'version',
-                'value'      => '1.0.0',
+                'value'      => config('seo.app_version'),
                 'is_json'    => 0,
                 'created_at' => $now,
                 'updated_at' => $now,
             ],
+            
             [
                 'module'     => 'spider',
                 'key'        => 'spider_strong_attraction',
