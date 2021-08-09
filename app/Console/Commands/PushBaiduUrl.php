@@ -98,10 +98,10 @@ class PushBaiduUrl extends Command
             
             for ($i = 0; $i < $pushCount; $i++) {
                 $urls[] = preg_replace_callback('/{(随机数字|随机字母)+\d*}/', function ($match) {
-                    $key = $match[0];
+                    $randKey = $match[0];
                     $type = $match[1] ?? '';
 
-                    return IndexPregService::randSystemTag($type, $key);
+                    return IndexPregService::randSystemTag($type, $randKey);
                 }, $baseUrl);
             }
 
