@@ -120,10 +120,11 @@ abstract class Connection
         if ($time > 200){
             $pid = getmypid();
             optimize_log(sprintf('redis 开始执行,进程号为:%s,命令为:%s,执行时间为:%s',$pid,$method,$time),$parameters);
-            if (is_array($result)) {
-                $result = json_encode($result, JSON_UNESCAPED_UNICODE);
+            $tempRes = $result;
+            if (is_array($tempRes)) {
+                $tempRes = json_encode($tempRes, JSON_UNESCAPED_UNICODE);
             }
-            optimize_log(sprintf('进程号为:%s,执行结果为:%s',$pid,$result));
+            optimize_log(sprintf('进程号为:%s,执行结果为:%s',$pid,$tempRes));
         }
         if (isset($this->events)) {
             $this->event(new CommandExecuted($method, $parameters, $time, $this));
