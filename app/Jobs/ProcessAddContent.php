@@ -32,6 +32,8 @@ class ProcessAddContent implements ShouldQueue
      */
     public function handle()
     {
+        set_time_limit(0);
+        ini_set('memory_limit', '512M');
         $data = $this->data;
 
         ContentService::insertContentByFile(
