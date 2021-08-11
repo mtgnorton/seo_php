@@ -41,7 +41,7 @@ class DeleteCacheFile extends Command
     {
         // 获取缓存中的数据信息
         $cacheKey = 'cacheFileData';
-        $data = Cache::get($cacheKey);
+        $data = Cache::store('file')->get($cacheKey);
 
         if (!empty($data)) {
             foreach ($data as $path => $time) {
@@ -55,7 +55,7 @@ class DeleteCacheFile extends Command
                 }
             }
 
-            Cache::put($cacheKey, $data);
+            Cache::store('file')->put($cacheKey, $data);
         }
     }
 }
