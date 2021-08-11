@@ -46,6 +46,6 @@ class ContentCategoryDeletingeventListener
 
         // 清除缓存
         $key = RedisCacheKeyConstant::CACHE_CONTENT_CATEGORIES;
-        Cache::forget($key);
+        Cache::store('file')->forget($key);
     }
 }

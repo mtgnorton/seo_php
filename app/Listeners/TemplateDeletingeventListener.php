@@ -50,7 +50,7 @@ class TemplateDeletingeventListener
 
         // 删除缓存
         $key = RedisCacheKeyConstant::CACHE_TEMPLATES;
-        Cache::forget($key);
+        Cache::store('file')->forget($key);
 
         // // 域名刪除
         // $websiteTemplates = $template->websiteTemplates;

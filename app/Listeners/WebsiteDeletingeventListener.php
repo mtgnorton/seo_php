@@ -33,6 +33,6 @@ class WebsiteDeletingeventListener
     {
         // 清空缓存数据
         $websiteKey = RedisCacheKeyConstant::CACHE_WEBSITES;
-        Cache::forget($websiteKey);
+        Cache::store('file')->forget($websiteKey);
     }
 }
