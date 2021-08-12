@@ -145,7 +145,8 @@ $(function () {
                 },
                 legend: {
                     position: 'bottom',
-                }
+                },
+                responsive: false,
             }
         };
         var line1Chart = new Chart(ctx, config);
