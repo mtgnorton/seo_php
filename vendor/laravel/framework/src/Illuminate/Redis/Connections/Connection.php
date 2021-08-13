@@ -119,7 +119,7 @@ abstract class Connection
             $result = $this->client->{$method}(...$parameters);
 
         }else{
-            $result = 1;
+            $result = [];
         }
 
 
