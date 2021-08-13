@@ -122,12 +122,13 @@ abstract class Connection
         if (strpos(strtolower($method),'set')!== false){
             $setNumber++;
         }
-        
+
         if (strpos(strtolower($method),'get')!== false){
             $getNumber++;
         }
+        $pid = getmypid();
         if ($time > 200){
-            $pid = getmypid();
+
             optimize_log(sprintf('redis 开始执行,进程号为:%s,命令为:%s,执行时间为:%s',$pid,$method,$time),$parameters);
             $tempRes = $result;
 
