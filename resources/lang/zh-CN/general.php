@@ -283,6 +283,7 @@ return [
     'Shenma'                        => '神马',
     'Toutiao'                       => '今日头条',
     'Other'                         => '其他',
+    'SelfTest'                      => '自测',
     'Sousou'                        => '搜搜',
     'Yahoo'                         => '雅虎',
     'Youdao'                        => '有道',
