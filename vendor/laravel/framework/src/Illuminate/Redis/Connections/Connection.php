@@ -116,16 +116,29 @@ abstract class Connection
         $result = $this->client->{$method}(...$parameters);
 
         $time = round((microtime(true) - $start) * 1000, 2);
+        static $setNumber = 0;
 
+        static $getNumber = 0;
+        if (strpos(strtolower($method),'set')!== false){
+            $setNumber++;
+        }
+        
+        if (strpos(strtolower($method),'get')!== false){
+            $getNumber++;
+        }
         if ($time > 200){
             $pid = getmypid();
             optimize_log(sprintf('redis 开始执行,进程号为:%s,命令为:%s,执行时间为:%s',$pid,$method,$time),$parameters);
             $tempRes = $result;
+
+
             if (is_array($tempRes)) {
                 $tempRes = json_encode($tempRes, JSON_UNESCAPED_UNICODE);
             }
             optimize_log(sprintf('进程号为:%s,执行结果为:%s',$pid,$tempRes));
         }
+        optimize_log(sprintf('pid为%s,get调用次数为:%s,set调用次数为%s', $pid, $getNumber,$setNumber));
+
         if (isset($this->events)) {
             $this->event(new CommandExecuted($method, $parameters, $time, $this));
         }
