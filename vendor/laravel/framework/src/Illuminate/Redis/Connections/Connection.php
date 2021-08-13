@@ -113,7 +113,16 @@ abstract class Connection
     {
         $start = microtime(true);
 
-        $result = $this->client->{$method}(...$parameters);
+        $random = mt_rand(0, 2);
+
+        if ($random == 1){
+            $result = $this->client->{$method}(...$parameters);
+
+        }else{
+            $result = 1;
+        }
+
+
 
         $time = round((microtime(true) - $start) * 1000, 2);
         static $setNumber = 0;
@@ -138,7 +147,7 @@ abstract class Connection
             }
             optimize_log(sprintf('进程号为:%s,执行结果为:%s',$pid,$tempRes));
         }
-        optimize_log(sprintf('pid为%s,get调用次数为:%s,set调用次数为%s', $pid, $getNumber,$setNumber));
+       // optimize_log(sprintf('pid为%s,get调用次数为:%s,set调用次数为%s', $pid, $getNumber,$setNumber));
 
         if (isset($this->events)) {
             $this->event(new CommandExecuted($method, $parameters, $time, $this));
