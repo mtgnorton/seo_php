@@ -29,6 +29,7 @@ class ModuleDeletingeventListener
      */
     public function handle(ModuleDeletingEvent $event)
     {
+        common_log('开始删除模块');
         $module = $event->model;
 
         try {
@@ -46,6 +47,8 @@ class ModuleDeletingeventListener
             }
             $module->template->module = $modules;
             $module->template->save();
+
+            common_log('删除模块成功');
         } catch (Exception $e) {
             common_log('删除模块页面文件失败', $e);
         }

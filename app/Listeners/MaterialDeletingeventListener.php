@@ -28,6 +28,7 @@ class MaterialDeletingeventListener
      */
     public function handle(MaterialDeletingEvent $event)
     {
+        common_log('开始删除素材');
         $material = $event->model;
 
         // 页面删除后, 对应文件也要删除

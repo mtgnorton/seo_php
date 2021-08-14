@@ -33,6 +33,7 @@ class FileDeletingeventListener
      */
     public function handle(FileDeletingEvent $event)
     {
+        common_log('开始删除文件');
         $model = $event->model;
         $type = $model->getOriginal('type');
         $path = $model->path;
@@ -73,6 +74,8 @@ class FileDeletingeventListener
             $parentTag = ContentService::contentTag($category->parent_id, $type);
             $key3 = $baseKey . $groupId . $parentTag;
             Cache::store('file')->forget($key3);
+
+            common_log('删除文件成功, 文件ID为: '.$model->id);
         } catch (Exception $e) {
             common_log('文件内容删除失败, 文件ID为: '.$model->id, $e);
         }
