@@ -41,8 +41,7 @@ class ProcessAddContent implements ShouldQueue
         ContentService::insertContentByFile(
             $data['categoryId'],
             $data['type'],
-            $data['fileObj'],
-            $data['fileData']
+            $data['fileObj']
         ); 
     }
 
