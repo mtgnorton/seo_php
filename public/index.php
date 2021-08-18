@@ -1,8 +1,11 @@
 <?php
 
+use Illuminate\Support\Str;
+
 ini_set("display_errors", "On");
 error_reporting(E_ALL);
 
+filter();
 /**
  * Laravel - A PHP Framework For Web Artisans
  *
@@ -61,3 +64,30 @@ $response = $kernel->handle(
 $response->send();
 
 $kernel->terminate($request, $response);
+
+
+function filter()
+{
+    $url = $_SERVER["REQUEST_URI"];
+
+    if (
+    endsWith($url, [
+        '.jpg', '.png', '.css', '.js'
+    ])) {
+        http_response_code(404);
+
+        exit;
+    }
+
+
+}
+function endsWith($haystack, $needles)
+{
+    foreach ((array) $needles as $needle) {
+        if (substr($haystack, -strlen($needle)) === (string) $needle) {
+            return true;
+        }
+    }
+
+    return false;
+}

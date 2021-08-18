@@ -12,9 +12,6 @@
 */
 
 
-
-
-
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -22,4 +19,5 @@
 
 Route::get('test', ['\App\Http\Controllers\TestController', 'index']);
 
-Route::fallback(['\App\Http\Controllers\IndexController', 'index']);
+Route::fallback(['\App\Http\Controllers\IndexController', 'index'])->middleware(\App\Http\Middleware\RequestLimit::class
+);
