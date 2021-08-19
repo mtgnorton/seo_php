@@ -21,6 +21,6 @@ Route::get('test', ['\App\Http\Controllers\TestController', 'index']);
 
 Route::fallback(['\App\Http\Controllers\IndexController', 'index'])->middleware([
         \App\Http\Middleware\RecordSpider::class,
-        , \App\Http\Middleware\RequestLimit::class
+        \App\Http\Middleware\RequestLimit::class
     ]
 );
