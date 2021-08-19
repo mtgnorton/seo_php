@@ -54,10 +54,7 @@ class Test extends Command
     public function handle()
     {
 
-        DatabaseService::exportDatabase(['test'], storage_path('migration/migration.sql'));
-        ZipService::zip(storage_path('migration'), '', FileService::completePath(public_path('seo/migration.zip')));
-        dump(1);
-        exit;
+
     }
 
 
