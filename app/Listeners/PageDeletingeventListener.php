@@ -36,8 +36,8 @@ class PageDeletingeventListener
 
         try {
             // 清除对应缓存
-            $key = 'public' . $path;
-            Cache::forget($key);
+            // $key = 'public' . $path;
+            // Cache::forget($key);
             
             if (Storage::disk('public')->exists($path)) {
                 $result = Storage::disk('public')->delete($path);

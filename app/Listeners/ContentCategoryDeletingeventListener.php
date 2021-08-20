@@ -38,7 +38,7 @@ class ContentCategoryDeletingeventListener
     public function handle(ContentCategoryDeletingEvent $event)
     {
         $categoryId = $event->model->id;
-        // 4. 内容分类删除
+        // 删除分类下对应文件
         $files = File::where('category_id', $categoryId)->get();
         foreach ($files as $file) {
             $file->delete();

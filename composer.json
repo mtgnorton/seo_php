@@ -24,7 +24,8 @@
         "sqhlib/hanzi-convert": "^1.1",
         "symfony/dom-crawler": "5.3",
         "tim168/search-engine-rank": "^1.0",
-      "ext-imagick": "*"
+      "ext-imagick": "*",
+      "ext-bcmath": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
