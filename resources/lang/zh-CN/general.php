@@ -57,6 +57,7 @@ return [
     "Template type tag"                         => "模板类型标签",
     "Template type identify"                    => "抓取规则标识",
     "Template name"                             => "模板名称",
+    "Template group name"                       => "模板分组名称",
     "Template tag name"                         => "模板标签名称",
     "Template tag"                              => "模板标签",
     "Template module"                           => "模板模块",
