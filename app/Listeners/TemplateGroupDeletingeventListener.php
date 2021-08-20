@@ -72,15 +72,15 @@ class TemplateGroupDeletingeventListener
             }
             // 5. 删除目录文件夹
             // 判断分类是否还存在
-            if (!empty($group->category)) {
-                $path = 'template/'.$categoryTag . '/' . $groupTag;
-                if ($path == 'template/') {
-                    throw new Exception('标签数据获取失败');
-                }
-                if (Storage::disk('public')->exists($path)) {
-                    Storage::disk('public')->deleteDirectory($path);
-                }
-            }
+            // if (!empty($group->category)) {
+            //     $path = 'template/'.$categoryTag . '/' . $groupTag;
+            //     if ($path == 'template/') {
+            //         throw new Exception('标签数据获取失败');
+            //     }
+            //     if (Storage::disk('public')->exists($path)) {
+            //         Storage::disk('public')->deleteDirectory($path);
+            //     }
+            // }
 
             DB::commit();
 

@@ -40,6 +40,7 @@ class MaterialDeletingeventListener
 
                 common_log('文件删除结果: '.$result.', 文件路径: '.$path);
             }
+            common_log('文件删除失败, 原因为: 找不到路径: '.$path);
         } catch (Exception $e) {
             common_log('文件删除失败, 文件路径'.$path, $e);
         }
