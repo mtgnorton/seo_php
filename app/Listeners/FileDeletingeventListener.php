@@ -60,7 +60,7 @@ class FileDeletingeventListener
                 if (empty($contentModel)) {
                     return '';
                 }
-                // 分类标签key
+                // 删除对应缓存
                 $typeName = ContentService::CONTENT_TAG[$type] ?? '';
                 $key1 = $baseKey . $groupId . $typeName;
                 Cache::store('file')->forget($key1);

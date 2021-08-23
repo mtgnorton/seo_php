@@ -29,6 +29,7 @@ class PageDeletingeventListener
      */
     public function handle(PageDeletingEvent $event)
     {
+        common_log('开始删除模板页面');
         $page = $event->model;
 
         // 页面删除后, 对应文件也要删除
@@ -43,6 +44,8 @@ class PageDeletingeventListener
                 $result = Storage::disk('public')->delete($path);
 
                 common_log('文件删除结果: '.$result.', 文件路径: '.$path);
+            } else {
+                common_log('文件删除失败, 文件不存在, 文件路径: '.$path);
             }
         } catch (Exception $e) {
             common_log('文件删除失败, 文件路径'.$path, $e);
