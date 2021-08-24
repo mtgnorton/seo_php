@@ -20,7 +20,7 @@ class CreateConfigsTable extends Migration
             $table->integer('group_id')->default(0)->comment('分组ID');
             $table->integer('template_id')->default(0)->comment('模板ID');
             $table->string('key')->default('')->comment('键值');
-            $table->text('value')->nullable()->comment('键对应的值');
+            $table->longText('value')->nullable()->comment('键对应的值');
             $table->tinyInteger('is_json')->default(0)->comment('是否是json');
             $table->string('description')->nullable()->default('')->comment('描述');
             $table->timestamps();
