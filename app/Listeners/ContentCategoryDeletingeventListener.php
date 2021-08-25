@@ -39,6 +39,7 @@ class ContentCategoryDeletingeventListener
     {
         $category = $event->model;
         $categoryId = $category->id;
+        common_log('开始删除内容分类, 分类ID为: '.$categoryId);
         $key = RedisCacheKeyConstant::CACHE_DELETE_CONTENT_TEMPLATE . $categoryId;
         Cache::put($key, $category, 3600);
         // 删除分类下对应文件
@@ -50,5 +51,7 @@ class ContentCategoryDeletingeventListener
         // 清除缓存
         $key = RedisCacheKeyConstant::CACHE_CONTENT_CATEGORIES;
         Cache::store('file')->forget($key);
+
+        common_log('删除内容分类成功, 分类ID为: '.$categoryId);
     }
 }

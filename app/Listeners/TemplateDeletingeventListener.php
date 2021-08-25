@@ -34,6 +34,7 @@ class TemplateDeletingeventListener
     {
         $template = $event->model;
         $templateId = $template->id ?? 0;
+        common_log('开始删除模板,模板ID为: '.$templateId);
 
         $key = RedisCacheKeyConstant::CACHE_DELETE_TEMPLATE . $templateId;
         Cache::put($key, $template, 3600);
@@ -56,6 +57,7 @@ class TemplateDeletingeventListener
         $key = RedisCacheKeyConstant::CACHE_TEMPLATES;
         Cache::store('file')->forget($key);
 
+        common_log('删除模板成功,模板ID为: '.$templateId);
         // // 域名刪除
         // $websiteTemplates = $template->websiteTemplates;
         
