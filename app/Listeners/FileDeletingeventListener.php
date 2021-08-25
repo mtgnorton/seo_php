@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Constants\ContentConstant;
+use App\Constants\RedisCacheKeyConstant;
 use App\Events\FileDeletingEvent;
 use App\Models\ContentCategory;
 use App\Models\Diy;
@@ -42,8 +43,10 @@ class FileDeletingeventListener
 
         // 3. 删除对应文件缓存
         $baseKey = ContentConstant::cacheKeyText()[$type] ?? '';
-        $category = ContentCategory::find($categoryId);
-        $groupId = $category->group_id;
+        // $category = ContentCategory::find($categoryId);
+        $categoryKey = RedisCacheKeyConstant::CACHE_DELETE_CONTENT_TEMPLATE . $categoryId;
+        $category = Cache::get($categoryKey);
+        $groupId = $category->group_id ?? 0;
 
         try {
             // 1. 如果文件存在, 删除文件

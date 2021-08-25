@@ -37,7 +37,10 @@ class ContentCategoryDeletingeventListener
      */
     public function handle(ContentCategoryDeletingEvent $event)
     {
-        $categoryId = $event->model->id;
+        $category = $event->model;
+        $categoryId = $category->id;
+        $key = RedisCacheKeyConstant::CACHE_DELETE_CONTENT_TEMPLATE . $categoryId;
+        Cache::put($key, $category, 3600);
         // 删除分类下对应文件
         $files = File::where('category_id', $categoryId)->get();
         foreach ($files as $file) {

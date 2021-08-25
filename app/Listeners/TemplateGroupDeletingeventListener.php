@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Constants\RedisCacheKeyConstant;
 use App\Events\TemplateDeletingEvent;
 use App\Events\TemplateGroupDeletingEvent;
 use App\Events\WebsiteTemplateDeletingEvent;
@@ -11,6 +12,7 @@ use App\Models\Template;
 use Exception;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -43,11 +45,20 @@ class TemplateGroupDeletingeventListener
                 throw new Exception('删除分组失败, 分组获取失败.');
             }
             $groupId = $group->id;
-            $categoryTag = $group->category ? $group->category->tag : [];
-            $groupTag = $group->tag;
-            if (empty($groupId) || empty($categoryTag) || empty($groupTag)) {
+            // 获取分类信息
+            // $categoryId = $group->category_id;
+            // $categoryKey = RedisCacheKeyConstant::CACHE_DELETE_CATEGORY . $categoryId;
+            // $category = Cache::get($categoryKey, []);
+            // $categoryTag = $category['tag'] ?? '';
+            // $groupTag = $group->tag;
+
+            // if (empty($groupId) || empty($categoryTag) || empty($groupTag)) {
+            if (empty($groupId)) {
                 throw new Exception('删除分组失败, 分组数据获取失败.');
             }
+            // 将分组数据写入缓存
+            $key = RedisCacheKeyConstant::CACHE_DELETE_GROUP . $groupId;
+            Cache::put($key, $group, 3600);
     
             // 1. 删除模板
             $templates = Template::where('group_id', $groupId)->get();

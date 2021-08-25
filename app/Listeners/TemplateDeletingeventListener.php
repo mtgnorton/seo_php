@@ -33,6 +33,10 @@ class TemplateDeletingeventListener
     public function handle(TemplateDeletingEvent $event)
     {
         $template = $event->model;
+        $templateId = $template->id ?? 0;
+
+        $key = RedisCacheKeyConstant::CACHE_DELETE_TEMPLATE . $templateId;
+        Cache::put($key, $template, 3600);
 
         // 模塊刪除
         $modules = $template->modules;
