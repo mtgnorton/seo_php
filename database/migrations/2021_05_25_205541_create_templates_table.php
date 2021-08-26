@@ -23,6 +23,7 @@ class CreateTemplatesTable extends Migration
             $table->string('type_tag', 50)->index()->default('')->comment('类型标签');
             $table->longText('module')->nullable()->comment('模块, json格式');
             $table->timestamps();
+            $table->engine = 'MyISAM';
         });
         DB::statement("ALTER TABLE `templates` comment '模板表'"); // 表注释
         DB::statement("ALTER TABLE `templates`  ADD UNIQUE INDEX group_tag_idx(group_id,tag)"); // 避免采集时内容重复

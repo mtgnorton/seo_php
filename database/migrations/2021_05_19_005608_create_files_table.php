@@ -31,6 +31,7 @@ class CreateFilesTable extends Migration
             $table->integer('tag_id')->default(0)->comment('标签ID');
             $table->tinyInteger('is_collected')->nullable()->default(0)->comment('是否是采集: 1.是,0.不是');
             $table->timestamps();
+            $table->engine = 'MyISAM';
         });
         DB::statement("ALTER TABLE `files` comment '文件表'"); // 表注释
     }

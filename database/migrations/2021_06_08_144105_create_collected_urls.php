@@ -18,6 +18,7 @@ class CreateCollectedUrls extends Migration
             $table->integer('gather_id')->default(0)->comment("采集规则id");
             $table->text("url")->comment("采集过的url");
             $table->timestamps();
+            $table->engine = 'MyISAM';
         });
     }
 

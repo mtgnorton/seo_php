@@ -34,6 +34,7 @@ class CreateSpiderRecordsTable extends Migration
             $table->integer('group_id')->default(0)->comment('分组ID');
             $table->integer('template_id')->default(0)->comment('模板ID');
             $table->timestamps();
+            $table->engine = 'MyISAM';
         });
         DB::statement("ALTER TABLE `spider_records` comment '蜘蛛记录表'"); // 表注释
         DB::statement("ALTER TABLE `spider_records`  ADD INDEX spider_records_created_at(created_at)"); // 避免采集时内容重复

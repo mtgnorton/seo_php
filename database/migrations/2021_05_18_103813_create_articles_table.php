@@ -24,6 +24,7 @@ class CreateArticlesTable extends Migration
             $table->tinyInteger('is_collected')->nullable()->default(0)->comment('是否是采集: 1.是,0.不是');
             $table->text('source_url')->nullable()->comment('如果是采集,来源url');
             $table->timestamps();
+            $table->engine = 'MyISAM';
         });
         DB::statement("ALTER TABLE `articles` comment '文章表'"); // 表注释
         DB::statement("ALTER TABLE `articles`  ADD UNIQUE INDEX category_content_idx(category_id,content(40))"); // 避免采集时内容重复

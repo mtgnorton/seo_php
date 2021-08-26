@@ -16,6 +16,7 @@ class CreateSpiderUserAgentsTable extends Migration
         Schema::create('spider_user_agents', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('user_agent')->comment('蜘蛛头部标识');
+            $table->engine = 'MyISAM';
         });
         DB::statement("ALTER TABLE `spider_user_agents` comment '蜘蛛头表'"); // 表注释
     }

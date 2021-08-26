@@ -27,6 +27,7 @@ class CreateContentCategoriesTable extends Migration
                 'title', 'diy', 'keyword', ''
             ])->default('')->comment('article: 文章, column: 栏目, image: 图片, video: 视频, sentence: 句子, title: 标题, website_name: 网站名称, diy: 自定义, keyword:关键词');
             $table->timestamps();
+            $table->engine = 'MyISAM';
         });
         DB::statement("ALTER TABLE `content_categories` comment '内容分类表'"); // 表注释
     }

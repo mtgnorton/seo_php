@@ -22,6 +22,7 @@ class CreateSentencesTable extends Migration
             $table->tinyInteger('is_collected')->nullable()->default(0)->comment('是否是采集: 1.是,0.不是');
             $table->text('source_url')->nullable()->comment('如果是采集,来源url');
             $table->timestamps();
+            $table->engine = 'MyISAM';
 
         });
 

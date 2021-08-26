@@ -26,6 +26,7 @@ class CreateMirrorsTable extends Migration
             $table->tinyInteger('is_disabled')->default(0)->comment('是否禁用');
             $table->text('replace_contents')->nullable()->comment('替换内容,一行一个');
             $table->timestamps();
+            $table->engine = 'MyISAM';
         });
     }
 

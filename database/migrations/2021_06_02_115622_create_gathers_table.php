@@ -38,6 +38,7 @@ class CreateGathersTable extends Migration
             $table->text('filter_regular')->nullable()->comment('正则过滤,一行一条');
             $table->text('filter_content')->nullable()->comment('内容过滤');
             $table->timestamps();
+            $table->engine = 'MyISAM';
         });
     }
 

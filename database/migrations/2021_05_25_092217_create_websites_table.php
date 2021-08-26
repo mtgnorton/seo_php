@@ -22,6 +22,7 @@ class CreateWebsitesTable extends Migration
             $table->integer('template_id')->index()->default(0)->comment('模板');
             $table->tinyInteger('is_enabled')->index()->default(0)->comment('是否启用');
             $table->timestamps();
+            $table->engine = 'MyISAM';
         });
         DB::statement("ALTER TABLE `websites` comment '网站表'"); // 表注释
     }

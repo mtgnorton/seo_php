@@ -21,6 +21,7 @@ class CreateDiysTable extends Migration
             $table->integer('category_id')->nullable()->default(0)->comment('分类ID');
             $table->tinyInteger('is_collected')->nullable()->default(0)->comment('是否是采集: 1.是,0.不是');
             $table->timestamps();
+            $table->engine = 'MyISAM';
         });
         DB::statement("ALTER TABLE `diys` comment '自定义表'"); // 表注释
     }

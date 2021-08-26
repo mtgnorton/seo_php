@@ -20,6 +20,7 @@ class CreateTemplateModulePagesTable extends Migration
             $table->string('file_name', 100)->nullable()->default('')->comment('文件名称');
             $table->string('full_path', 255)->nullable()->default('')->comment('文件全路径');
             $table->timestamps();
+            $table->engine = 'MyISAM';
         });
         DB::statement("ALTER TABLE `template_module_pages` comment '模板模块页面表'"); // 表注释
     }

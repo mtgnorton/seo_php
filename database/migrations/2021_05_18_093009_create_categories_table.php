@@ -19,6 +19,7 @@ class CreateCategoriesTable extends Migration
             $table->string('tag', 100)->unique()->nullable()->default('')->comment('标识');
             // $table->string('template', 255)->nullable()->default('')->comment('主模板文件: json格式');
             $table->timestamps();
+            $table->engine = 'MyISAM';
         });
         DB::statement("ALTER TABLE `categories` comment '分类表'"); // 表注释
     }

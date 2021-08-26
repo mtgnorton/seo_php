@@ -24,6 +24,7 @@ class CreateConfigsTable extends Migration
             $table->tinyInteger('is_json')->default(0)->comment('是否是json');
             $table->string('description')->nullable()->default('')->comment('描述');
             $table->timestamps();
+            $table->engine = 'MyISAM';
         });
         DB::statement("ALTER TABLE `configs` comment '配置表'"); // 表注释
     }

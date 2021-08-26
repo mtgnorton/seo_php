@@ -18,6 +18,7 @@ class CreateTemplateTypesTable extends Migration
             $table->string('name', 50)->unique()->default('')->comment('模板名称');
             $table->string('tag', 50)->unique()->default('')->comment('模板标识');
             $table->timestamps();
+            $table->engine = 'MyISAM';
         });
         DB::statement("ALTER TABLE `template_types` comment '模板类型表'"); // 表注释
     }

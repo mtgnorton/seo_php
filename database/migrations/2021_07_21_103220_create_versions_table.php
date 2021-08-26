@@ -18,6 +18,7 @@ class CreateVersionsTable extends Migration
             $table->string('number', 20)->default('')->comment('版本号');
             $table->text('desc')->nullable()->comment('版本描述');
             $table->timestamps();
+            $table->engine = 'MyISAM';
         });
     }
 

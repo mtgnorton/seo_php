@@ -22,6 +22,7 @@ class CreateTemplateModulesTable extends Migration
             $table->string('route_tag', 50)->nullable()->default('')->comment('路由标识');
             $table->string('path', 255)->nullable()->default('')->comment('模块路径');
             $table->timestamps();
+            $table->engine = 'MyISAM';
         });
         DB::statement("ALTER TABLE `template_modules` comment '模板模块表'"); // 表注释
     }

@@ -22,6 +22,7 @@ class CreateTemplateMaterialsTable extends Migration
             $table->string('file_name', 100)->nullable()->default('')->comment('文件名称');
             $table->string('full_path', 255)->nullable()->default('')->comment('文件全路径');
             $table->timestamps();
+            $table->engine = 'MyISAM';
         });
         DB::statement("ALTER TABLE `template_materials` comment '模板素材表'"); // 表注释s
     }

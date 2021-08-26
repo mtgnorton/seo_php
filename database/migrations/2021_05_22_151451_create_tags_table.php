@@ -26,6 +26,7 @@ class CreateTagsTable extends Migration
             // ])->nullable()->default('')->comment('article: 文章, column: 栏目, diy: 自定义, image: 图片, video: 视频, sentence: 句子, title: 标题, website_name: 网站名称, keyword: 关键词');
             // $table->enum('type', ['system', 'diy'])->default('diy')->comment('类型: system: 系统标签, diy: 自定义标签');
             $table->timestamps();
+            $table->engine = 'MyISAM';
         });
         DB::statement("ALTER TABLE `tags` comment '标签表'"); // 表注释
     }

@@ -21,6 +21,7 @@ class CreateWebsiteNamesTable extends Migration
             $table->integer('file_id')->nullable()->default(0)->comment('文件ID');
             $table->tinyInteger('is_collected')->nullable()->default(0)->comment('是否是采集: 1.是,0.不是');
             $table->timestamps();
+            $table->engine = 'MyISAM';
         });
         DB::statement("ALTER TABLE `website_names` comment '网站名称表'"); // 表注释
     }

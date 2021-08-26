@@ -18,6 +18,7 @@ class CreateWebsiteTemplateTable extends Migration
             $table->integer('website_id')->default(0)->comment('网站ID');
             $table->integer('template_id')->default(0)->comment('模板ID');
             $table->timestamps();
+            $table->engine = 'MyISAM';
         });
         DB::statement("ALTER TABLE `website_template` comment '网站模板中间表'"); // 表注释
     }
