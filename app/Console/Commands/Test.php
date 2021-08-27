@@ -9,6 +9,7 @@ use App\Services\FileService;
 use App\Services\Gather\CrawlService;
 use App\Services\IdentifyService;
 use App\Services\ImportAndExportService;
+use App\Services\NginxRequestLimitService;
 use App\Services\SouGouService;
 use App\Services\SystemUpdateService;
 use App\Services\ZipService;
@@ -54,7 +55,8 @@ class Test extends Command
     public function handle()
     {
 
-
+        dump(NginxRequestLimitService::getCpuPerformance());
+        exit;
     }
 
 
