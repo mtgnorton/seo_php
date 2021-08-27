@@ -55,10 +55,9 @@ class Test extends Command
     public function handle()
     {
 
-        dump(NginxRequestLimitService::getCpuPerformance());
+        dump(opcache_get_configuration());
         exit;
     }
-
 
     public function baiduRank()
     {
