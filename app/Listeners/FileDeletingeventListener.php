@@ -74,7 +74,8 @@ class FileDeletingeventListener
             $key2 = $baseKey . $groupId . $tag;
             Cache::store('file')->forget($key2);
             // 上级分类key
-            $parentTag = ContentService::contentTag($category->parent_id, $type);
+            $parentId = $category->parent_id ?? 0;
+            $parentTag = ContentService::contentTag($parentId, $type);
             $key3 = $baseKey . $groupId . $parentTag;
             Cache::store('file')->forget($key3);
 
