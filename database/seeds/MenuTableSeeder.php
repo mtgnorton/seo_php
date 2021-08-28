@@ -378,7 +378,7 @@ class MenuTableSeeder extends Seeder
                 'id'            => 44,
                 'parent_id'     => 40,
                 'order'         => 35,
-                'title'         => '并发性能',
+                'title'         => '并发配置',
                 'icon'          => '',
                 'icon_selected' => '',
                 'uri'           => 'concurrent',
