@@ -3,7 +3,7 @@
 /public/storage
 /public/seo
 /public/nginx.test.conf
-/storage/!storehouse
+!/storage/storehouse/
 /storage/*
 .env.backup
 .phpunit.result.cache
