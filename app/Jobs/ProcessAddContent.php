@@ -18,6 +18,20 @@ class ProcessAddContent implements ShouldQueue
     protected $data;
 
     /**
+     * 最大执行秒数
+     *
+     * @var integer
+     */
+    public $timeout = 3000;
+
+    /**
+     * 任务可以尝试的最大次数
+     *
+     * @var integer
+     */
+    public $tries = 3;
+
+    /**
      * Create a new job instance.
      *
      * @return void
