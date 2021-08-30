@@ -55,9 +55,21 @@ class Test extends Command
     public function handle()
     {
 
-        dump(opcache_get_configuration());
+        $a = "|/\w+/|";
+        $b = '<li><span class="s2">《<a href="http://www.05wx.com/book/4/4740/" target="_blank">三国之巅峰召唤</a>》</span><span class="s3"><a href="/book/4/4740/22370616.html" target="_blank">第2333章：联军至，绝望生，神风起</a>(08-26)</span><span class="s5">流香千古</span></li>
+';
+
+
+        $a = "#^aaa$#";
+
+        $b= "aaa.html";
+
+
+        dump(preg_match($a,$b));
         exit;
     }
+
+
 
     public function baiduRank()
     {
