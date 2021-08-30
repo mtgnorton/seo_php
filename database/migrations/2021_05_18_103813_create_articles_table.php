@@ -28,6 +28,7 @@ class CreateArticlesTable extends Migration
         });
         DB::statement("ALTER TABLE `articles` comment '文章表'"); // 表注释
         DB::statement("ALTER TABLE `articles`  ADD UNIQUE INDEX category_content_idx(category_id,content(40))"); // 避免采集时内容重复
+        DB::statement("ALTER TABLE `articles`  ADD index  source_idx(source_url(100))"); // 避免采集时内容重复
 
     }
 

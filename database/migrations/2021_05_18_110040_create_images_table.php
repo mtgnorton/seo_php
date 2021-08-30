@@ -25,6 +25,8 @@ class CreateImagesTable extends Migration
             $table->engine = 'MyISAM';
         });
         DB::statement("ALTER TABLE `images` comment '图片链接表'"); // 表注释
+        DB::statement("ALTER TABLE `images`  ADD index  source_idx(source_url(100))"); // 避免采集时内容重复
+
     }
 
     /**

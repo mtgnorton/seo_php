@@ -28,6 +28,7 @@ class CreateSentencesTable extends Migration
 
         DB::statement("ALTER TABLE `sentences` comment '句子表'"); // 表注释
         DB::statement("ALTER TABLE `sentences`  ADD UNIQUE INDEX category_content_idx(category_id,content(40))"); // 避免采集时内容重复
+        DB::statement("ALTER TABLE `sentences`  ADD index  source_idx(source_url(100))"); // 避免采集时内容重复
 
     }
 

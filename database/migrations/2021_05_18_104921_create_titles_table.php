@@ -26,6 +26,7 @@ class CreateTitlesTable extends Migration
         });
         DB::statement("ALTER TABLE `titles` comment '标题表'"); // 表注释
         DB::statement("ALTER TABLE `titles`  ADD UNIQUE INDEX category_content_idx(category_id,content(40))"); // 避免采集时内容重复
+        DB::statement("ALTER TABLE `titles`  ADD index  source_idx(source_url(100))"); // 避免采集时内容重复
 
     }
 
