@@ -47,6 +47,11 @@ class ModuleDeletingeventListener
             }
             $module->template->module = $modules;
             $module->template->save();
+            // 3. 如果存在子模块, 则将子模块也删除
+            $children = $module->children;
+            foreach ($children as $child) {
+                $child->delete();
+            }
 
             common_log('删除模块成功');
         } catch (Exception $e) {

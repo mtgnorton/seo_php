@@ -16,6 +16,9 @@ class CreateTemplateModulesTable extends Migration
         Schema::create('template_modules', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('template_id')->index()->default(0)->comment('模板ID');
+            $table->integer('parent_id')->index()->default(0)->comment('父类ID');
+            $table->integer('level')->index()->default(1)->comment('等级');
+            $table->enum('type', ['list', 'detail', 'other'])->deafult('other')->comment('类型: list: 列表, detail: 详情, other.其他');
             $table->string('column_name', 100)->nullable()->default('')->comment('栏目名称');
             $table->string('column_tag', 50)->nullable()->default('')->comment('栏目标识');
             $table->string('route_name', 100)->nullable()->default('')->comment('路由名称');

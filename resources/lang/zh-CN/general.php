@@ -116,6 +116,9 @@ return [
     "Success"                                   => "成功",
     "Message"                                   => "信息",
     "Upload"                                    => "上传",
+    "Level"                                     => "等级",
+    "Parent"                                    => "父类",
+    "Children"                                  => "子类",
     // 返回语句
     "File does not exist"                       => "文件不存在",
     "File uploaded failed"                      => "文件上传失败, 请重新上传",

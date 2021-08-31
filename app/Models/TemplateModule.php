@@ -41,4 +41,24 @@ class TemplateModule extends Model
     {
         return $this->hasMany('App\Models\TemplateModulePage', 'module_id');
     }
+
+    /**
+     * 和父类多对一的关系
+     *
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function parent()
+    {
+        return $this->belongsTo('App\Models\TemplateModule', 'parent_id');
+    }
+
+    /**
+     * 和子类一对多的关系
+     *
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function children()
+    {
+        return $this->hasMany('App\Models\TemplateModule', 'parent_id');
+    }
 }
