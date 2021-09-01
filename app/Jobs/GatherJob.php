@@ -36,6 +36,8 @@ class GatherJob implements ShouldQueue
 
     public function middleware()
     {
+        return [];
+        
         return [new RateLimited];
     }
 
@@ -46,7 +48,7 @@ class GatherJob implements ShouldQueue
      */
     public function handle()
     {
-       
+
         $g = new GatherService();
 
         $logModal = $this->model->crontabLogs()->create([
