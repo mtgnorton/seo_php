@@ -50,7 +50,7 @@ class ScanningGathers extends Command
 
         Gather::all()->map(function ($item) use ($dayBeginTime, $nowMinuteTime) {
 
-            if ($item->crontab_type == GatherConstant::CRONTAB_NO) {
+            if (empty($item->crontab_type) || $item->crontab_type == GatherConstant::CRONTAB_NO) {
                 return;
             }
             $settingTime = $dayBeginTime + $item->crontab_hour * 3600 + $item->crontab_minute;
