@@ -67,6 +67,7 @@ class GatherJob implements ShouldQueue
                 $this->model->crontab_setting_interval_time,
                 $this->model->crontab_setting_timeout_time,
                 $logModal->id
+                
             );
         } catch (\Exception $e) {
             $logModal->update([
@@ -74,12 +75,13 @@ class GatherJob implements ShouldQueue
             ]);
         }
 
+        $g->crontabFlushLog();
+
         $logModal->update([
             'end_time' => Carbon::now()
         ]);
 
     }
-
 
 
 }
