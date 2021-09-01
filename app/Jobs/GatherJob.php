@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Constants\GatherConstant;
 use App\Jobs\Middleware\RateLimited;
 use App\Models\Gather;
 use App\Services\GatherService;
@@ -20,9 +21,9 @@ class GatherJob implements ShouldQueue
     protected $model;
 
 
-    public $tries = 1;
+    public $tries = 0;
 
-    public $timeout = 3600;
+    public $timeout = GatherConstant::CRONTAB_TIMEOUT;
 
     /**
      * Create a new job instance.
@@ -36,9 +37,8 @@ class GatherJob implements ShouldQueue
 
     public function middleware()
     {
+
         return [];
-        
-        return [new RateLimited];
     }
 
     /**
@@ -79,6 +79,7 @@ class GatherJob implements ShouldQueue
         ]);
 
     }
+
 
 
 }

@@ -58,7 +58,10 @@ class Test extends Command
     public function handle()
     {
 
-        GatherJob::dispatchNow(Gather::find(72));
+        GatherJob::dispatch(Gather::find(72));
+        GatherJob::dispatch(Gather::find(72));
+        GatherJob::dispatch(Gather::find(72));
+        GatherJob::dispatch(Gather::find(72));
 //        GatherJob::dispatchNow(Gather::find(72));
 //        GatherJob::dispatchNow(Gather::find(72));
 //        GatherJob::dispatchNow(Gather::find(72));

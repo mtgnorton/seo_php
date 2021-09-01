@@ -15,13 +15,10 @@ class RateLimited
      */
     public function handle($job, $next)
     {
-        dump($job);
-        exit;
-
 
 
         Redis::throttle('concurrent-limit')
-            ->block(0)->allow(5)->every(5)
+            ->block(0)->allow(2)->every(2)
             ->then(function () use ($job, $next) {
 
                 $next($job);

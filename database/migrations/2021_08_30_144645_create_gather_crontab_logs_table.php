@@ -26,7 +26,7 @@ class CreateGatherCrontabLogsTable extends Migration
             $table->integer('gather_url_amount')->default(0)->comment('采集链接数量');
             $table->integer('gather_content_amount')->default(0)->comment('采集内容数量');
             $table->text('error_log')->nullable()->comment('错误日志');
-            $table->text('gather_log')->comment('采集日志');
+            $table->longText('gather_log')->comment('采集日志');
             $table->timestamp('end_time')->nullable()->comment('采集结束时间');
             $table->timestamps();
         });
