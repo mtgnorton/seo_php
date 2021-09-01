@@ -46,9 +46,7 @@ class GatherJob implements ShouldQueue
      */
     public function handle()
     {
-        echo 11;
-        sleep(10);
-        return;
+       
         $g = new GatherService();
 
         $logModal = $this->model->crontabLogs()->create([
