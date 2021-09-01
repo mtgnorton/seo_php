@@ -37,6 +37,19 @@ class CreateGathersTable extends Migration
             $table->integer('filter_length_limit')->nullable()->default(0)->comment('内容最小长度,小于该值过滤');
             $table->text('filter_regular')->nullable()->comment('正则过滤,一行一条');
             $table->text('filter_content')->nullable()->comment('内容过滤');
+
+            /*定时任务字段*/
+
+
+            $table->char('crontab_type', 15)->default('')->comment('采集定时任务类型');
+            $table->integer('crontab_hour')->default(0)->comment('采集定时任务小时时间');
+            $table->integer('crontab_minute')->default(0)->comment('采集定时任务分钟时间');
+
+            $table->integer('crontab_setting_content_amount')->default(0)->comment('采集设定内容数量');
+            $table->integer('crontab_setting_url_amount')->default(0)->comment('采集设定链接数量');
+            $table->integer('crontab_setting_interval_time')->default(0)->comment('采集设定时间间隔');
+            $table->integer('crontab_setting_timeout_time')->default(0)->comment('采集设定超时时间');
+
             $table->timestamps();
             $table->engine = 'MyISAM';
         });

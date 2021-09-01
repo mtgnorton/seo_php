@@ -27,6 +27,13 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
 
+
+        // 每分钟执行一次,查看是否有需要投递的采集任务
+        $schedule->command('scanning:gathers')
+            ->everyMinute()
+            ->withoutOverlapping();
+
+        return;
         // 每分钟运行一次推送地址操作
         $schedule->command('baiduUrl:push')
             ->everyMinute()
@@ -45,6 +52,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('file:delete')
             ->everyMinute()
             ->withoutOverlapping();
+
+
     }
 
     /**

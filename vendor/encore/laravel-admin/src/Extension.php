@@ -100,7 +100,7 @@ abstract class Extension
     }
 
     /**
-     * Bootstrap this extension.
+     * Bootstrap this extension.F:\phpstudy\PHPTutorial\WWW\seo_php\vendor\encore\laravel-admin\src\Extension.php
      */
     public static function boot()
     {

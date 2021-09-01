@@ -2,7 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\GatherJob;
 use App\Models\Config;
+use App\Models\Gather;
+use App\Models\GatherCrontabLog;
 use App\Services\DatabaseService;
 use App\Services\FakerOriginService;
 use App\Services\FileService;
@@ -15,10 +18,10 @@ use App\Services\SystemUpdateService;
 use App\Services\ZipService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use \Goose\Client as GooseClient;
-use SVG\Nodes\Shapes\SVGCircle;
-use SVG\SVG;
+
 use Tim168\SearchEngineRank\SearchEngineRank;
 
 class Test extends Command
@@ -55,20 +58,11 @@ class Test extends Command
     public function handle()
     {
 
-        $a = "|/\w+/|";
-        $b = '<li><span class="s2">《<a href="http://www.05wx.com/book/4/4740/" target="_blank">三国之巅峰召唤</a>》</span><span class="s3"><a href="/book/4/4740/22370616.html" target="_blank">第2333章：联军至，绝望生，神风起</a>(08-26)</span><span class="s5">流香千古</span></li>
-';
-
-
-        $a = "#^aaa$#";
-
-        $b= "aaa.html";
-
-
-        dump(preg_match($a,$b));
-        exit;
+        GatherJob::dispatchNow(Gather::find(72));
+//        GatherJob::dispatchNow(Gather::find(72));
+//        GatherJob::dispatchNow(Gather::find(72));
+//        GatherJob::dispatchNow(Gather::find(72));
     }
-
 
 
     public function baiduRank()

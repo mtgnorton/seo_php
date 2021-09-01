@@ -96,22 +96,28 @@ return [
             'handler' => NullHandler::class,
         ],
 
-        'emergency' => [
+        'emergency'      => [
             'path' => storage_path('logs/laravel.log'),
         ],
-        'gather'    => [
+        'gather'         => [
             'driver' => 'daily',
             'path'   => storage_path('logs/gather.log'),
             'level'  => 'debug',
             'days'   => 14,
         ],
-        'optimize'    => [
+        'optimize'       => [
             'driver' => 'daily',
             'path'   => storage_path('logs/optimize.log'),
             'level'  => 'debug',
             'days'   => 14,
         ],
-        'sql'           => [
+        'gather-crontab' => [
+            'driver' => 'daily',
+            'path'   => storage_path('logs/gather-crontab.log'),
+            'level'  => 'debug',
+            'days'   => 14,
+        ],
+        'sql'            => [
             'driver' => 'daily',
             'path'   => storage_path('logs/sql.log'),
             'level'  => 'debug',

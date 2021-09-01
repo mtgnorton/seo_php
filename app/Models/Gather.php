@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\GatherCrontabLog;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -58,5 +59,11 @@ class Gather extends Model
     public function setDelimiterAttribute($value)
     {
         $this->attributes['delimiter'] = implode('|', $value);
+    }
+
+
+    public function crontabLogs()
+    {
+        return $this->hasMany(GatherCrontabLog::class);
     }
 }

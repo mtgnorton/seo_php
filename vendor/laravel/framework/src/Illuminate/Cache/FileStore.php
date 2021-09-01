@@ -210,6 +210,10 @@ class FileStore implements Store
             return $this->emptyPayload();
         }
 
+//        if ($key == 'pass_auth'){
+//            dump(date('Y-m-d H:i:s',$expire));
+//            exit;
+//        }
         // If the current time is greater than expiration timestamps we will delete
         // the file and return null. This helps clean up the old files and keeps
         // this directory much cleaner for us as old files aren't hanging out.

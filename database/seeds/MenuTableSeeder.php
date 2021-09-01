@@ -243,6 +243,17 @@ class MenuTableSeeder extends Seeder
                 'updated_at'    => $now,
             ],
             [
+                'id'            => 50,
+                'parent_id'     => 30,
+                'order'         => 35,
+                'title'         => '定时采集日志',
+                'icon'          => '/asset/imgs/icon/5.png',
+                'icon_selected' => '/asset/imgs/default_icon/a11.png',
+                'uri'           => 'gather-crontab-logs',
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            [
                 'id'            => 32,
                 'parent_id'     => 0,
                 'order'         => 32,
