@@ -37,7 +37,7 @@ SEO管理系统
 
 - 将该命令`* * * * * cd 项目目录 && php artisan schedule:run`加入crontab调度中, 每分钟执行一次, 以www用户运行
 
-- 将命令: `cd 项目目录 && php artisan queue:work --tries=3 --timeout=3000` 加入supervisor中, 以www用户运行
+- 将命令: `cd 项目目录 && php artisan queue:work` 加入supervisor中, 以www用户运行
 
 ## 配置
 #### .env文件
