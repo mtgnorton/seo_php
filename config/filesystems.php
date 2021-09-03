@@ -86,6 +86,10 @@ return [
             'driver' => 'local',
             'root'   => storage_path('update'),
         ],
+        'logs' => [
+            'driver' => 'local',
+            'root'   => storage_path('logs'),
+        ],
 
 
     ],
