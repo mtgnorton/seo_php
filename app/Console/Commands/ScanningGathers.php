@@ -53,7 +53,7 @@ class ScanningGathers extends Command
             if (empty($item->crontab_type) || $item->crontab_type == GatherConstant::CRONTAB_NO) {
                 return;
             }
-            $settingTime = $dayBeginTime + $item->crontab_hour * 3600 + $item->crontab_minute;
+            $settingTime = $dayBeginTime + $item->crontab_hour * 3600 + $item->crontab_minute * 60;
 
             $isDispatch = '否';
             if ($settingTime == $nowMinuteTime) {
