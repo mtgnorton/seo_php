@@ -32,8 +32,6 @@ class Kernel extends ConsoleKernel
         $schedule->command('scanning:gathers')
             ->everyMinute()
             ->withoutOverlapping();
-
-        return;
         // 每分钟运行一次推送地址操作
         $schedule->command('baiduUrl:push')
             ->everyMinute()
