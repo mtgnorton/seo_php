@@ -58,6 +58,9 @@ class Test extends Command
     public function handle()
     {
 
+
+        $content = CrawlService::get('https://www.opp2.com/241212.html');
+
         GatherJob::dispatch(Gather::find(72));
         GatherJob::dispatch(Gather::find(72));
         GatherJob::dispatch(Gather::find(72));
