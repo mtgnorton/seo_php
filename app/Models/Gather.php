@@ -51,6 +51,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Gather extends Model
 {
+    protected $guarded = [];
+
+
     public function getDelimiterAttribute($value)
     {
         return explode('|', $value);
