@@ -59,12 +59,9 @@ class Test extends Command
     {
 
 
-        $content = CrawlService::get('https://www.opp2.com/241212.html');
+        $c = CrawlService::get('https://www.qinglong.com.cn/fangshui/');
 
-        GatherJob::dispatch(Gather::find(72));
-        GatherJob::dispatch(Gather::find(72));
-        GatherJob::dispatch(Gather::find(72));
-        GatherJob::dispatch(Gather::find(72));
+
 //        GatherJob::dispatchNow(Gather::find(72));
 //        GatherJob::dispatchNow(Gather::find(72));
 //        GatherJob::dispatchNow(Gather::find(72));
