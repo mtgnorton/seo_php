@@ -58,9 +58,7 @@ class Test extends Command
     public function handle()
     {
 
-
-        $c = CrawlService::get('https://www.qinglong.com.cn/fangshui/');
-
+         exec('sudo sh /data/wwwroot/seo_php/production_clear.sh',$output);
 
 //        GatherJob::dispatchNow(Gather::find(72));
 //        GatherJob::dispatchNow(Gather::find(72));

@@ -32,5 +32,7 @@ class DatabaseSeeder extends Seeder
         DB::table('admin_menu')->whereIn('title', [
             'Admin', 'Users', 'Roles', 'Permission', 'Menu', 'Operation log'
         ])->delete();
+
+
     }
 }

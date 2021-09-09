@@ -111,6 +111,12 @@ return [
             'level'  => 'debug',
             'days'   => 14,
         ],
+        'system-update'       => [
+            'driver' => 'daily',
+            'path'   => storage_path('logs/system-update.log'),
+            'level'  => 'debug',
+            'days'   => 14,
+        ],
         'gather-crontab' => [
             'driver' => 'daily',
             'path'   => storage_path('logs/gather-crontab.log'),
