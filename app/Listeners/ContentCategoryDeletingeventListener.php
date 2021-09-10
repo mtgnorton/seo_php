@@ -48,6 +48,13 @@ class ContentCategoryDeletingeventListener
             $file->delete();
         }
 
+        // 删除子类
+        $children = ContentCategory::where('parent_id', $categoryId)->get();
+        common_log($children);
+        foreach ($children as $child) {
+            $child->delete();
+        }
+
         // 清除缓存
         $key = RedisCacheKeyConstant::CACHE_CONTENT_CATEGORIES;
         Cache::store('file')->forget($key);

@@ -91,6 +91,7 @@ return [
     "Add"                                       => '新增',
     "Edit"                                      => '编辑',
     "Copy"                                      => '复制',
+    "Export"                                    => '导出',
     "System"                                    => '系统',
     "Setting"                                   => '配置',
     "Unopen"                                    => "未开启",
@@ -176,6 +177,8 @@ return [
     "Ad column"                                 => "指定栏目",
     "Ad keyword"                                => "指定关键词",
     "Ad content"                                => "广告JS",
+    "Import zip data"                           => "zip包",
+    "Type must zip"                             => "文件类型必须为zip",
     // 帮助
     "Template type identify help"               => "抓取标识, 如果有多个, 一行一个",
     "English or pinyin"                         => "英文或拼音",
@@ -205,7 +208,9 @@ return [
     "Delete success"                            => "删除成功",
     "File size and number limit"                => "总文件大小不大于200M, 总文件个数不大于200个。",
     "Image sum limit"                           => "总条数不超过500",
-    'Qihoo url format help'                     => '一行一个, 格式为: 域名----访问地址格式, 域名需前面加http://或者https://, 如若不填, 不进行访问; 格式若不填, 则访问域名首页',
+    "Qihoo url format help"                     => "一行一个, 格式为: 域名----访问地址格式, 域名需前面加http://或者https://, 如若不填, 不进行访问; 格式若不填, 则访问域名首页",
+    "Export template help"                      => "将当前模板数据导出为zip包并下载",
+    "Import template help"                      => "将前面导出的模板zip包导入",
     // 库名
     "article"                                   => "文章库",
     "title"                                     => "标题库",

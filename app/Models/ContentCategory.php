@@ -84,4 +84,14 @@ class ContentCategory extends Model
     {
         return $this->belongsTo('App\Models\TemplateGroup');
     }
+
+    /**
+     * 与子类一对多的关系
+     *
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function files()
+    {
+        return $this->hasMany('App\Models\File', 'category_id');
+    }
 }

@@ -51,4 +51,14 @@ class TemplateGroup extends Model
     {
         return $this->hasMany('App\Models\Website', 'group_id', 'id');
     }
+
+    /**
+     * 和模板一对多的关系
+     *
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function contentCategories()
+    {
+        return $this->hasMany('App\Models\ContentCategory', 'group_id');
+    }
 }
