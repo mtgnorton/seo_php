@@ -179,6 +179,7 @@ return [
     "Ad content"                                => "广告JS",
     "Import zip data"                           => "zip包",
     "Type must zip"                             => "文件类型必须为zip",
+    "Is Export"                                 => "是否导出",
     // 帮助
     "Template type identify help"               => "抓取标识, 如果有多个, 一行一个",
     "English or pinyin"                         => "英文或拼音",
