@@ -58,7 +58,9 @@ class Test extends Command
     public function handle()
     {
 
-
+        exec('sudo sh /data/wwwroot/seo_php/production_clear.sh', $output);
+dump($output);
+exit;
         echo 2222;
 //        GatherJob::dispatchNow(Gather::find(72));
 //        GatherJob::dispatchNow(Gather::find(72));
