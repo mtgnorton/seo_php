@@ -94,4 +94,14 @@ class ContentCategory extends Model
     {
         return $this->hasMany('App\Models\File', 'category_id');
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function delete()
+    {
+        // $this->where($this->parentColumn, $this->getKey())->delete();
+
+        return parent::delete();
+    }
 }
