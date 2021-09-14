@@ -199,7 +199,7 @@ class MenuTableSeeder extends Seeder
             //     'updated_at' => $now,
             // ],
 
-            
+
             [
                 'id'            => 26,
                 'parent_id'     => 20,
