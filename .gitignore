@@ -2,7 +2,7 @@
 /public/hot
 /public/seo
 /public/nginx.test.conf
-
+/public/storage
 /storage/framework/cache/*
 /storage/framework/sessions/*
 /storage/framework/views/*
@@ -11,6 +11,7 @@
 /storage/logs/*
 /storage/app/public/*
 /storage/debugbar/*
+
 
 .env.backup
 .phpunit.result.cache
