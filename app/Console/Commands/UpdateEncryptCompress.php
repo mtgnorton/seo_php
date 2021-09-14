@@ -77,7 +77,11 @@ class UpdateEncryptCompress extends Command
         }
 
 
-        $this->confirm('确认打包?');
+        $confirm = $this->confirm('确认打包?');
+        if (!$confirm) {
+            $this->info('结束');
+            return;
+        }
 
 
         $rootPath = base_path();
@@ -107,6 +111,7 @@ class UpdateEncryptCompress extends Command
 
             if (!function_exists('beast_encode_file')) {
                 $this->error('加密beast扩展未安装,无法加密');
+                return;
             }
             if (Str::contains($changeFilePath, $encryptPaths)) { //进行加密
                 $rs        = \beast_encode_file($targetPath, $targetPath, 0, BEAST_ENCRYPT_TYPE_DES);
