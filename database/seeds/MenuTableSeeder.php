@@ -221,7 +221,7 @@ class MenuTableSeeder extends Seeder
                 'updated_at'    => $now,
             ],
             [
-                'id'            => 50,
+                'id'            => 100,
                 'parent_id'     => 30,
                 'order'         => 30,
                 'title'         => '伪原创配置',
@@ -243,7 +243,7 @@ class MenuTableSeeder extends Seeder
                 'updated_at'    => $now,
             ],
             [
-                'id'            => 50,
+                'id'            => 101,
                 'parent_id'     => 30,
                 'order'         => 35,
                 'title'         => '定时采集日志',
