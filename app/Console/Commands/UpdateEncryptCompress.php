@@ -161,7 +161,7 @@ class UpdateEncryptCompress extends Command
         if (strpos($path, '.php') !== false || ($path == "")) {
             return $path;
         }
-        return trim(trim($path, '/\\')) . DIRECTORY_SEPARATOR;
+        return rtrim($path, '/\\') . DIRECTORY_SEPARATOR;
     }
 
     /**
