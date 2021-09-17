@@ -210,7 +210,7 @@ return [
     "File size and number limit"                => "总文件大小不大于200M, 总文件个数不大于200个。",
     "Image sum limit"                           => "总条数不超过500",
     "Qihoo url format help"                     => "一行一个, 格式为: 域名----访问地址格式, 域名需前面加http://或者https://, 如若不填, 不进行访问; 格式若不填, 则访问域名首页",
-    "Export template help"                      => "将当前模板数据导出为zip包并下载",
+    "Export template help"                      => "将当前模板数据导出为zip包并下载, 点击后请耐心等待几秒钟.",
     "Import template help"                      => "将前面导出的模板zip包导入",
     // 库名
     "article"                                   => "文章库",
