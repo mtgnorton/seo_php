@@ -69,8 +69,10 @@ class ProcessImportTemplate implements ShouldQueue
         TemplateService::importTemplate($params);
 
         // 删除预存的模板zip文件
-        Storage::disk('public')->delete($fileData['path']);
-        common_log('删除临时zip包成功');
+        if (Storage::disk('public')->exists($fileData['path'])) {
+            Storage::disk('public')->delete($fileData['path']);
+            common_log('删除临时zip包成功');
+        }
 
         common_log('模板导入完成');
     }
@@ -82,9 +84,7 @@ class ProcessImportTemplate implements ShouldQueue
      * @return void
      */
     public function failed(Exception $exception)
-    {
-        $message = '导入模板失败';
-        
-        common_log($message, $exception);
+    {        
+        common_log('导入模板失败', $exception);
     }
 }
