@@ -42,46 +42,54 @@ class FileDeletingeventListener
         $tag = ContentService::contentTag($categoryId, $type);
 
         // 3. 删除对应文件缓存
-        $baseKey = ContentConstant::cacheKeyText()[$type] ?? '';
-        // $category = ContentCategory::find($categoryId);
-        $categoryKey = RedisCacheKeyConstant::CACHE_DELETE_CONTENT_TEMPLATE . $categoryId;
-        $category = Cache::get($categoryKey);
-        $groupId = $category->group_id ?? 0;
+        if ($type == 'article') {
+            $types = ['article_title', 'article_content'];
+        } else {
+            $types = [$type];
+        }
 
-        try {
-            // 1. 如果文件存在, 删除文件
-            if (Storage::exists($path)) {
-                Storage::delete($path);
-            }
-
-            // 2. 删除文件对应内容数据库记录
-            if ($type == 'diy') {
-                Diy::where('file_id', $model->id)->delete();
-            } else {
-                $contentModel = ContentService::CONTENT_MODEL[$type] ?? '';
-
-                if (empty($contentModel)) {
-                    return '';
+        foreach ($types as $baseType) {
+            $baseKey = ContentConstant::cacheKeyText()[$baseType] ?? '';
+            // $category = ContentCategory::find($categoryId);
+            $categoryKey = RedisCacheKeyConstant::CACHE_DELETE_CONTENT_TEMPLATE . $categoryId;
+            $category = Cache::get($categoryKey);
+            $groupId = $category->group_id ?? 0;
+    
+            try {
+                // 1. 如果文件存在, 删除文件
+                if (Storage::exists($path)) {
+                    Storage::delete($path);
                 }
-                // 删除对应缓存
-                $typeName = ContentService::CONTENT_TAG[$type] ?? '';
-                $key1 = $baseKey . $groupId . $typeName;
-                Cache::store('file')->forget($key1);
-
-                $contentModel::where('file_id', $model->id)->delete();
+    
+                // 2. 删除文件对应内容数据库记录
+                if ($type == 'diy') {
+                    Diy::where('file_id', $model->id)->delete();
+                } else {
+                    $contentModel = ContentService::CONTENT_MODEL[$type] ?? '';
+    
+                    if (empty($contentModel)) {
+                        return '';
+                    }
+                    // 删除对应缓存
+                    $typeName = ContentService::CONTENT_TAG[$type] ?? '';
+                    $key1 = $baseKey . $groupId . $typeName;
+                    Cache::store('file')->forget($key1);
+    
+                    $contentModel::where('file_id', $model->id)->delete();
+                }
+    
+                $key2 = $baseKey . $groupId . $tag;
+                Cache::store('file')->forget($key2);
+                // 上级分类key
+                $parentId = $category->parent_id ?? 0;
+                $parentTag = ContentService::contentTag($parentId, $type);
+                $key3 = $baseKey . $groupId . $parentTag;
+                Cache::store('file')->forget($key3);
+    
+                common_log('删除文件成功, 文件ID为: '.$model->id);
+            } catch (Exception $e) {
+                common_log('文件内容删除失败, 文件ID为: '.$model->id, $e);
             }
-
-            $key2 = $baseKey . $groupId . $tag;
-            Cache::store('file')->forget($key2);
-            // 上级分类key
-            $parentId = $category->parent_id ?? 0;
-            $parentTag = ContentService::contentTag($parentId, $type);
-            $key3 = $baseKey . $groupId . $parentTag;
-            Cache::store('file')->forget($key3);
-
-            common_log('删除文件成功, 文件ID为: '.$model->id);
-        } catch (Exception $e) {
-            common_log('文件内容删除失败, 文件ID为: '.$model->id, $e);
         }
     }
 }
