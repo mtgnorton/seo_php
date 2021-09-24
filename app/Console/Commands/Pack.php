@@ -102,7 +102,7 @@ class Pack extends Command
             $info = pathinfo($changeFilePath);
 
 
-            $this->createDir($this->joinPath($toPath, $info['dirname']));
+            FileService::createDir($this->joinPath($toPath, $info['dirname']));
 
             $targetPath = $this->joinPath($toPath, $changeFilePath);
             copy($this->joinPath($rootPath, $changeFilePath), $targetPath);
@@ -195,34 +195,6 @@ class Pack extends Command
     public function toDs($path)
     {
         return str_replace('/', DIRECTORY_SEPARATOR, $path);
-    }
-
-
-    /**
-     * author: mtg
-     * time: 2021/9/14   17:06
-     * function description:递归创建文件夹
-     * @param $path
-     * @return bool
-     */
-    public function createDir($path)
-    {
-        // 判断传过来的$path是否已是目录，若是，则直接返回true
-        if (is_dir($path)) {
-            return true;
-        }
-
-// 走到这步，说明传过来的$path不是目录
-// 判断其上级是否为目录，是，则直接创建$path目录
-        if (is_dir(dirname($path))) {
-            return mkdir($path);
-        }
-
-// 走到这说明其上级目录也不是目录,则继续判断其上上...级目录
-        $this->createDir(dirname($path));
-
-// 走到这步，说明上级目录已创建成功，则直接接着创建当前目录，并把创建的结果返回
-        return mkdir($path);
     }
 
 
