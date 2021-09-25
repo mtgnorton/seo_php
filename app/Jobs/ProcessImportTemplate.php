@@ -56,7 +56,7 @@ class ProcessImportTemplate implements ShouldQueue
     public function handle()
     {
         set_time_limit(3000);
-        ini_set('memory_limit', '512M');
+        ini_set('memory_limit', '-1');
 
         $fileData = $this->fileData;
         $params = $this->params;
