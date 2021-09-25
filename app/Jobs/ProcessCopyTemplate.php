@@ -2,8 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Models\File;
-use App\Services\ContentService;
+use App\Services\TemplateService;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -11,11 +10,13 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class ProcessAddContent implements ShouldQueue
+class ProcessCopyTemplate implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $data;
+    protected $templateId;
+
+    protected $params;
 
     /**
      * 最大执行秒数
@@ -25,20 +26,14 @@ class ProcessAddContent implements ShouldQueue
     public $timeout = 3000;
 
     /**
-     * 任务可以尝试的最大次数
-     *
-     * @var integer
-     */
-    public $tries = 3;
-
-    /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct($templateId=0, $params=[])
     {
-        $this->data = $data;
+        $this->templateId = $templateId;
+        $this->params = $params;
     }
 
     /**
@@ -50,13 +45,14 @@ class ProcessAddContent implements ShouldQueue
     {
         set_time_limit(0);
         ini_set('memory_limit', '-1');
-        $data = $this->data;
+        common_log('开始复制模板');
+        $result = TemplateService::copyTemplate($this->templateId, $this->params);
 
-        ContentService::insertContentByFile(
-            $data['categoryId'],
-            $data['type'],
-            $data['fileObj']
-        ); 
+        if ($result['code'] != 0) {
+            common_log('复制模板失败, 失败原因为: '.$result['message']??'');
+        } else {
+            common_log('复制模板成功');
+        }
     }
 
     /**
@@ -66,12 +62,7 @@ class ProcessAddContent implements ShouldQueue
      * @return void
      */
     public function failed(Exception $exception)
-    {
-        $fileId = $this->data['fileObj']['id'] ?? 0;
-        $message = '文件上传失败, 请删除后重新上传, 错误信息为: '.$exception->getMessage();
-
-        File::where('id', $fileId)->update([
-            'message' => $message
-        ]);
+    {        
+        common_log('复制模板失败', $exception);
     }
 }

@@ -45,6 +45,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\WebsiteDeletingEvent' => [
             'App\Listeners\WebsiteDeletingeventListener'
         ],
+        'App\Events\TemplateExportDeletingEvent' => [
+            'App\Listeners\TemplateExportDeletingeventListener'
+        ],
     ];
 
     /**

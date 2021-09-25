@@ -162,6 +162,8 @@ return [
     "Template type"                             => "模板类型",
     "Template material"                         => "模板素材",
     "Template material type"                    => "模板素材类型",
+    "Template export"                           => "模板导出",
+    "Template id"                               => "模板ID",
     "Content category"                          => "内容分类",
     "Keyword"                                   => "关键词",
     "Add tag"                                   => "新增标签",

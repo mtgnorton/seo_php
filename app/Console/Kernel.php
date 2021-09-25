@@ -51,10 +51,10 @@ class Kernel extends ConsoleKernel
             ->everyMinute()
             ->withoutOverlapping();
 
-        // 每分钟运行一次删除导出模板包
-        $schedule->command('export:delete')
-            ->dailyAt('03:00')
-            ->withoutOverlapping();
+        // // 每天运行一次删除导出模板包
+        // $schedule->command('export:delete')
+        //     ->dailyAt('03:00')
+        //     ->withoutOverlapping();
 
 
     }
