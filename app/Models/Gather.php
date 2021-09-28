@@ -69,4 +69,10 @@ class Gather extends Model
     {
         return $this->hasMany(GatherCrontabLog::class);
     }
+
+
+    public function contentCategory()
+    {
+        return $this->belongsTo(ContentCategory::class, 'category_id');
+    }
 }
