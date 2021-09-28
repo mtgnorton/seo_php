@@ -24,7 +24,7 @@ class ConfigsTableSeeder extends Seeder
                 'created_at' => $now,
                 'updated_at' => $now,
             ],
-            
+
             [
                 'module'     => 'spider',
                 'key'        => 'spider_strong_attraction',
@@ -85,6 +85,23 @@ class ConfigsTableSeeder extends Seeder
                 'module'     => 'qihoopush',
                 'key'        => 'url_format',
                 'value'      => '',
+                'is_json'    => 0,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'module'     => 'qihoopush',
+                'key'        => 'url_format',
+                'value'      => '',
+                'is_json'    => 0,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+
+            [
+                'module'     => 'fakeorigin',
+                'key'        => 'article_image_type',
+                'value'      => 'article_image_remote',
                 'is_json'    => 0,
                 'created_at' => $now,
                 'updated_at' => $now,

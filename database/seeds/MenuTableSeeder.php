@@ -226,7 +226,7 @@ class MenuTableSeeder extends Seeder
                 'id'            => 100,
                 'parent_id'     => 30,
                 'order'         => 30,
-                'title'         => '伪原创配置',
+                'title'         => '采集配置',
                 'icon'          => '/asset/imgs/icon/5.png',
                 'icon_selected' => '/asset/imgs/default_icon/a11.png',
                 'uri'           => 'gather-fake-origin',
