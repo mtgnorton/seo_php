@@ -124,6 +124,7 @@ return [
     "Ios"                                       => "苹果端",
     "Pc"                                        => "PC端",
     "Screen terminal"                           => "屏蔽终端",
+    "Website config"                            => "站点配置",
     // 返回语句
     "File does not exist"                       => "文件不存在",
     "File uploaded failed"                      => "文件上传失败, 请重新上传",
@@ -279,7 +280,7 @@ return [
     'Add bracket'                   => '文章增加括号',
     'Keyword chain'                 => '关键词内链',
     'Forbin snapshot'               => '禁止搜索引擎快照',
-    'Synonym transform'             => '同义词转换',
+    'Synonym transform'             => '智能伪原创',
     'Gzip'                          => 'Gzip压缩',
     'Rand pinyin'                   => '随机插入拼音',
     'Header'                        => '头部',
