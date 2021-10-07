@@ -120,6 +120,10 @@ return [
     "Level"                                     => "等级",
     "Parent"                                    => "父类",
     "Children"                                  => "子类",
+    "Android"                                   => "安卓端",
+    "Ios"                                       => "苹果端",
+    "Pc"                                        => "PC端",
+    "Screen terminal"                           => "屏蔽终端",
     // 返回语句
     "File does not exist"                       => "文件不存在",
     "File uploaded failed"                      => "文件上传失败, 请重新上传",
@@ -184,6 +188,11 @@ return [
     "Import zip data"                           => "zip包",
     "Type must zip"                             => "文件类型必须为zip",
     "Is Export"                                 => "是否导出",
+    "Is versatile template"                     => "是否百变模板",
+    "Diy content"                               => "自定义内容",
+    "Status code"                               => "状态码",
+    "Ad type"                                   => "广告类型",
+    "Status code type"                          => "状态码类型",
     // 帮助
     "Template type identify help"               => "抓取标识, 如果有多个, 一行一个",
     "English or pinyin"                         => "英文或拼音",
