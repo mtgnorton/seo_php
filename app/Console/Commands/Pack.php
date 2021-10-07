@@ -179,7 +179,7 @@ class Pack extends Command
     {
         $path = $this->toDs($path);
 
-        if (strpos($path, '.php') !== false || strpos($path, '.zip') !== false || ($path == "")) {
+        if (strpos($path, '.php') !== false || strpos($path, '.txt') !== false || strpos($path, '.zip') !== false || ($path == "")) {
             return $path;
         }
         return rtrim($path, '/\\') . DIRECTORY_SEPARATOR;
