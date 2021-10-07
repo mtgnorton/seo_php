@@ -19,6 +19,8 @@
 
 Route::get('test', ['\App\Http\Controllers\TestController', 'index']);
 
+Route::any('robots.txt', ['\App\Http\Controllers\IndexController', 'robots']);
+
 Route::fallback(['\App\Http\Controllers\IndexController', 'index'])->middleware([
         \App\Http\Middleware\RecordSpider::class,
         \App\Http\Middleware\RequestLimit::class

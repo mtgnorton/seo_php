@@ -299,7 +299,7 @@ return [
     'Is refresh change'             => '页面刷新改变',
     'Visit url format'              => '地址访问格式',
     'Push success count'            => '推送成功数量',
-
+    'Robots content'                => 'Robots.txt文件内容',
     // 蜘蛛
     'Spider'                        => '蜘蛛',
     'Baidu'                         => '百度',
