@@ -125,6 +125,7 @@ return [
     "Pc"                                        => "PC端",
     "Screen terminal"                           => "屏蔽终端",
     "Website config"                            => "站点配置",
+    "Reciprocal link"                           => "网站互链",
     // 返回语句
     "File does not exist"                       => "文件不存在",
     "File uploaded failed"                      => "文件上传失败, 请重新上传",
@@ -194,6 +195,7 @@ return [
     "Status code"                               => "状态码",
     "Ad type"                                   => "广告类型",
     "Status code type"                          => "状态码类型",
+    "Num"                                       => "数量",
     // 帮助
     "Template type identify help"               => "抓取标识, 如果有多个, 一行一个",
     "English or pinyin"                         => "英文或拼音",
@@ -306,6 +308,8 @@ return [
     'Visit url format'              => '地址访问格式',
     'Push success count'            => '推送成功数量',
     'Robots content'                => 'Robots.txt文件内容',
+    'Url location'                  => 'URL位置',
+    'Reciprocal link text'          => '互链描文本',
     // 蜘蛛
     'Spider'                        => '蜘蛛',
     'Baidu'                         => '百度',

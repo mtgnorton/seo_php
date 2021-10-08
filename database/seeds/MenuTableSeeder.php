@@ -420,6 +420,28 @@ class MenuTableSeeder extends Seeder
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
+            [
+                'id'            => 47,
+                'parent_id'     => 32,
+                'order'         => 47,
+                'title'         => '蜘蛛强引记录',
+                'icon'          => '',
+                'icon_selected' => '',
+                'uri'           => 'spider-attraction-records',
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            [
+                'id'            => 48,
+                'parent_id'     => 40,
+                'order'         => 48,
+                'title'         => '站点互链',
+                'icon'          => '',
+                'icon_selected' => '',
+                'uri'           => 'reciprocal-links',
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
         ]);
     }
 }
