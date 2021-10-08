@@ -38,7 +38,7 @@ class Kernel extends ConsoleKernel
             ->withoutOverlapping();
         // 每小时运行一次360访问地址方法
         $schedule->command('qihooUrl:push')
-            ->hourly()
+            ->everyMinute()
             ->withoutOverlapping();
 
 

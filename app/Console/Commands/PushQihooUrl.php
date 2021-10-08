@@ -2,11 +2,14 @@
 
 namespace App\Console\Commands;
 
+use App\Constants\RedisCacheKeyConstant;
+use App\Models\Config;
 use App\Services\CommonService;
 use App\Services\IndexPregService;
+use App\Services\QihooSerivice;
+use App\Services\SouGouService;
 use App\Services\SpiderService;
 use Carbon\Carbon;
-use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Cache;
 
@@ -24,7 +27,7 @@ class PushQihooUrl extends Command
      *
      * @var string
      */
-    protected $description = '将网址推送到百度等平台中';
+    protected $description = '将网址推送到360平台';
 
     /**
      * Create a new command instance.
@@ -43,74 +46,90 @@ class PushQihooUrl extends Command
      */
     public function handle()
     {
-        // 获取配置数据
-        $config = conf('qihoopush');
+        $configs = conf('qihoopush');
 
-        // 判断是否开启推送
-        if ($config['is_open'] != 'on') {
+
+        if ($configs['is_open'] == 'off') {
             return false;
         }
 
-        // 获取百度普通收录参数
-        $qihooPushData = CommonService::linefeedStringToArray($config['url_format']);
-        $sum = count($qihooPushData);
-        $successCount = 0;
-        $failCount = 0;
-
-        foreach ($qihooPushData as $push) {
-            if (empty($push)) {
-                $failCount++;
-
-                continue;
-            }
-
-            $pushData = explode('----', $push);
-            $host = $pushData[0] ?? '';
-            $rule = $pushData[1] ?? '';
-
-            // 判断域名是否为空, 且是否存在http://或https://
-            if (empty($host)) {
-                $failCount++;
-                
-                continue;
-            }
-            if (strpos($host, 'http://') !== 0 &&
-                strpos($host, 'https://') !== 0
-            ) {
-                $failCount++;
-
-                continue;
-            }
-
-            // 去除域名右边的/
-            $host = rtrim($host, '/');
-            $url = $host;
-
-            if (!empty($rule)) {
-                // 去除规则两边的/
-                $rule = trim($rule, '/');
-    
-                $rule = preg_replace_callback('/{(随机数字|随机字母)+\d*}/', function ($match) {
-                    $key = $match[0];
-                    $type = $match[1] ?? '';
-    
-                    return IndexPregService::randSystemTag($type, $key);
-                }, $rule);
-
-                $url .= '/'.$rule;
-            }
-
-            try {
-                $result = CommonService::requestGet($url);
-
-                $successCount++;
-            } catch (Exception $e) {
-                $failCount++;
-
-                common_log('域名访问失败, 域名为: '.$url, $e);
-            }
+        /**
+         * 上次的推送错误没有解决,不会再次推送
+         */
+        if (Cache::get(RedisCacheKeyConstant::QIHOO_PUSH_ERROR)) {
+            return false;
         }
 
-        common_log('360推送地址总数为:'.$sum.', 推送成功数量为: '.$successCount.', 推送失败数量为: '.$failCount);
+
+        if (!$this->checkConfigs($configs)) {
+            return false;
+        }
+
+        $time         = time();
+        $lastPushTime = Cache::get(RedisCacheKeyConstant::QIHOO_PUSH_TIME_KEY);
+
+        // 判断是否到下次推送时间
+        if (($time - (int)$lastPushTime) < (60 * (int)$configs['interval'])) {
+            return false;
+        }
+
+
+        $args = collect(explode(PHP_EOL, $configs['push_args']))->map('trim')->filter();
+
+        if ($args->isEmpty()) {
+            Cache::set(RedisCacheKeyConstant::QIHOO_PUSH_ERROR, '收录参数错误');
+            return false;
+        }
+
+        $args->map(function ($arg) {
+            list($host, $rule) = explode('----', $arg);
+
+            $baseUrl = rtrim($host, '/') . '/' . ltrim($rule, '/');
+
+            for ($i = 0; $i < 5; $i++) { //每次推送20个
+                $urls[] = preg_replace_callback('/{(随机数字|随机字母)+\d*}/', function ($match) {
+                    $key  = $match[0];
+                    $type = $match[1] ?? '';
+
+                    return IndexPregService::randSystemTag($type, $key);
+                }, $baseUrl);
+            }
+
+
+            $rs = QihooSerivice::flow($urls);
+
+
+            if (!data_get($rs, 'state')) {
+
+                if (mb_strpos(data_get($rs, 'msg'), '验证码') === false) { //非验证码错误进行记录
+
+                    Cache::set(RedisCacheKeyConstant::QIHOO_PUSH_ERROR, $rs['msg']);
+                } else {
+                    gather_log('360 自动推送验证码失败');
+                }
+
+                return;
+            } else {
+
+                $amount = Config::where('key', 'qihoo_push_amount')->value('value') ?? 0;
+                $amount += 5;
+                conf_insert_or_update('qihoo_push_amount', $amount, 'qihoopush');
+            }
+
+
+        });
+
+        Cache::put(RedisCacheKeyConstant::QIHOO_PUSH_TIME_KEY, $time);
+
+    }
+
+
+    public function checkConfigs($configs)
+    {
+        if (!data_get($configs, 'app_id') || !data_get($configs, 'app_key') || !data_get($configs, 'pd_id') || !data_get($configs, 'pd_key') || !data_get($configs, 'email') || !data_get($configs, 'cookies')) {
+            Cache::set(RedisCacheKeyConstant::QIHOO_PUSH_ERROR, '推送配置错误,请检查');
+            return false;
+        }
+        return true;
     }
 }
