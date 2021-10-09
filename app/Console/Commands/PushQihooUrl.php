@@ -126,7 +126,7 @@ class PushQihooUrl extends Command
 
     public function checkConfigs($configs)
     {
-        if (!data_get($configs, 'app_id') || !data_get($configs, 'app_key') || !data_get($configs, 'pd_id') || !data_get($configs, 'pd_key') || !data_get($configs, 'email') || !data_get($configs, 'cookies')) {
+        if (!data_get($configs, 'app_id') || !data_get($configs, 'app_key') || !data_get($configs, 'pd_id') || !data_get($configs, 'pd_key')  || !data_get($configs, 'cookies')) {
             Cache::set(RedisCacheKeyConstant::QIHOO_PUSH_ERROR, '推送配置错误,请检查');
             return false;
         }
