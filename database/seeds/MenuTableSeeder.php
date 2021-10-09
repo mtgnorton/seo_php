@@ -442,6 +442,17 @@ class MenuTableSeeder extends Seeder
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
+            [
+                'id'            => 49,
+                'parent_id'     => 40,
+                'order'         => 49,
+                'title'         => '缓存管理',
+                'icon'          => '',
+                'icon_selected' => '',
+                'uri'           => 'clear-cache',
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
         ]);
     }
 }
