@@ -56,9 +56,9 @@ class PushQihooUrl extends Command
         /**
          * 上次的推送错误没有解决,不会再次推送
          */
-        if (Cache::get(RedisCacheKeyConstant::QIHOO_PUSH_ERROR)) {
-            return false;
-        }
+//        if (Cache::get(RedisCacheKeyConstant::QIHOO_PUSH_ERROR)) {
+//            return false;
+//        }
 
 
         if (!$this->checkConfigs($configs)) {
@@ -69,9 +69,9 @@ class PushQihooUrl extends Command
         $lastPushTime = Cache::get(RedisCacheKeyConstant::QIHOO_PUSH_TIME_KEY);
 
         // 判断是否到下次推送时间
-        if (($time - (int)$lastPushTime) < (60 * (int)$configs['interval'])) {
-            return false;
-        }
+//        if (($time - (int)$lastPushTime) < (60 * (int)$configs['interval'])) {
+//            return false;
+//        }
 
 
         $args = collect(explode(PHP_EOL, $configs['push_args']))->map('trim')->filter();
@@ -82,11 +82,16 @@ class PushQihooUrl extends Command
         }
 
         $args->map(function ($arg) {
+
+            $urls = [];
+
+            gather_log(sprintf('开始%s规则的推送', $arg));
+
             list($host, $rule) = explode('----', $arg);
 
             $baseUrl = rtrim($host, '/') . '/' . ltrim($rule, '/');
 
-            for ($i = 0; $i < 5; $i++) { //每次推送20个
+            for ($i = 0; $i < 5; $i++) { //每次推送5个
                 $urls[] = preg_replace_callback('/{(随机数字|随机字母)+\d*}/', function ($match) {
                     $key  = $match[0];
                     $type = $match[1] ?? '';
@@ -96,7 +101,7 @@ class PushQihooUrl extends Command
             }
 
 
-            $rs = QihooSerivice::flow($urls);
+            $rs   = QihooSerivice::flow($urls);
 
 
             if (!data_get($rs, 'state')) {
@@ -107,7 +112,6 @@ class PushQihooUrl extends Command
                 } else {
                     gather_log('360 自动推送验证码失败');
                 }
-
                 return;
             } else {
 
@@ -115,7 +119,9 @@ class PushQihooUrl extends Command
                 $amount += 5;
                 conf_insert_or_update('qihoo_push_amount', $amount, 'qihoopush');
             }
+            gather_log('360 自动推送验证码开始休眠');
 
+            sleep(20); //限频问题
 
         });
 
@@ -126,7 +132,7 @@ class PushQihooUrl extends Command
 
     public function checkConfigs($configs)
     {
-        if (!data_get($configs, 'app_id') || !data_get($configs, 'app_key') || !data_get($configs, 'pd_id') || !data_get($configs, 'pd_key')  || !data_get($configs, 'cookies')) {
+        if (!data_get($configs, 'app_id') || !data_get($configs, 'app_key') || !data_get($configs, 'pd_id') || !data_get($configs, 'pd_key') || !data_get($configs, 'cookies')) {
             Cache::set(RedisCacheKeyConstant::QIHOO_PUSH_ERROR, '推送配置错误,请检查');
             return false;
         }

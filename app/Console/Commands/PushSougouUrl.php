@@ -79,7 +79,9 @@ class PushSougouUrl extends Command
             return false;
         }
 
-        $args->map(function ($arg) {
+        $args->map(function ($arg) use ($configs) {
+
+
             list($host, $rule) = explode('----', $arg);
 
             $baseUrl = rtrim($host, '/') . '/' . ltrim($rule, '/');
@@ -93,24 +95,40 @@ class PushSougouUrl extends Command
                 }, $baseUrl);
             }
 
+            $firstURL = data_get($urls, 0);
+            $domain   = parse_url($firstURL, PHP_URL_HOST);
 
-            $rs = SouGouService::flow($urls);
 
+            $isVerify = in_array($domain, explode(PHP_EOL, $configs['has_add_domains']));
+
+            if ($isVerify) {
+                $rs = SouGouService::flow('', $urls);
+            } else {
+                $rs = SouGouService::flow($firstURL, []);
+            }
 
             if (!data_get($rs, 'state')) {
 
                 if (mb_strpos(data_get($rs, 'msg'), '验证码') === false) { //非验证码错误进行记录
 
                     Cache::set(RedisCacheKeyConstant::SOUGOU_PUSH_ERROR, $rs['msg']);
+                } else {
+                    gather_log('搜狗 自动推送验证码失败');
                 }
 
                 return;
             } else {
                 $amount = Config::where('key', 'push_amount')->value('value') ?? 0;
-                $amount += 20;
+                if ($isVerify) {
+                    $amount += 20;
+                } else {
+                    $amount += 1;
+                }
                 conf_insert_or_update('push_amount', $amount, 'sougoupush');
             }
+            gather_log('搜狗 自动推送验证码开始休眠');
 
+            sleep(20);
 
         });
 
@@ -121,7 +139,7 @@ class PushSougouUrl extends Command
 
     public function checkConfigs($configs)
     {
-        if (!data_get($configs, 'app_id') || !data_get($configs, 'app_key') || !data_get($configs, 'pd_id') || !data_get($configs, 'pd_key') || !data_get($configs, 'email') || !data_get($configs, 'cookies')) {
+        if (!data_get($configs, 'app_id') || !data_get($configs, 'app_key') || !data_get($configs, 'pd_id') || !data_get($configs, 'pd_key') || !data_get($configs, 'cookies')) {
             Cache::set(RedisCacheKeyConstant::SOUGOU_PUSH_ERROR, '推送配置错误,请检查');
             return false;
         }

@@ -17,9 +17,9 @@ class CreateMirrorsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('category_id')->default(0)->comment('所属分类');
             $table->text('targets')->nullable()->comment('目标站,多个,一行一个');
-            $table->string('title')->default('')->comment('标题');
-            $table->string('keywords')->default('')->comment('标题');
-            $table->string('description')->default('')->comment('描述');
+            $table->longText('title')->default('')->comment('标题');
+            $table->longText('keywords')->default('')->comment('标题');
+            $table->longText('description')->default('')->comment('描述');
             $table->string('conversion')->default('')->comment('简繁 to_complex,中英 to_english,no_conversion 不转换');
             $table->tinyInteger('is_ignore_dtk')->default(0)->comment('是否开启dtk,0否 1是');
             $table->string('user_agent')->default('')->comment('');
