@@ -56,9 +56,9 @@ class PushQihooUrl extends Command
         /**
          * 上次的推送错误没有解决,不会再次推送
          */
-//        if (Cache::get(RedisCacheKeyConstant::QIHOO_PUSH_ERROR)) {
-//            return false;
-//        }
+        if (Cache::get(RedisCacheKeyConstant::QIHOO_PUSH_ERROR)) {
+            return false;
+        }
 
 
         if (!$this->checkConfigs($configs)) {
@@ -69,9 +69,9 @@ class PushQihooUrl extends Command
         $lastPushTime = Cache::get(RedisCacheKeyConstant::QIHOO_PUSH_TIME_KEY);
 
         // 判断是否到下次推送时间
-//        if (($time - (int)$lastPushTime) < (60 * (int)$configs['interval'])) {
-//            return false;
-//        }
+        if (($time - (int)$lastPushTime) < (60 * (int)$configs['interval'])) {
+            return false;
+        }
 
 
         $args = collect(explode(PHP_EOL, $configs['push_args']))->map('trim')->filter();
