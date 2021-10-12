@@ -40,7 +40,7 @@ class UpdateSpiderData extends Command
      */
     public function handle()
     {
-        dump("开始更新蜘蛛数据");
+        dump("开始更新蜘蛛数据-----");
         $baseCountKey   = RedisCacheKeyConstant::REDIS_SPIDER_COUNT;
         $basePieKey   = RedisCacheKeyConstant::REDIS_SPIDER_PIE;
         $baseHourKey   = RedisCacheKeyConstant::REDIS_SPIDER_HOUR;
@@ -61,6 +61,6 @@ class UpdateSpiderData extends Command
         Redis::del($key5);
         Redis::del($key6);
         Redis::del($key7);
-        dump("更新蜘蛛数据成功");
+        dump("-----更新蜘蛛数据成功");
     }
 }

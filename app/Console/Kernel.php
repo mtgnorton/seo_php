@@ -51,6 +51,11 @@ class Kernel extends ConsoleKernel
             ->everyMinute()
             ->withoutOverlapping();
 
+        // 每10分钟运行一次更新蜘蛛数据的操作
+        $schedule->command('spider:update')
+            ->everyThirtyMinutes()
+            ->withoutOverlapping();
+
         // // 每天运行一次删除导出模板包
         // $schedule->command('export:delete')
         //     ->dailyAt('03:00')
