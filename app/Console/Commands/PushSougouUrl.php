@@ -101,6 +101,7 @@ class PushSougouUrl extends Command
 
             $isVerify = in_array($domain, explode(PHP_EOL, $configs['has_add_domains']));
 
+            $isVerify = true;
             if ($isVerify) {
                 $rs = SouGouService::flow('', $urls);
             } else {
@@ -128,7 +129,7 @@ class PushSougouUrl extends Command
             }
             gather_log('搜狗 自动推送验证码开始休眠');
 
-            sleep(20);
+            sleep(3);
 
         });
 
