@@ -48,6 +48,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\TemplateExportDeletingEvent' => [
             'App\Listeners\TemplateExportDeletingeventListener'
         ],
+        'App\Events\PushFileDeletingEvent' => [
+            'App\Listeners\PushFileDeletingeventListener'
+        ],
     ];
 
     /**
