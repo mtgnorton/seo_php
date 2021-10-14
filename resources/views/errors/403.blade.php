@@ -46,9 +46,9 @@
 </head>
 <body>
     <divc class="box">
-        <img src="/asset/imgs/errors/1.png" alt="">
+        <img src="/asset/imgs/errors/403-1.png" alt="">
         <div class="content">
-            <img src="/asset/imgs/errors/3.png" alt="">
+            <img src="/asset/imgs/errors/403.png" alt="">
             <p>抱歉，您访问的页面不存在</p>
             <a href="/">回到首页</a>
         </div>

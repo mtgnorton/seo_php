@@ -45,9 +45,9 @@
 </head>
 <body>
     <divc class="box">
-        <img src="/asset/imgs/errors/2.png" alt="">
+        <img src="/asset/imgs/errors/200-1.png" alt="">
         <div class="content">
-            <img src="/asset/imgs/errors/4.png" alt="">
+            <img src="/asset/imgs/errors/200.png" alt="">
             <p>抱歉，服务器出错了</p>
         </div>
     </div>
