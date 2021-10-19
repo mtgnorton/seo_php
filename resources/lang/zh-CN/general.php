@@ -235,6 +235,8 @@ return [
     "From url"                                  => "强引前网址",
     "To url"                                    => "强引后网址",
     "Spider attraction record"                  => "蜘蛛强引记录",
+    "Is clear file data"                        => "是否清除残留数据",
+    "Clear file data help"                      => "该操作会强制刷新该分类缓存, 并删除除现存文件外的残留数据(如果存在的话)",
     // 库名
     "article"                                   => "文章库",
     "title"                                     => "标题库",
