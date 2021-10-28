@@ -288,6 +288,7 @@ return [
     'Ascii article confound'        => 'ASCII码特殊混淆(文章)',
     'Ascii article rate'            => 'ASCII码特殊混淆(文章)插入比率(%)',
     'Ascii description confound'    => 'ASCII码特殊混淆(描述)',
+    'Ascii description rate'        => 'ASCII码特殊混淆(描述)插入比率(%)',
     'Template disturb'              => '插入模板段落干扰',
     'Add bracket'                   => '文章增加括号',
     'Bracket rate'                  => '括号插入比率(%)',
