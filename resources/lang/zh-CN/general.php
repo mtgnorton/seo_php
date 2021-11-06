@@ -125,6 +125,7 @@ return [
     "Pc"                                        => "PC端",
     "Screen terminal"                           => "屏蔽终端",
     "Website config"                            => "站点配置",
+    "Ad config"                                 => "广告配置",
     "Reciprocal link"                           => "网站互链",
     // 返回语句
     "File does not exist"                       => "文件不存在",
