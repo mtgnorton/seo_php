@@ -99,7 +99,7 @@ class PushSougouUrl extends Command
             $domain   = parse_url($firstURL, PHP_URL_HOST);
 
 
-            $isVerify = in_array($domain, explode(PHP_EOL, $configs['has_add_domains']));
+           // $isVerify = in_array($domain, explode(PHP_EOL, $configs['has_add_domains']));
 
             $isVerify = true;
             if ($isVerify) {
