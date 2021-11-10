@@ -59,6 +59,9 @@ class GatherJob implements ShouldQueue
             'gather_log'             => ''
         ]);
 
+
+        gather_crontab_log('当前的规则为:', $this->model->toArray());
+
         try {
             $g->dynamic(
                 $this->model,
@@ -67,7 +70,7 @@ class GatherJob implements ShouldQueue
                 $this->model->crontab_setting_interval_time,
                 $this->model->crontab_setting_timeout_time,
                 $logModal->id
-                
+
             );
         } catch (\Exception $e) {
             $logModal->update([
