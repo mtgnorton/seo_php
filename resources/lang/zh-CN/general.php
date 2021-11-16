@@ -352,5 +352,6 @@ return [
     'To English'            => '中英',
     'No conversion'         => '不转换',
     'Replace contents'      => '替换匹配',
+    'Location'              => '位置',
 
 ];
