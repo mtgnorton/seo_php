@@ -319,6 +319,7 @@ return [
     'Robots content'                => 'Robots.txt文件内容',
     'Url location'                  => 'URL位置',
     'Reciprocal link text'          => '互链描文本',
+    'Is color blur'                 => '是否开启内容颜色混淆',
     // 蜘蛛
     'Spider'                        => '蜘蛛',
     'Baidu'                         => '百度',
