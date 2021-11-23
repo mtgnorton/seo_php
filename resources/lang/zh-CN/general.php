@@ -320,6 +320,7 @@ return [
     'Url location'                  => 'URL位置',
     'Reciprocal link text'          => '互链描文本',
     'Is color blur'                 => '是否开启内容颜色混淆',
+    'Wildcard website ad config'    => '泛域名广告配置',
     // 蜘蛛
     'Spider'                        => '蜘蛛',
     'Baidu'                         => '百度',
