@@ -7,7 +7,7 @@
             <a class="content-a" href="/admin/content-categories?type=column&group_id=">栏目库</a>
             <a class="content-a" href="/admin/content-categories?type=sentence&group_id=">句子库</a>
             <a class="content-a" href="/admin/content-categories?type=image&group_id=">图片库</a>
-            <a class="content-a" href="/admin/content-categories?type=video&group_id=">视频库</a>
+            <!-- <a class="content-a" href="/admin/content-categories?type=video&group_id=">视频库</a> -->
             <a class="content-a" href="/admin/content-categories?type=keyword&group_id=">关键词库</a>
             <a class="content-a" href="/admin/content-categories?type=diy&group_id=">自定义库</a>
         </div>
