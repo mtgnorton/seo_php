@@ -212,6 +212,7 @@ return [
     "Synonym transform rule"                    => "一行一个, 格式为: 词语******同义词",
     "Spider url help"                           => "请以http或https开头, 一行一个, 可添加多个",
     "Ad diy content help"                       => "用户访问跳转, 蜘蛛访问不跳转.",
+    "Ad diy content placeholder"                => "直接填写需要跳转的网址, 必须以带http或https开头.",
     "Ad column tag help"                        => "指定一栏目标识, 如news, 只有访问该栏目才会跳转广告",
     "Ad keyword tag help"                       => "指定关键词, 标题中含有该关键词时会跳转广告, ",
     "Baidu normal help"                         => "每次推送的链接数量，一般100-2000，下面还可以单独设置数量",
