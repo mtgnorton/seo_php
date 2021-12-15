@@ -51,6 +51,7 @@ class ProcessDeleteCache implements ShouldQueue
         try {
             $path = 'cache/templates/'.$this->groupId;
             if (Storage::disk('local')->directories($path)) {
+                Storage::disk('local')->deleteDirectory($path.'/index');
                 Storage::disk('local')->deleteDirectory($path.'/list');
                 Storage::disk('local')->deleteDirectory($path.'/detail');
             }

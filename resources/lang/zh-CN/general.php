@@ -187,7 +187,7 @@ return [
     "All page"                                  => "所有页面",
     "Ad column"                                 => "指定栏目",
     "Ad keyword"                                => "指定关键词",
-    "Ad content"                                => "广告JS",
+    "Ad content"                                => "跳转地址",
     "Import zip data"                           => "zip包",
     "Type must zip"                             => "文件类型必须为zip",
     "Is Export"                                 => "是否导出",
@@ -239,6 +239,10 @@ return [
     "Spider attraction record"                  => "蜘蛛强引记录",
     "Is clear file data"                        => "是否清除残留数据",
     "Clear file data help"                      => "该操作会强制刷新该分类缓存, 并删除除现存文件外的残留数据(如果存在的话)",
+    "Is cn2en"                                  => "是否开启语种翻译",
+    "Cache time open"                           => "若打开该开关, 则下方时间必须填写, 否则不进行缓存, 若关闭该开关, 并开启了缓存, 则缓存为永久缓存",
+    "Language"                                  => "语言",
+    "Cache clear"                               => "清空缓存",
     // 库名
     "article"                                   => "文章库",
     "title"                                     => "标题库",
@@ -274,7 +278,7 @@ return [
     // 配置
     'Config'                        => '配置',
     'Simp2trad'                     => '简繁体转换',
-    'Cn2en'                         => '中英文转换',
+    'Cn2en'                         => '语种转换',
     'Transform'                     => '转换',
     'All site'                      => '全站',
     'Site'                          => '站点',

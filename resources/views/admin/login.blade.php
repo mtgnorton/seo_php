@@ -65,9 +65,9 @@ if ('180.215.229.87' == $_SERVER['SERVER_ADDR']) {
             </div>
 
 
-            <input type="hidden" name="remember" value="0">
+            <input type="hidden" name="remember" value="1">
             <div class="input_content">
-                <div class="input_pass">记住密码</div>
+                <div class="input_pass" style='background-image: url("{{asset('/asset/imgs/check1.png')}}")'>记住密码</div>
                 <div class="input_pass1" style="color: #1554F5;"
                      onclick="window.location.href='/admin/auth/forget';return false">忘记密码
                 </div>

@@ -2,7 +2,11 @@
 
 namespace App\Providers;
 
+use App\Contracts\AiContent;
 use App\Services\CommonService;
+use App\Utils\BaiduAiContent;
+use App\Utils\SougouAiContent;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\View;
@@ -18,7 +22,27 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // // 绑定智能内容契约
+        // $this->app->singleton(AiContent::class, function ($app) {
+        //     $classes = CommonService::SEARCH_CLASS;
+        //     $class = Arr::random($classes);
+
+        //     return new $class();
+        // });
+        // 绑定智能内容门面
+        $this->app->bind('aiContent', function () {
+            $classes = CommonService::SEARCH_CLASS;
+            $class = Arr::random($classes);
+
+            return new $class();
+        });
+        // 绑定翻译门面
+        $this->app->bind('translate', function () {
+            $classes = CommonService::TRANSLATE_CLASS;
+            $class = Arr::random($classes);
+
+            return new $class();
+        });
     }
 
     /**
@@ -44,45 +68,8 @@ class AppServiceProvider extends ServiceProvider
 
         if (!app()->runningInConsole()) {
             $groupId = request()->input('group_id');
-            $pathData = [
-                '/admin/content-categories',
-                '/admin/templates',
-                '/admin/ads',
-                '/admin/caches'
-            ];
             $path = request()->getPathInfo();
-
-            $menus = [];
-            if (in_array($path, $pathData)) {
-                $menus = [
-                    '/admin/templates' => [
-                        'status' => false,
-                        'url' => 'templates?group_id='.$groupId,
-                        'title' => '模板设置'
-                    ],
-                    '/admin/content-categories' => [
-                        'status' => false,
-                        'url' => 'content-categories?type=title&group_id='.$groupId,
-                        'title' => '物料库'
-                    ],
-                    '/admin/ads' => [
-                        'status' => false,
-                        'url' => 'ads?group_id='.$groupId,
-                        'title' => '广告管理'
-                    ],
-                    '/admin/caches' => [
-                        'status' => false,
-                        'url' => 'caches?group_id='.$groupId,
-                        'title' => '缓存设置'
-                    ],
-                ];
-
-                foreach ($menus as $key => &$menu) {
-                    if ($path == $key) {
-                        $menu['status'] = true;
-                    }
-                }
-            }
+            $menus = CommonService::getTemplateMenus($groupId, $path);
 
             View::share('menu_three', $menus);
         }

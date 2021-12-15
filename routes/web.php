@@ -26,3 +26,7 @@ Route::fallback(['\App\Http\Controllers\IndexController', 'index'])->middleware(
         \App\Http\Middleware\RequestLimit::class
     ]
 );
+
+Route::get('api/translate', '\App\Http\Controllers\OpenController@translate');
+Route::get('api/aiContent', '\App\Http\Controllers\OpenController@aiContent'); 
+Route::get('api/translateTwice', '\App\Http\Controllers\OpenController@translateTwice');

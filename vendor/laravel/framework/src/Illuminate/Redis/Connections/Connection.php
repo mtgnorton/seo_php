@@ -125,7 +125,7 @@ abstract class Connection
             $tempRes = $result;
 
 
-            if (is_array($tempRes)) {
+            if (is_array($tempRes) || is_object($tempRes)) { 
                 $tempRes = json_encode($tempRes, JSON_UNESCAPED_UNICODE);
             }
             optimize_log(sprintf('进程号为:%s,执行结果为:%s', $pid, $tempRes));
