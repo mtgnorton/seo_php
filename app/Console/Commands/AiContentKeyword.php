@@ -124,7 +124,7 @@ class AiContentKeyword extends Command
                 }
             } else {
                 // 从缓存中最大的key开始, 获取连续1000条进行缓存
-                $limit = 10;
+                $limit = 400;
                 $data = Keyword::where('id', '>', $cacheMaxId)
                             ->limit($limit)
                             ->orderBy('id', 'asc')

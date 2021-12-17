@@ -51,10 +51,10 @@ class Kernel extends ConsoleKernel
             ->everyMinute()
             ->withoutOverlapping();
 
-        // 每30分钟运行一次更新蜘蛛数据的操作
-        $schedule->command('spider:update')
-            ->everyThirtyMinutes()
-            ->withoutOverlapping();
+        // // 每30分钟运行一次更新蜘蛛数据的操作
+        // $schedule->command('spider:update')
+        //     ->everyThirtyMinutes()
+        //     ->withoutOverlapping();
 
         // 每半个小时运行一次蜘蛛数据缓存操作
         $schedule->command('spider:cache')
