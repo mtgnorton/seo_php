@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Title;
 use App\Services\CommonService;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Cache;
@@ -47,12 +48,33 @@ class AiContentMake extends Command
         $cacheTimeKey = 'aiContentTitleCaching';
         $cacheMaxIdKey = 'aiContentTitleMaxId';
         $cacheFailedIdsKey = 'aiContentTitleFailedData';
-        $baseCacheContentKey = 'aiContentValue';
         $successDataKey = 'aiContentSuccess';
+        $baseCacheContentKey = 'aiContentValue';
         // 4个小时, 按照最大15秒一个, 执行1000个
         $cacheTime = 3600;
         // 七天
         $contentCacheTime = 604800;
+        // 固定第七天+六小时设为空
+        $cacheDateTimeKey = 'aiContentTitleDateTime';
+        $cacheDateTimeString = Cache::store('redis')->get($cacheDateTimeKey);
+        $cacheDAteTimeHours = 174;
+        if (empty($cacheDateTimeString)) {
+            // 当天时间+七天六个小时
+            $cacheDateTime = Carbon::parse('+'.$cacheDAteTimeHours.' hours');
+            $cacheDateTimeString = $cacheDateTime->toDateTimeString();
+
+            Cache::store('redis')->put($cacheDateTimeKey, $cacheDateTimeString, $cacheDateTime);
+        } else {
+            // 判断到期时间是否大于当前时间
+            $cacheDateTime = Carbon::parse($cacheDateTimeString);
+            if ($cacheDateTime->lt(Carbon::now())) {
+                // 当天时间+七天六个小时
+                $cacheDateTime = Carbon::parse('+'.$cacheDAteTimeHours.' hours');
+                $cacheDateTimeString = $cacheDateTime->toDateTimeString();
+    
+                Cache::store('redis')->put($cacheDateTimeKey, $cacheDateTimeString, $cacheDateTime);
+            }
+        }
         try {
             // 如果缓存中是否有该值, 且该值是否为true, 则直接退出, 保证单线程执行
             if (Cache::store('redis')->get($cacheTimeKey, false)) {
@@ -107,14 +129,14 @@ class AiContentMake extends Command
                         unset($failedData[$id]);
                     }
                     // 更新失败数据
-                    Cache::store('redis')->put($cacheFailedIdsKey, $failedData, $contentCacheTime);
+                    Cache::store('redis')->put($cacheFailedIdsKey, $failedData, $cacheDateTime);
                     // 更新成功数据
                     Cache::store('redis')->put($successDataKey, $successData, $contentCacheTime);
                     // 更新缓存中为false
                     Cache::store('redis')->put($cacheTimeKey, false, $cacheTime);
                 } catch (Exception $e) {
                     // 更新失败数据
-                    Cache::store('redis')->put($cacheFailedIdsKey, $failedData, $contentCacheTime);
+                    Cache::store('redis')->put($cacheFailedIdsKey, $failedData, $cacheDateTime);
                     // 更新成功数据
                     Cache::store('redis')->put($successDataKey, $successData, $contentCacheTime);
                     // 更新缓存中为false
@@ -151,24 +173,27 @@ class AiContentMake extends Command
                         Cache::store('file')->put($cacheKey, $content, $contentCacheTime);
                         if (count($successData) < 100) {
                             $successData[] = $cacheKey;
+                        } else {
+                            array_shift($successData);
+                            $successData[] = $cacheKey;
                         }
                         // 更新最大缓存ID
                         $cacheMaxId = $key;
                     }
 
                     // 更新缓存最大ID
-                    Cache::store('redis')->put($cacheMaxIdKey, $cacheMaxId, $contentCacheTime);
+                    Cache::store('redis')->put($cacheMaxIdKey, $cacheMaxId, $cacheDateTime);
                     // 更新失败数据
-                    Cache::store('redis')->put($cacheFailedIdsKey, $failedData, $contentCacheTime);
+                    Cache::store('redis')->put($cacheFailedIdsKey, $failedData, $cacheDateTime);
                     // 更新成功数据
                     Cache::store('redis')->put($successDataKey, $successData, $contentCacheTime);
                     // 更新缓存中为false
                     Cache::store('redis')->put($cacheTimeKey, false, $cacheTime);
                 } catch (Exception $e) {
                     // 更新失败数据
-                    Cache::store('redis')->put($cacheFailedIdsKey, $failedData, $contentCacheTime);
+                    Cache::store('redis')->put($cacheFailedIdsKey, $failedData, $cacheDateTime);
                     // 更新缓存最大ID
-                    Cache::store('redis')->put($cacheMaxIdKey, $cacheMaxId, $contentCacheTime);
+                    Cache::store('redis')->put($cacheMaxIdKey, $cacheMaxId, $cacheDateTime);
                     // 更新成功数据
                     Cache::store('redis')->put($successDataKey, $successData, $contentCacheTime);
                     // 更新缓存中为false
