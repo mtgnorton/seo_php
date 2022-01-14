@@ -115,6 +115,7 @@ class Base
             'port' => '',
             'user' => '',
             'pass' => '',
+            'name' => '未知'
         ];
         $proxyAccounts = CommonService::PROXY_ACCOUNTS;
 

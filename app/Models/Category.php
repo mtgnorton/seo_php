@@ -10,7 +10,7 @@ use Encore\Admin\Traits\ModelTree;
  */
 class Category extends Model
 {
-    use ModelTree;
+    // use ModelTree;
     
     /**
      * 黑名单

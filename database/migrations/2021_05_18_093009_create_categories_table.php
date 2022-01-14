@@ -17,7 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name', 100)->nullable()->default('')->comment('分类名称');
             $table->string('tag', 100)->unique()->nullable()->default('')->comment('标识');
-            // $table->string('template', 255)->nullable()->default('')->comment('主模板文件: json格式');
+            $table->tinyInteger('is_deleted')->nullable()->default(0)->comment('是否已删除: 0.未删除(正常). 1.已删除');
             $table->timestamps();
             $table->engine = 'MyISAM';
         });

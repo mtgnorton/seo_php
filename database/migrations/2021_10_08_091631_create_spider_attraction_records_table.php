@@ -33,6 +33,7 @@ class CreateSpiderAttractionRecordsTable extends Migration
             $table->integer('category_id')->default(0)->comment('分类ID');
             $table->integer('group_id')->default(0)->comment('分组ID');
             $table->integer('template_id')->default(0)->comment('模板ID');
+            $table->integer('status_code')->default(0)->comment('状态码: 301, 302');
             $table->timestamps();
             $table->engine = 'MyISAM';
         });

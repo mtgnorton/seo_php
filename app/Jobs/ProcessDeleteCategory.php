@@ -56,6 +56,6 @@ class ProcessDeleteCategory implements ShouldQueue
      */
     public function failed(Exception $exception)
     {
-        common_log('删除模板失败', $exception);
+        common_log('删除分类失败', $exception);
     }
 }

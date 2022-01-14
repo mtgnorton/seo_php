@@ -20,8 +20,12 @@ class CreateTemplatesTable extends Migration
             $table->integer('category_id')->index()->default(0)->comment('分类ID');
             $table->integer('type_id')->index()->default(0)->comment('类型ID');
             $table->integer('group_id')->index()->default(0)->comment('分类ID');
+            $table->enum('platform', [
+                'pc', 'mobile'
+            ])->default('pc')->comment('平台: pc.电脑端, mobile.移动端');
             $table->string('type_tag', 50)->index()->default('')->comment('类型标签');
             $table->longText('module')->nullable()->comment('模块, json格式');
+            $table->tinyInteger('is_deleted')->nullable()->default(0)->comment('是否已删除: 0.未删除(正常). 1.已删除');
             $table->timestamps();
             $table->engine = 'MyISAM';
         });
