@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Cache;
 
 class AiContentKeyword extends Command
 {
-    /**
+    /** 
      * The name and signature of the console command.
      *
      * @var string

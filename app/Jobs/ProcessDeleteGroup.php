@@ -17,7 +17,7 @@ class ProcessDeleteGroup implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
-     * 最大执行秒数
+     * 最大执行秒数 
      *
      * @var integer
      */

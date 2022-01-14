@@ -22,7 +22,7 @@ class Category extends Model
     ];
 
     /**
-     * 和文章一对多的关系
+     * 和文章一对多的关系 
      *
      * @return Illuminate\Databases\Eloquent\Relations\HasMany
      */

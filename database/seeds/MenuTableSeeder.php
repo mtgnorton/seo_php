@@ -25,7 +25,7 @@ class MenuTableSeeder extends Seeder
             //     'icon' => 'fa-bars',
             //     'uri' => '',
             //     'created_at' => $now,
-            //     'updated_at' => $now,
+            //     'updated_at' => $now, 
             // ],
             // [
             //     'id' => 9,
