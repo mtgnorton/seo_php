@@ -24,8 +24,8 @@
     <!-- <small>{!! $description ?: trans('admin.description') !!}</small> -->
     <!-- breadcrumb start -->
     @if ($breadcrumb)
-    <ol class="breadcrumb" style="margin-right: 30px;">
-        <li><a href="{{ admin_url('/') }}"><i class="fa fa-dashboard"></i> {{__('Homea')}}</a></li>
+    <ol class="breadcrumb" style="width: 100%;height: 60px;margin-bottom: 0;padding: 0 30px;box-sizing: border-box;line-height: 60px;margin-bottom: 0px;border-bottom: 1px solid #f4f4f4;font-size: 16px;color: #333;background-color: #fff;">
+        <!-- <li><a href="{{ admin_url('/') }}"><i class="fa fa-dashboard"></i> {{__('Homea')}}</a></li> -->
         @foreach($breadcrumb as $item)
             @if($loop->last)
                 <li class="active">
