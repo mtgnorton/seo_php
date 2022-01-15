@@ -23,7 +23,7 @@
 
     <!-- <small>{!! $description ?: trans('admin.description') !!}</small> -->
     <!-- breadcrumb start -->
-    <!-- @if ($breadcrumb)
+    @if ($breadcrumb)
     <ol class="breadcrumb" style="margin-right: 30px;">
         <li><a href="{{ admin_url('/') }}"><i class="fa fa-dashboard"></i> {{__('Homea')}}</a></li>
         @foreach($breadcrumb as $item)
@@ -62,7 +62,7 @@
             </li>
         @endfor
     </ol>
-    @endif -->
+    @endif
 
     <!-- breadcrumb end -->
 
