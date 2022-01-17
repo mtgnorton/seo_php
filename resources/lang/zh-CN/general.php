@@ -162,7 +162,7 @@ return [
     "Update fail"                               => "更新失败",
     "Website category"                          => "网站分类",
     "Delete"                                    => "刪除",
-    "Operation"                                 => "操作",
+    "Operation"                                 => "操&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;作",
     // 标题
     "Article"                                   => "文章",
     "Category"                                  => "分类",
