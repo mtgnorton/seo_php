@@ -2,7 +2,7 @@
 
 @section('content')
 
-    @if ($menu_three)
+    <!-- @if ($menu_three)
         <div class="btn-group" id="menuThree">
         @foreach ($menu_three as $menuItem)
             @if ($menuItem['status'])
@@ -12,7 +12,7 @@
             @endif
         @endforeach
         </div>
-    @endif
+    @endif -->
     @if (!! $header)
         <section class="content-header">
             <h1>
