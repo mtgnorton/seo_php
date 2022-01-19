@@ -262,6 +262,7 @@ return [
     "Language"                                  => "语言",
     "Cache clear"                               => "清空缓存",
     "Is Delete"                                 => "是否删除",
+    "Only number"                               => "只能为数字",
     // 库名
     "article"                                   => "文章库",
     "title"                                     => "标题库",
