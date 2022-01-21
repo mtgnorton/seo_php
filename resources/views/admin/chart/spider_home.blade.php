@@ -30,7 +30,8 @@
         </div>
     </div>
     <div class="chart_box">
-        <div class="chart-name line_name">今日蜘蛛时段走势图</div>
+        <div class="chart-name line_name">今日蜘蛛时段走势图<a href="/admin/spider-records" class="btn btn-sm btn-success add-category" modal="app-admin-components-actions-addtemplategroup" style="float: right;">蜘蛛访问详情</a></div>
+        
         <div style="position: relative;text-align:right">
             <div id="day_tab" class="chart_tab">
                 <span class="cur" data="0">今日</span>
