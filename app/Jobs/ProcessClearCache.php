@@ -16,6 +16,13 @@ class ProcessClearCache implements ShouldQueue
     protected $data;
 
     /**
+     * 最大执行秒数
+     *
+     * @var integer
+     */
+    public $timeout = 3000;
+
+    /**
      * Create a new job instance.
      *
      * @return void
@@ -32,6 +39,8 @@ class ProcessClearCache implements ShouldQueue
      */
     public function handle()
     {
+        set_time_limit(0);
+        ini_set('memory_limit', '-1');
         common_log('开始进行缓存的全面清除');
         CommonService::clearCacheAll($this->data);
         common_log('缓存的全面清除完成');

@@ -446,7 +446,7 @@ class MenuTableSeeder extends Seeder
                 'id'            => 49,
                 'parent_id'     => 40,
                 'order'         => 49,
-                'title'         => '缓存管理',
+                'title'         => '通用配置',
                 'icon'          => '',
                 'icon_selected' => '',
                 'uri'           => 'clear-cache',
