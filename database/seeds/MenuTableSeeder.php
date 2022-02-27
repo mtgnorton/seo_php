@@ -17,7 +17,7 @@ class MenuTableSeeder extends Seeder
 
 
         DB::table('admin_menu')->insertOrIgnore([
-            // [
+            // [ 
             //     'id' => 8,
             //     'parent_id' => 0,
             //     'order' => 8,

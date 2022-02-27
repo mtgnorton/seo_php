@@ -16,7 +16,7 @@ class ProcessClearCache implements ShouldQueue
     protected $data;
 
     /**
-     * 最大执行秒数
+     * 最大执行秒数 
      *
      * @var integer
      */

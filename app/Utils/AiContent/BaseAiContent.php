@@ -24,7 +24,7 @@ class BaseAiContent
     private $ua;
 
     /**
-     * 可以结尾的标点符号
+     * 可以结尾的标点符号 
      *
      * @var array
      */

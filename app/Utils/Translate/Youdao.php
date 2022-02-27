@@ -5,7 +5,7 @@ namespace App\Utils\Translate;
 use App\Contracts\Translate;
 
 /**
- * 有道翻译
+ * 有道翻译 
  */
 class Youdao extends Base implements Translate
 {

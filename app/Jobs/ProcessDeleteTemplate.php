@@ -18,7 +18,7 @@ class ProcessDeleteTemplate implements ShouldQueue
     public $templateId;
 
     /**
-     * 最大执行秒数 
+     * 最大执行秒数  
      *
      * @var integer
      */

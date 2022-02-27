@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Encore\Admin\Traits\ModelTree;
 
 /**
- * 分类模型
+ * 分类模型 
  */
 class Category extends Model
 {

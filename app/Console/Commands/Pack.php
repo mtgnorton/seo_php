@@ -13,7 +13,7 @@ use Illuminate\Support\Str;
 class Pack extends Command
 {
     /**
-     * The name and signature of the console command.
+     * The name and signature of the console command. 
      *
      * @var string
      */

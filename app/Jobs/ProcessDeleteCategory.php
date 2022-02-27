@@ -17,7 +17,7 @@ class ProcessDeleteCategory implements ShouldQueue
     public $categoryId;
 
     /**
-     * 最大执行秒数 
+     * 最大执行秒数  
      *
      * @var integer
      */

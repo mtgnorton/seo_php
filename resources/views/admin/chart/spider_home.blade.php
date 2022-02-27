@@ -14,7 +14,7 @@
 .type_tab span.cur{background:#40AA52;color:#fff;}
 </style>
 <div class="chart_main">
-    <div class="chart_box">
+    <div class="chart_box"> 
         <div class="chart-name chart_name">今日访问比率</div>
         <div style="position: relative;text-align:right">
             <div id="pie_tab" class="chart_tab">

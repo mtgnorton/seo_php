@@ -4,7 +4,7 @@
             <a class="content-a" href="/admin/content-categories?type=title&group_id=">标题库</a>
             <a class="content-a" href="/admin/content-categories?type=article&group_id=">文章库</a>
             <a class="content-a" href="/admin/content-categories?type=website_name&group_id=">网站名称库</a>
-            <!-- <a class="content-a" href="/admin/content-categories?type=column&group_id=">栏目库</a> -->
+            <!-- <a class="content-a" href="/admin/content-categories?type=column&group_id=">栏目库 </a> -->
             <a class="content-a" href="/admin/content-categories?type=sentence&group_id=">句子库</a>
             <a class="content-a" href="/admin/content-categories?type=image&group_id=">图片库</a>
             <!-- <a class="content-a" href="/admin/content-categories?type=video&group_id=">视频库</a> -->
