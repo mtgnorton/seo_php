@@ -71,6 +71,11 @@ class Kernel extends ConsoleKernel
             ->everyFiveMinutes()
             ->withoutOverlapping();
 
+        // 每半小时运行一次检查硬盘是否已满
+        $schedule->command('check:disk')
+            ->everyThirtyMinutes()
+            ->withoutOverlapping();
+
         // // 每天运行一次删除导出模板包
         // $schedule->command('export:delete')
         //     ->dailyAt('03:00')

@@ -36,4 +36,46 @@ class Youdao extends Base implements Translate
 
         return $result;
     }
+
+    public function twice($content='')
+    {
+        $onceTime = time();
+        $onceData = '';
+        $result = '';
+        for ($i=0; $i<10; $i++) {
+            $onceData = self::get($content, 'en', 'cn');
+            if (!empty($onceData)) {
+                break;
+            }
+
+            $onceNowTime = time();
+            if ($onceNowTime - $onceTime > 15) {
+                common_log('第一次翻译超过15秒结果为空', null, [], 'ai-content');
+
+                return '';
+            }
+        }
+        // 去除两边的双引号
+        $onceData = str_replace_once('"', '', $onceData);
+        $onceData = trim($onceData, '"\'');
+
+        $twiceTime = time();
+        for ($j=0; $j<15; $j++) {
+            $result = self::get($onceData, 'cn', 'en');
+            if (!empty($result)) {
+                break;
+            }
+            $twiceNowTime = time();
+            if ($twiceNowTime - $twiceTime > 15) {
+                common_log('第二次翻译超过15秒结果为空', null, [], 'ai-content');
+
+                return '';
+            }
+        }
+        // 去除两边的双引号
+        $result = str_replace_once('"', '', $result);
+        $result = trim($result, '"');
+
+        return $result;
+    }
 }

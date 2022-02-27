@@ -46,7 +46,10 @@ class PushSougouUrl extends Command
     public function handle()
     {
         $configs = conf('sougoupush');
-
+        
+        if (empty($configs)) {
+            return false;
+        }
 
         if ($configs['is_open'] == 'off') {
             return false;

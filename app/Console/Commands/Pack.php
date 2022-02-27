@@ -45,7 +45,7 @@ class Pack extends Command
     {
 
 
-        $type = $this->choice('打包哪些文件', ['修改过的', '上一次提交的文件', '某次提交,需要输入提交hash'], 0);
+        $type = $this->choice('打包哪些文件', ['修改过的', '上一次提交的文件', '某次提交,需要输入提交hash', '两次提交之间的所有文件，先输入的hash为较远版本（不包含本次提交），后输入的为较近版本'], 0);
 
 
         switch ($type) {
@@ -62,6 +62,13 @@ class Pack extends Command
 
                 $command .= $hash;
                 break;
+            case '两次提交之间的所有文件，先输入的hash为较远版本（不包含本次提交），后输入的为较近版本':
+                $command = "git diff --diff-filter=ACMR %s %s --name-only";
+                $low     = $this->ask("输入较远版本hash，不包含本次提交文件");
+                $high    = $this->ask("输入较近版本hash，包含本次提交文件");
+                $command = sprintf($command, $low, $high);
+                break;
+
         }
 
         exec($command, $output);
