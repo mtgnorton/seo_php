@@ -13,7 +13,7 @@ use Illuminate\Support\Str;
 class Pack extends Command
 {
     /**
-     * The name and signature of the console command. 
+     * The name and signature of the console command.
      *
      * @var string
      */
@@ -108,10 +108,18 @@ class Pack extends Command
 
             $info = pathinfo($changeFilePath);
 
+            dump($changeFilePath);
+
+            if ($this->isExtra($changeFilePath)) {
+
+                copy($this->joinPath($rootPath, $changeFilePath), $this->joinPath($toPath, $info["basename"]));
+                continue;
+            }
 
             FileService::createDir($this->joinPath($toPath, $info['dirname']));
 
             $targetPath = $this->joinPath($toPath, $changeFilePath);
+
             copy($this->joinPath($rootPath, $changeFilePath), $targetPath);
 
 
@@ -159,6 +167,14 @@ class Pack extends Command
 
     }
 
+    public function isExtra($path)
+    {
+        if (in_array($path, ["update/modify.sql", "update/modify_config.php", "update/execute_command.php"])) {
+            return true;
+        }
+        return false;
+    }
+
 
     /**
      * author: mtg
@@ -186,7 +202,7 @@ class Pack extends Command
     {
         $path = $this->toDs($path);
 
-        if (strpos($path, '.php') !== false || strpos($path, '.txt') !== false || strpos($path, '.zip') !== false || ($path == "") || strpos($path, '.ico') !== false) {
+        if (strpos($path, '.php') !== false || strpos($path, '.txt') !== false || strpos($path, '.zip') !== false || ($path == "") || strpos($path, '.ico') !== false || strpos($path, '.sql') !== false) {
             return $path;
         }
         return rtrim($path, '/\\') . DIRECTORY_SEPARATOR;
