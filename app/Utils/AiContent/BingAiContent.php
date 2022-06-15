@@ -23,27 +23,29 @@ class BingAiContent extends BaseAiContent implements AiContent
             $pattern = "#<p>([\s\S]*?)</p>#";
             preg_match_all($pattern, $content, $match);
     
-            $result = $match[1] ?? [
-                'content' => [],
-                'img' => []
-            ];
+            $result = $match[1] ?? [];
 
             if (empty($result)) {
-                return $result;
+                return [
+                    'content' => [],
+                    'img' => []
+                ];
             }
 
             foreach ($result as $key => &$val) {
                 $tempArr = explode('&ensp;&#0183;&ensp;', $val);
 
                 $val = array_pop($tempArr);
-
-                $val = preg_replace('#<a([.*?])</a>#', '', $val);
+                $val = preg_replace('#<a(.*?)</a>#', '', $val);
                 $val = str_replace([
                     '<strong>', '</strong>', ' ', '...',
                     '<!--red_beg-->', '<!--red_end-->'
                 ], '', $val);
 
                 $val = $this->detachLastMarkWords($val);
+                if (empty($val)) {
+                    unset($result[$key]);
+                }
             }
             // 如果$result为空, 则记录一下返回内容, 分析问题所在
             if (empty($result)) {

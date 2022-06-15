@@ -37,6 +37,7 @@ class CreateGathersTable extends Migration
             $table->integer('filter_length_limit')->nullable()->default(0)->comment('内容最小长度,小于该值过滤');
             $table->text('filter_regular')->nullable()->comment('正则过滤,一行一条');
             $table->text('filter_content')->nullable()->comment('内容过滤');
+            $table->text('no_regular_url')->nullable()->comment('忽略的网址正则,一行一条');
 
             /*定时任务字段*/
 
