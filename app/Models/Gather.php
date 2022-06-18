@@ -75,4 +75,9 @@ class Gather extends Model
     {
         return $this->belongsTo(ContentCategory::class, 'category_id');
     }
+
+    public function setCategoryIdAttribute($value)
+    {
+        $this->attributes['category_id'] = implode(',', $value);
+    }
 }
