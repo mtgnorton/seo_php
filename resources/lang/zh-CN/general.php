@@ -261,6 +261,8 @@ return [
     "Cache clear"                               => "清空缓存",
     "Is Delete"                                 => "是否删除",
     "Only number"                               => "只能为数字",
+    "Frame"                                     => "框架",
+    "Js jump"                                   => "JS跳转",
     // 库名
     "article"                                   => "文章库",
     "title"                                     => "标题库",
