@@ -263,6 +263,7 @@ return [
     "Only number"                               => "只能为数字",
     "Frame"                                     => "框架",
     "Js jump"                                   => "JS跳转",
+    "Ad jump type"                              => "广告跳转类型",
     // 库名
     "article"                                   => "文章库",
     "title"                                     => "标题库",
