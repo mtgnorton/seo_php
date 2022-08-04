@@ -39,9 +39,7 @@ class CreateGathersTable extends Migration
             $table->text('filter_content')->nullable()->comment('内容过滤');
             $table->text('no_regular_url')->nullable()->comment('忽略的网址正则,一行一条');
 
-            /*定时任务字段*/
-
-
+            /* 定时任务字段 */
             $table->char('crontab_type', 15)->default('')->comment('采集定时任务类型');
             $table->integer('crontab_hour')->default(0)->comment('采集定时任务小时时间');
             $table->integer('crontab_minute')->default(0)->comment('采集定时任务分钟时间');
