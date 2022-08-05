@@ -47,7 +47,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Gather whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Gather whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Gather whereUserAgent($value)
- * @mixin \Eloquent
+ * @mixin \Eloquent 
  */
 class Gather extends Model
 {

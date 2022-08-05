@@ -47,7 +47,7 @@ class BingAiContent extends BaseAiContent implements AiContent
                     unset($result[$key]);
                 }
             }
-            // 如果$result为空, 则记录一下返回内容, 分析问题所在
+            // 如果$result为空, 则记录一下返回内容, 分析问题所在 
             if (empty($result)) {
                 if (mb_strlen($content) <= 5000) {
                     common_log('厂家: '.$name.', 必应搜索获取内容为空, 关键字为: '.$beforeKeyword.', 返回内容为: '.(string)$content, null, [], 'ai-content');

@@ -177,7 +177,7 @@ class Pack extends Command
 
 
     /**
-     * author: mtg
+     * author: mtg 
      * time: 2021/9/14   17:12
      * function description:将传递过来的路径按照顺序拼接起来
      * @param mixed ...$paths

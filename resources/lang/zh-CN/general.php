@@ -1,7 +1,7 @@
 <?php
 
 return [
-    // 字段  
+    // 字段
     "Id"                                        => "ID",
     "User id"                                   => "用户ID",
     "Sn"                                        => "订单号",
