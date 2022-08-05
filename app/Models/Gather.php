@@ -78,6 +78,10 @@ class Gather extends Model
 
     public function setCategoryIdAttribute($value)
     {
-        $this->attributes['category_id'] = implode(',', $value);
+        if (is_array($value)) {
+            $value = implode(',', $value);
+        }
+        
+        $this->attributes['category_id'] = $value;
     }
 }
