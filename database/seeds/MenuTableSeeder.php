@@ -473,7 +473,7 @@ class MenuTableSeeder extends Seeder
                 'icon_selected' => '/asset/imgs/default_icon/a13.png',
                 'uri'           => 'spider',
                 'created_at'    => $now,
-                'updated_at'    => $now,
+                'updated_at'    => $now, 
             ],
             // [
             //     'id'            => 53,
